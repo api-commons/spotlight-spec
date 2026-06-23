@@ -1,0 +1,36 @@
+# Demonstrates aliases (reusable given expressions) and overrides
+# (per-file and per-JSON-Pointer adjustments).
+description: Ruleset demonstrating aliases and overrides.
+aliases:
+  # Simple alias: a bare given expression.
+  PathItem:
+    - $.paths[*]
+  # Scoped alias: format-specific targets.
+  Operation:
+    description: All operation objects across OAS versions.
+    targets:
+      - formats: [oas2]
+        given:
+          - $.paths[*][get,put,post,delete,options,head,patch,trace]
+      - formats: [oas3, oas3_1]
+        given:
+          - $.paths[*][get,put,post,delete,options,head,patch,trace]
+rules:
+  operation-needs-summary:
+    description: Every operation should have a summary.
+    given: "#Operation"
+    severity: warn
+    then:
+      field: summary
+      function: truthy
+overrides:
+  # Per-file override: relax a rule for generated specs.
+  - files:
+      - "legacy/**/*.yaml"
+    rules:
+      operation-needs-summary: off
+  # Per-JSON-Pointer override: only rules may be adjusted when a pointer (#) is present.
+  - files:
+      - "api.yaml#/paths/~1health"
+    rules:
+      operation-needs-summary: hint

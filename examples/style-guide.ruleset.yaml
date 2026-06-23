@@ -1,0 +1,34 @@
+# A small API style guide demonstrating the common rule shapes.
+description: Example API style guide for the Spotlight ruleset specification.
+documentationUrl: https://github.com/api-commons/spotlight-spec
+formats:
+  - oas3
+  - oas3_1
+rules:
+  # Inline severity override of an inherited rule.
+  operation-operationId: error
+
+  # Disable an inherited rule with a boolean.
+  info-contact: false
+
+  # A full custom rule with a single "then".
+  paths-kebab-case:
+    description: Paths should be kebab-case.
+    message: "{{property}} is not kebab-case: {{error}}"
+    severity: warn
+    given: $.paths[*]~
+    then:
+      function: pattern
+      functionOptions:
+        match: "^(\\/[a-z0-9]+(-[a-z0-9]+)*)+$"
+
+  # A custom rule with multiple "then" actions and a field selector.
+  info-must-have-license-and-terms:
+    description: Info object must declare a license and terms of service.
+    severity: error
+    given: $.info
+    then:
+      - field: license
+        function: truthy
+      - field: termsOfService
+        function: truthy

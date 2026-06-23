@@ -1,0 +1,5 @@
+# The smallest useful ruleset: inherit a parent ruleset with only its
+# "recommended" rules enabled. The [name, modifier] pair must be nested as its
+# own array; a flat ["a", "b"] would mean "extend two rulesets named a and b".
+extends:
+  - ["spotlight:oas", "recommended"]

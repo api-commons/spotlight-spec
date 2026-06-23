@@ -1,0 +1,21 @@
+{
+  "name": "@api-commons/spotlight-spec",
+  "version": "0.1.0",
+  "description": "Standalone specification and JSON Schema for the Spotlight (Spectral) ruleset format.",
+  "license": "Apache-2.0",
+  "type": "module",
+  "scripts": {
+    "validate": "node tools/validate.mjs",
+    "test": "node tools/validate.mjs"
+  },
+  "files": [
+    "schema",
+    "spec"
+  ],
+  "devDependencies": {
+    "ajv": "^8.17.1",
+    "ajv-errors": "^3.0.0",
+    "ajv-formats": "^3.0.1",
+    "yaml": "^2.5.0"
+  }
+}
