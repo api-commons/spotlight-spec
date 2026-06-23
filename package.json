@@ -1,5 +1,5 @@
 {
-  "name": "@api@spotlight-rules/spotlight-spec",
+  "name": "@spotlight-rules/spotlight-spec",
   "version": "1.0.0",
   "description": "Standalone specification and JSON Schema for the Spotlight (Spectral) ruleset format.",
   "license": "Apache-2.0",
