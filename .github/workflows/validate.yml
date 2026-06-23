@@ -14,4 +14,5 @@ jobs:
         with:
           node-version: 20
       - run: npm install --no-audit --no-fund
+      - run: npm run sync:check   # fails if the committed schema drifts from upstream
       - run: npm run validate

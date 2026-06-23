@@ -26,7 +26,7 @@ file depending on whether the ruleset was authored as data or as JavaScript.
 
 ## Transformation
 
-[`schema/spotlight-ruleset.schema.json`](./schema/spotlight-ruleset.schema.json)
+[`schema/v1/spotlight-ruleset.schema.json`](./schema/v1/spotlight-ruleset.schema.json)
 is a single, self-contained bundle of the above, produced by:
 
 1. **Merging** `ruleset.schema.json`, `rule.schema.json`, and `shared.json` into
@@ -46,6 +46,27 @@ is a single, self-contained bundle of the above, produced by:
 
 No other semantic changes were made. The accepted/rejected set of documents is
 intended to match upstream's data-form rulesets exactly.
+
+## Regeneration
+
+The bundle is **generated, not hand-maintained**. The transformation above is
+implemented in [`tools/sync-from-spectral.mjs`](./tools/sync-from-spectral.mjs):
+
+```bash
+# Re-derive from a local spotlight-cli / spectral checkout (or it downloads the fork):
+npm run sync                       # writes schema/v1/spotlight-ruleset.schema.json
+npm run sync -- --src ../spotlight-cli
+
+# CI guard — fails if the committed schema has drifted from upstream:
+npm run sync:check
+```
+
+To track a newer Spectral release: update the spotlight-cli fork, run
+`npm run sync`, run `npm run validate`, and commit the regenerated schema. The
+schema's `$id` is the canonical, versioned URL
+`https://api-commons.github.io/spotlight-spec/schema/v1/spotlight-ruleset.schema.json`;
+breaking changes to the format should be published under a new `schema/v2/`
+path rather than mutating `v1`.
 
 ## Verification
 

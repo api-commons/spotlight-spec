@@ -6,7 +6,9 @@
   "type": "module",
   "scripts": {
     "validate": "node tools/validate.mjs",
-    "test": "node tools/validate.mjs"
+    "sync": "node tools/sync-from-spectral.mjs",
+    "sync:check": "node tools/sync-from-spectral.mjs --check",
+    "test": "node tools/sync-from-spectral.mjs --check && node tools/validate.mjs"
   },
   "files": [
     "schema",

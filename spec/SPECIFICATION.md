@@ -2,7 +2,7 @@
 
 **Version:** 0.1.0 (draft)
 **Status:** Working draft, derived from Stoplight Spectral's ruleset format.
-**Schema:** [`../schema/spotlight-ruleset.schema.json`](../schema/spotlight-ruleset.schema.json) (JSON Schema draft-07)
+**Schema:** [`../schema/v1/spotlight-ruleset.schema.json`](../schema/v1/spotlight-ruleset.schema.json) (JSON Schema draft-07)
 
 A **ruleset** is a JSON or YAML document that declares a set of **rules** for
 linting a structured (JSON/YAML) target document — typically an API description
@@ -201,7 +201,7 @@ aliases:
 ## 9. Conformance
 
 A document conforms to this specification if and only if it validates against
-[`schema/spotlight-ruleset.schema.json`](../schema/spotlight-ruleset.schema.json)
+[`schema/spotlight-ruleset.schema.json`](../schema/v1/spotlight-ruleset.schema.json)
 under a JSON Schema draft-07 validator. The `errorMessage` keyword present in
 the schema is an [ajv-errors](https://github.com/ajv-validator/ajv-errors)
 annotation that customizes validation messages; validators without that plugin

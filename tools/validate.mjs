@@ -14,7 +14,7 @@ import ajvErrors from "ajv-errors";
 import { parse as parseYaml } from "yaml";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
-const schemaPath = join(root, "schema", "spotlight-ruleset.schema.json");
+const schemaPath = join(root, "schema", "v1", "spotlight-ruleset.schema.json");
 const schema = JSON.parse(readFileSync(schemaPath, "utf8"));
 
 const ajv = new Ajv({ allErrors: true, strict: false });

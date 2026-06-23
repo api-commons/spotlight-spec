@@ -21,7 +21,7 @@ editor at to answer "is this a valid ruleset?"
 
 `spotlight-spec` extracts that format into its own thing:
 
-- **One self-contained JSON Schema** ([`schema/spotlight-ruleset.schema.json`](./schema/spotlight-ruleset.schema.json))
+- **One self-contained JSON Schema** ([`schema/v1/spotlight-ruleset.schema.json`](./schema/v1/spotlight-ruleset.schema.json))
   that validates a ruleset document on its own, with no linter runtime required.
 - **A written specification** ([`spec/SPECIFICATION.md`](./spec/SPECIFICATION.md))
   describing every field.
@@ -71,7 +71,7 @@ To validate your own file with ajv-cli:
 
 ```bash
 npx ajv-cli validate \
-  -s schema/spotlight-ruleset.schema.json \
+  -s schema/v1/spotlight-ruleset.schema.json \
   -d path/to/your-ruleset.yaml \
   --strict=false
 ```
@@ -99,7 +99,7 @@ exact mapping back to upstream source files.
 
 | Path | What |
 | --- | --- |
-| [`schema/spotlight-ruleset.schema.json`](./schema/spotlight-ruleset.schema.json) | The standalone JSON Schema. |
+| [`schema/v1/spotlight-ruleset.schema.json`](./schema/v1/spotlight-ruleset.schema.json) | The standalone JSON Schema. |
 | [`spec/SPECIFICATION.md`](./spec/SPECIFICATION.md) | Human-readable specification. |
 | [`examples/`](./examples/) | Valid example rulesets. |
 | [`examples/invalid/`](./examples/invalid/) | Intentionally-invalid rulesets (negative tests). |
