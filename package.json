@@ -1,14 +1,14 @@
 {
   "name": "@api-commons/spotlight-spec",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Standalone specification and JSON Schema for the Spotlight (Spectral) ruleset format.",
   "license": "Apache-2.0",
   "type": "module",
   "scripts": {
     "validate": "node tools/validate.mjs",
-    "sync": "node tools/sync-from-spectral.mjs",
-    "sync:check": "node tools/sync-from-spectral.mjs --check",
-    "test": "node tools/sync-from-spectral.mjs --check && node tools/validate.mjs"
+    "sync": "node tools/sync-from-cli.mjs",
+    "sync:check": "node tools/sync-from-cli.mjs --check",
+    "test": "node tools/sync-from-cli.mjs --check && node tools/validate.mjs"
   },
   "files": [
     "schema",

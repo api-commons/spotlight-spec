@@ -36,7 +36,7 @@ is a single, self-contained bundle of the above, produced by:
 2. **Choosing the portable extensions.** The `extends`, `function`, and `format`
    definitions come from `json-extensions.json` (the data form), because this
    specification describes serialized rulesets, not JavaScript-authored ones.
-3. **Dropping runtime-only hooks.** The `x-spectral-runtime` keyword (a hook with
+3. **Dropping runtime-only hooks.** The `x-spotlight-runtime` keyword (a hook with
    no validation effect, used by the linter to mark alias/format/function
    resolution points) was removed. Removing it does not change which documents
    are accepted.
@@ -50,7 +50,7 @@ intended to match upstream's data-form rulesets exactly.
 ## Regeneration
 
 The bundle is **generated, not hand-maintained**. The transformation above is
-implemented in [`tools/sync-from-spectral.mjs`](./tools/sync-from-spectral.mjs):
+implemented in [`tools/sync-from-cli.mjs`](./tools/sync-from-cli.mjs):
 
 ```bash
 # Re-derive from a local spotlight-cli / spectral checkout (or it downloads the fork):
