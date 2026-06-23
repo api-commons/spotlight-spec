@@ -76,7 +76,7 @@ A full rule **object** **MUST** contain `given` and `then`. Allowed properties:
 | `formats` | [Formats](#6-formats) | no | Restrict the rule to specific document formats. |
 | `recommended` | boolean | no | Whether the rule is on when extended via the `recommended` modifier. |
 | `resolved` | boolean | no | Run against the `$ref`-resolved document (`true`) or the raw document (`false`). |
-| `tags` | array of string | no | Free-form grouping tags. |
+| `tags` | array of string | no | Grouping tags; see [TAGS.md](./TAGS.md) for the `source:`/`category:`/`format:` selection convention. |
 | `type` | `"style"` \| `"validation"` | no | Classification of the rule. |
 | `documentationUrl` | string (URL) | no | Link to docs for this rule. |
 | `extensions` | object | no | Implementation-defined extension data. |
