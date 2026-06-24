@@ -1,3 +1,5 @@
+<p align="center"><a href="https://spotlight-rules.com"><img src="https://raw.githubusercontent.com/api-commons/spotlight-spec/main/spotlight-rules-logo.png" alt="Spotlight Rules" height="90"></a></p>
+
 # Spotlight Spec
 
 **A standalone specification of the Spotlight ruleset format — the rules and
@@ -111,3 +113,7 @@ exact mapping back to upstream source files.
 Apache License 2.0 — see [LICENSE](./LICENSE). Derived from Stoplight Spectral
 (Apache-2.0); attribution and provenance are recorded in
 [PROVENANCE.md](./PROVENANCE.md).
+
+---
+
+Part of [Spotlight Rules](https://spotlight-rules.com) — a project of [API Evangelist](https://apievangelist.com), maintained openly under [API Commons](https://apicommons.org).
