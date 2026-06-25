@@ -82,6 +82,30 @@ The schema also works as an editor "$schema" association, e.g. in VS Code via
 the YAML/JSON Schema settings, to get inline validation and autocomplete while
 authoring rulesets.
 
+## Spotlight extensions
+
+Beyond the Spectral baseline, Spotlight adds its own first-class properties. The
+first is **`tags`** on a rule — namespaced strings that classify it so tooling can
+group and filter rules:
+
+- `format:<artifact>` — the artifact type (`format:openapi`, `format:apis-json`, …)
+- `spec:<location>` — where in the document it applies (`spec:operations`, `spec:responses`, `spec:schemas`, …)
+- `experience:<dimension>` — the developer-experience / quality dimension it improves (`experience:documentation`, `experience:security`, `experience:error-handling`, `experience:naming`, `experience:consistency`, `experience:versioning`, `experience:pagination`, `experience:discoverability`, `experience:reliability`, `experience:data-modeling`, `experience:usability`, `experience:governance`)
+- `source:<provider>` — provenance
+
+```yaml
+rules:
+  responses-define-error-schema:
+    given: $.paths[*][*].responses
+    then: { ... }
+    tags:
+      - format:openapi
+      - spec:operations
+      - spec:responses
+      - experience:error-handling
+      - experience:reliability
+```
+
 ## Relationship to Spectral
 
 This specification is **derived from** Stoplight Spectral and is intended to stay

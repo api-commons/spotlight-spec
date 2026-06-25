@@ -174,6 +174,31 @@ async function build() {
   // Inside the rule body, the local "#/$defs/Then" pointer must target RuleThen.
   rewriteRefs(defs.Rule, { "#/$defs/Then": "#/$defs/RuleThen" });
 
+  // Spotlight extension: `tags` as a first-class, documented property (the first
+  // Spotlight addition beyond the Spectral baseline). Namespaced strings.
+  const ruleProps = defs.Rule?.then?.properties;
+  if (ruleProps) {
+    ruleProps.tags = {
+      type: "array",
+      description:
+        "Spotlight tags classifying the rule — the first Spotlight extension beyond " +
+        "the Spectral baseline. Tags are namespaced strings; recommended namespaces: " +
+        "`format:<artifact>` (the artifact type, e.g. `format:openapi`, `format:apis-json`), " +
+        "`spec:<location>` (where in the document it applies, e.g. `spec:operations`, " +
+        "`spec:responses`, `spec:schemas`), `experience:<dimension>` (the developer-" +
+        "experience / quality dimension it improves — e.g. `experience:documentation`, " +
+        "`experience:security`, `experience:error-handling`, `experience:naming`, " +
+        "`experience:consistency`, `experience:versioning`, `experience:pagination`, " +
+        "`experience:discoverability`, `experience:reliability`, `experience:data-modeling`, " +
+        "`experience:usability`, `experience:governance`), and `source:<provider>` " +
+        "(provenance). A rule may carry multiple tags; tooling groups and filters by them.",
+      items: { type: "string" },
+      examples: [
+        ["format:openapi", "spec:operations", "spec:responses", "experience:error-handling", "experience:reliability"],
+      ],
+    };
+  }
+
   // Global ref rewrite across every def and the root.
   for (const d of Object.values(defs)) rewriteRefs(d);
 
