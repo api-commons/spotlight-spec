@@ -174,6 +174,26 @@ async function build() {
   // Inside the rule body, the local "#/$defs/Then" pointer must target RuleThen.
   rewriteRefs(defs.Rule, { "#/$defs/Then": "#/$defs/RuleThen" });
 
+  // Spotlight: per-function `functionOptions` schemas for the built-in core
+  // functions, so editors can autocomplete + validate a rule's then-options.
+  // Custom (namespaced) functions are unconstrained.
+  const CORE_OPTS = {
+    pattern: { type: "object", properties: { match: { type: "string" }, notMatch: { type: "string" } }, anyOf: [{ required: ["match"] }, { required: ["notMatch"] }], additionalProperties: false },
+    length: { type: "object", properties: { min: { type: "number" }, max: { type: "number" } }, additionalProperties: false },
+    enumeration: { type: "object", properties: { values: { type: "array" } }, required: ["values"], additionalProperties: false },
+    casing: { type: "object", properties: { type: { enum: ["flat", "camel", "pascal", "kebab", "cobol", "snake", "macro"] }, disallowDigits: { type: "boolean" }, separator: { type: "object", properties: { char: { type: "string" }, allowLeading: { type: "boolean" } } } }, required: ["type"], additionalProperties: false },
+    schema: { type: "object", properties: { schema: { type: "object" }, dialect: { type: "string" }, allErrors: { type: "boolean" } }, required: ["schema"] },
+    alphabetical: { type: "object", properties: { keyedBy: { type: "string" } }, additionalProperties: false },
+    xor: { type: "object", properties: { properties: { type: "array", items: { type: "string" } } }, required: ["properties"], additionalProperties: false },
+  };
+  defs.RuleThen.allOf = defs.RuleThen.allOf || [];
+  for (const [fn, opts] of Object.entries(CORE_OPTS)) {
+    defs.RuleThen.allOf.push({
+      if: { properties: { function: { const: fn } }, required: ["function"] },
+      then: { properties: { functionOptions: opts } },
+    });
+  }
+
   // Spotlight extension: `tags` as a first-class, documented property (the first
   // Spotlight addition beyond the Spectral baseline). Namespaced strings.
   const ruleProps = defs.Rule?.then?.properties;

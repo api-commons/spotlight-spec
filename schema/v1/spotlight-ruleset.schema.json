@@ -488,6 +488,241 @@
         },
         {
           "$ref": "#/$defs/Function"
+        },
+        {
+          "if": {
+            "properties": {
+              "function": {
+                "const": "pattern"
+              }
+            },
+            "required": [
+              "function"
+            ]
+          },
+          "then": {
+            "properties": {
+              "functionOptions": {
+                "type": "object",
+                "properties": {
+                  "match": {
+                    "type": "string"
+                  },
+                  "notMatch": {
+                    "type": "string"
+                  }
+                },
+                "anyOf": [
+                  {
+                    "required": [
+                      "match"
+                    ]
+                  },
+                  {
+                    "required": [
+                      "notMatch"
+                    ]
+                  }
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "function": {
+                "const": "length"
+              }
+            },
+            "required": [
+              "function"
+            ]
+          },
+          "then": {
+            "properties": {
+              "functionOptions": {
+                "type": "object",
+                "properties": {
+                  "min": {
+                    "type": "number"
+                  },
+                  "max": {
+                    "type": "number"
+                  }
+                },
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "function": {
+                "const": "enumeration"
+              }
+            },
+            "required": [
+              "function"
+            ]
+          },
+          "then": {
+            "properties": {
+              "functionOptions": {
+                "type": "object",
+                "properties": {
+                  "values": {
+                    "type": "array"
+                  }
+                },
+                "required": [
+                  "values"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "function": {
+                "const": "casing"
+              }
+            },
+            "required": [
+              "function"
+            ]
+          },
+          "then": {
+            "properties": {
+              "functionOptions": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "enum": [
+                      "flat",
+                      "camel",
+                      "pascal",
+                      "kebab",
+                      "cobol",
+                      "snake",
+                      "macro"
+                    ]
+                  },
+                  "disallowDigits": {
+                    "type": "boolean"
+                  },
+                  "separator": {
+                    "type": "object",
+                    "properties": {
+                      "char": {
+                        "type": "string"
+                      },
+                      "allowLeading": {
+                        "type": "boolean"
+                      }
+                    }
+                  }
+                },
+                "required": [
+                  "type"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "function": {
+                "const": "schema"
+              }
+            },
+            "required": [
+              "function"
+            ]
+          },
+          "then": {
+            "properties": {
+              "functionOptions": {
+                "type": "object",
+                "properties": {
+                  "schema": {
+                    "type": "object"
+                  },
+                  "dialect": {
+                    "type": "string"
+                  },
+                  "allErrors": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "schema"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "function": {
+                "const": "alphabetical"
+              }
+            },
+            "required": [
+              "function"
+            ]
+          },
+          "then": {
+            "properties": {
+              "functionOptions": {
+                "type": "object",
+                "properties": {
+                  "keyedBy": {
+                    "type": "string"
+                  }
+                },
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "function": {
+                "const": "xor"
+              }
+            },
+            "required": [
+              "function"
+            ]
+          },
+          "then": {
+            "properties": {
+              "functionOptions": {
+                "type": "object",
+                "properties": {
+                  "properties": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "required": [
+                  "properties"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
         }
       ]
     },
