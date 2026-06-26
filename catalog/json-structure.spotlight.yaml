@@ -1,0 +1,160 @@
+documentationUrl: https://spotlight-rules.com/spec/
+rules:
+  document-json-structure-id-uri:
+    description: $id should be a stable absolute URI (https:// or urn:) identifying
+      the schema.
+    message: $id should be an absolute URI.
+    given: $.$id
+    severity: info
+    then:
+      function: pattern
+      functionOptions:
+        match: "^https?://|^urn:"
+    tags:
+      - format:json-structure
+      - spec:document
+      - experience:consistency
+      - experience:discoverability
+  document-require-id:
+    description: The `$id` property should be present.
+    message: $id should be present
+    severity: info
+    given: $
+    then:
+      field: $id
+      function: truthy
+    tags:
+      - format:json-structure
+      - spec:schemas
+      - experience:data-modeling
+      - experience:consistency
+  document-require-name:
+    description: The `name` property should be present.
+    message: name should be present
+    severity: info
+    given: $
+    then:
+      field: name
+      function: truthy
+    tags:
+      - format:json-structure
+      - spec:schemas
+      - experience:data-modeling
+      - experience:consistency
+  document-require-property:
+    description: The `properties` property should be present.
+    message: properties should be present
+    severity: info
+    given: $
+    then:
+      field: properties
+      function: truthy
+    tags:
+      - format:json-structure
+      - spec:schemas
+      - experience:data-modeling
+      - experience:consistency
+  document-require-type:
+    description: The `type` property should be present.
+    message: type should be present
+    severity: info
+    given: $
+    then:
+      field: type
+      function: truthy
+    tags:
+      - format:json-structure
+      - spec:schemas
+      - experience:data-modeling
+      - experience:consistency
+  schema-json-structure-property-camel-case:
+    description: Property names should be camelCase.
+    message: Property is not camelCase.
+    given: $.properties[*]~
+    severity: info
+    then:
+      function: pattern
+      functionOptions:
+        match: ^[a-z][a-zA-Z0-9]*$
+    tags:
+      - format:json-structure
+      - spec:schemas
+      - experience:naming
+      - experience:consistency
+  schema-json-structure-property-require-description:
+    description: Properties should be documented with a description.
+    message: Property should have a description.
+    given: $.properties[*]
+    severity: info
+    then:
+      field: description
+      function: truthy
+    tags:
+      - format:json-structure
+      - spec:schemas
+      - experience:documentation
+  schema-json-structure-property-require-type:
+    description: Properties should declare a type.
+    message: Property should declare a type.
+    given: $.properties[*]
+    severity: info
+    then:
+      field: type
+      function: truthy
+    tags:
+      - format:json-structure
+      - spec:schemas
+      - experience:data-modeling
+  schema-json-structure-root-type-object:
+    description: The root type of a JSON Structure document is typically object.
+    message: Root type should usually be object.
+    given: $.type
+    severity: info
+    then:
+      function: pattern
+      functionOptions:
+        match: ^object$
+    tags:
+      - format:json-structure
+      - spec:document
+      - experience:data-modeling
+  schema-json-structure-uri:
+    description: $schema should be the URI of the JSON Structure meta-schema.
+    message: $schema should be a URI.
+    given: $.$schema
+    severity: info
+    then:
+      function: pattern
+      functionOptions:
+        match: ^https?://
+    tags:
+      - format:json-structure
+      - spec:schemas
+      - experience:consistency
+      - experience:discoverability
+  schema-property-require-type:
+    description: The `type` property of each property should be present.
+    message: type should be present
+    severity: info
+    given: $.properties[*]
+    then:
+      field: type
+      function: truthy
+    tags:
+      - format:json-structure
+      - spec:properties
+      - experience:data-modeling
+      - experience:consistency
+  schema-require:
+    description: The `$schema` property should be present.
+    message: $schema should be present
+    severity: info
+    given: $
+    then:
+      field: $schema
+      function: truthy
+    tags:
+      - format:json-structure
+      - spec:schemas
+      - experience:data-modeling
+      - experience:consistency

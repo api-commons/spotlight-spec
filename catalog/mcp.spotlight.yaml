@@ -1,0 +1,192 @@
+documentationUrl: https://spotlight-rules.com/spec/
+rules:
+  capability-mcp-capabilities-not-empty:
+    description: capabilities should declare at least one of tools, resources, or prompts.
+    message: capabilities should not be empty.
+    given: $.capabilities
+    severity: info
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+          minProperties: 1
+    tags:
+      - format:mcp
+      - spec:capabilities
+      - experience:discoverability
+  capability-require-prompts:
+    description: The `prompts` property of each capability should be present.
+    message: prompts should be present
+    severity: info
+    given: $.capabilities
+    then:
+      field: prompts
+      function: truthy
+    tags:
+      - format:mcp
+      - spec:capabilities
+      - experience:data-modeling
+      - experience:discoverability
+  capability-require-resources:
+    description: The `resources` property of each capability should be present.
+    message: resources should be present
+    severity: info
+    given: $.capabilities
+    then:
+      field: resources
+      function: truthy
+    tags:
+      - format:mcp
+      - spec:capabilities
+      - experience:data-modeling
+      - experience:discoverability
+  capability-require-tools:
+    description: The `tools` property of each capability should be present.
+    message: tools should be present
+    severity: info
+    given: $.capabilities
+    then:
+      field: tools
+      function: truthy
+    tags:
+      - format:mcp
+      - spec:capabilities
+      - experience:data-modeling
+      - experience:discoverability
+  document-mcp-description-meaningful:
+    description: The server description should be specific (at least 40 characters)
+      so agents can decide when to use it.
+    message: MCP description should be at least 40 characters.
+    given: $.description
+    severity: info
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: string
+          minLength: 40
+    tags:
+      - format:mcp
+      - spec:document
+      - experience:discoverability
+      - experience:documentation
+  document-mcp-name-kebab-case:
+    description: MCP server name should be lower kebab-case.
+    message: MCP server name should be kebab-case.
+    given: $.name
+    severity: info
+    then:
+      function: pattern
+      functionOptions:
+        match: ^[a-z0-9]+(?:-[a-z0-9]+)*$
+    tags:
+      - format:mcp
+      - spec:document
+      - experience:naming
+      - experience:consistency
+  document-require-capabilities:
+    description: The `capabilities` property should be present.
+    message: capabilities should be present
+    severity: info
+    given: $
+    then:
+      field: capabilities
+      function: truthy
+    tags:
+      - format:mcp
+      - spec:servers
+      - experience:data-modeling
+      - experience:discoverability
+  document-require-description:
+    description: The `description` property should be present.
+    message: description should be present
+    severity: info
+    given: $
+    then:
+      field: description
+      function: truthy
+    tags:
+      - format:mcp
+      - spec:servers
+      - experience:documentation
+      - experience:data-modeling
+  document-require-instructions:
+    description: The `instructions` property should be present.
+    message: instructions should be present
+    severity: info
+    given: $
+    then:
+      field: instructions
+      function: truthy
+    tags:
+      - format:mcp
+      - spec:servers
+      - experience:documentation
+      - experience:usability
+  document-require-name:
+    description: The `name` property should be present.
+    message: name should be present
+    severity: info
+    given: $
+    then:
+      field: name
+      function: truthy
+    tags:
+      - format:mcp
+      - spec:servers
+      - experience:data-modeling
+      - experience:discoverability
+  info-mcp-protocol-version-dated:
+    description: protocolVersion should be a dated MCP revision (YYYY-MM-DD).
+    message: protocolVersion should be a dated revision (YYYY-MM-DD).
+    given: $.protocolVersion
+    severity: info
+    then:
+      function: pattern
+      functionOptions:
+        match: ^\d{4}-\d{2}-\d{2}$
+    tags:
+      - format:mcp
+      - spec:document
+      - experience:versioning
+      - experience:consistency
+  info-mcp-version-semver:
+    description: The server version should be semantic (e.g. 1.0.0).
+    message: MCP version should be semantic.
+    given: $.version
+    severity: info
+    then:
+      function: pattern
+      functionOptions:
+        match: ^\d+\.\d+\.\d+
+    tags:
+      - format:mcp
+      - spec:document
+      - experience:versioning
+  info-require-protocol-version:
+    description: The `protocolVersion` property should be present.
+    message: protocolVersion should be present
+    severity: info
+    given: $
+    then:
+      field: protocolVersion
+      function: truthy
+    tags:
+      - format:mcp
+      - spec:servers
+      - experience:versioning
+      - experience:consistency
+  info-skill-require-version:
+    description: The `version` property should be present.
+    message: version should be present
+    severity: info
+    given: $
+    then:
+      field: version
+      function: truthy
+    tags:
+      - format:mcp
+      - spec:servers
+      - experience:versioning
+      - experience:data-modeling

@@ -1,0 +1,159 @@
+extends: spotlight:arazzo
+documentationUrl: https://spotlight-rules.com/spec/
+rules:
+  document-require-arazzo:
+    description: arazzo document should declare a `arazzo` property.
+    message: Missing `arazzo`.
+    given: $
+    severity: info
+    then:
+      field: arazzo
+      function: truthy
+    tags:
+      - format:arazzo
+      - spec:document
+      - experience:governance
+      - experience:discoverability
+  document-require-component:
+    description: arazzo document should declare a `components` property.
+    message: Missing `components`.
+    given: $
+    severity: info
+    then:
+      field: components
+      function: truthy
+    tags:
+      - format:arazzo
+      - spec:document
+      - experience:governance
+      - experience:discoverability
+  document-require-info:
+    description: arazzo document should declare a `info` property.
+    message: Missing `info`.
+    given: $
+    severity: info
+    then:
+      field: info
+      function: truthy
+    tags:
+      - format:arazzo
+      - spec:document
+      - experience:governance
+      - experience:discoverability
+  document-require-sourcedescriptions:
+    description: arazzo document should declare a `sourceDescriptions` property.
+    message: Missing `sourceDescriptions`.
+    given: $
+    severity: info
+    then:
+      field: sourceDescriptions
+      function: truthy
+    tags:
+      - format:arazzo
+      - spec:document
+      - experience:governance
+      - experience:discoverability
+  document-require-workflow:
+    description: arazzo document should declare a `workflows` property.
+    message: Missing `workflows`.
+    given: $
+    severity: info
+    then:
+      field: workflows
+      function: truthy
+    tags:
+      - format:arazzo
+      - spec:document
+      - experience:governance
+      - experience:discoverability
+  info-arazzo-require-title:
+    description: The Arazzo description should declare an info.title.
+    message: Arazzo info should have a title.
+    given: $.info
+    severity: info
+    then:
+      field: title
+      function: truthy
+    tags:
+      - format:arazzo
+      - spec:info
+      - experience:documentation
+  source-arazzo-description-require-name:
+    description: Each source description should declare a name used to reference it
+      from steps.
+    message: Source description should have a name.
+    given: $.sourceDescriptions[*]
+    severity: info
+    then:
+      field: name
+      function: truthy
+    tags:
+      - format:arazzo
+      - spec:source-descriptions
+      - experience:consistency
+      - experience:documentation
+  source-arazzo-description-require-url:
+    description: Each source description should declare a url to the referenced
+      OpenAPI/Arazzo document.
+    message: Source description should have a url.
+    given: $.sourceDescriptions[*]
+    severity: info
+    then:
+      field: url
+      function: truthy
+    tags:
+      - format:arazzo
+      - spec:source-descriptions
+      - experience:discoverability
+  workflow-arazzo-require-step:
+    description: A workflow should define at least one step.
+    message: Workflow should define at least one step.
+    given: $.workflows[*]
+    severity: info
+    then:
+      field: steps
+      function: schema
+      functionOptions:
+        schema:
+          type: array
+          minItems: 1
+    tags:
+      - format:arazzo
+      - spec:workflows
+      - experience:reliability
+  workflow-arazzo-step-require-operation:
+    description: Each step should reference an operation via operationId,
+      operationPath, or a nested workflowId.
+    message: Step should reference an operationId, operationPath, or workflowId.
+    given: $.workflows[*].steps[*]
+    severity: info
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+          anyOf:
+            - required:
+                - operationId
+            - required:
+                - operationPath
+            - required:
+                - workflowId
+    tags:
+      - format:arazzo
+      - spec:workflows
+      - experience:reliability
+      - experience:consistency
+  workflow-arazzo-step-require-success-criteria:
+    description: Steps should declare successCriteria so the workflow can assert
+      each step succeeded.
+    message: Step should declare successCriteria.
+    given: $.workflows[*].steps[*]
+    severity: info
+    then:
+      field: successCriteria
+      function: truthy
+    tags:
+      - format:arazzo
+      - spec:workflows
+      - experience:reliability

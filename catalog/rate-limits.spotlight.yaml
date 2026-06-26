@@ -1,0 +1,143 @@
+documentationUrl: https://spotlight-rules.com/spec/
+rules:
+  document-require-description:
+    description: The `description` property should be present.
+    message: description should be present
+    severity: info
+    given: $
+    then:
+      field: description
+      function: truthy
+    tags:
+      - format:rate-limits
+      - spec:document
+      - experience:documentation
+      - experience:governance
+  document-require-limit:
+    description: The `limits` property should be present.
+    message: limits should be present
+    severity: info
+    given: $
+    then:
+      field: limits
+      function: truthy
+    tags:
+      - format:rate-limits
+      - spec:document
+      - experience:reliability
+      - experience:data-modeling
+  document-require-name:
+    description: The `name` property should be present.
+    message: name should be present
+    severity: info
+    given: $
+    then:
+      field: name
+      function: truthy
+    tags:
+      - format:rate-limits
+      - spec:document
+      - experience:data-modeling
+      - experience:governance
+  limit-max-positive:
+    description: A limit max should be a positive integer.
+    message: Limit max should be a positive integer.
+    given: $.limits[*].max
+    severity: info
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: integer
+          minimum: 1
+    tags:
+      - format:rate-limits
+      - spec:limits
+      - experience:data-modeling
+      - experience:reliability
+  limit-require-max:
+    description: The `max` property of each limit should be present.
+    message: max should be present
+    severity: info
+    given: $.limits[*]
+    then:
+      field: max
+      function: truthy
+    tags:
+      - format:rate-limits
+      - spec:limits
+      - experience:reliability
+      - experience:governance
+  limit-require-name:
+    description: The `name` property of each limit should be present.
+    message: name should be present
+    severity: info
+    given: $.limits[*]
+    then:
+      field: name
+      function: truthy
+    tags:
+      - format:rate-limits
+      - spec:limits
+      - experience:data-modeling
+      - experience:reliability
+  limit-require-scope:
+    description: The `scope` property of each limit should be present.
+    message: scope should be present
+    severity: info
+    given: $.limits[*]
+    then:
+      field: scope
+      function: truthy
+    tags:
+      - format:rate-limits
+      - spec:limits
+      - experience:reliability
+      - experience:governance
+  limit-require-window:
+    description: The `window` property of each limit should be present.
+    message: window should be present
+    severity: info
+    given: $.limits[*]
+    then:
+      field: window
+      function: truthy
+    tags:
+      - format:rate-limits
+      - spec:limits
+      - experience:reliability
+      - experience:governance
+  limit-scope-known:
+    description: A limit scope should be one of ip, user, api-key, client, or global.
+    message: Limit scope should be a known value.
+    given: $.limits[*].scope
+    severity: info
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: string
+          enum:
+            - ip
+            - user
+            - api-key
+            - client
+            - global
+    tags:
+      - format:rate-limits
+      - spec:limits
+      - experience:consistency
+  limit-window-format:
+    description: A limit window should be a duration like 60s, 1m, 1h, or 1d.
+    message: Limit window should be a duration (e.g. 60s, 1h).
+    given: $.limits[*].window
+    severity: info
+    then:
+      function: pattern
+      functionOptions:
+        match: ^\d+(ms|s|m|h|d)$
+    tags:
+      - format:rate-limits
+      - spec:limits
+      - experience:consistency
+      - experience:reliability

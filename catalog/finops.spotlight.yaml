@@ -1,0 +1,155 @@
+documentationUrl: https://spotlight-rules.com/spec/
+rules:
+  cost-finops-monthly-non-negative:
+    description: A cost monthly amount should be a non-negative number.
+    message: Cost monthly should be a non-negative number.
+    given: $.costs[*].monthly
+    severity: info
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type:
+            - number
+            - integer
+          minimum: 0
+    tags:
+      - format:finops
+      - spec:costs
+      - experience:data-modeling
+  cost-finops-require-monthly:
+    description: The `monthly` property of each cost should be present.
+    message: monthly should be present
+    severity: info
+    given: $.costs[*]
+    then:
+      field: monthly
+      function: truthy
+    tags:
+      - format:finops
+      - spec:costs
+      - experience:governance
+      - experience:data-modeling
+  cost-finops-require-service:
+    description: The `service` property of each cost should be present.
+    message: service should be present
+    severity: info
+    given: $.costs[*]
+    then:
+      field: service
+      function: truthy
+    tags:
+      - format:finops
+      - spec:costs
+      - experience:governance
+      - experience:data-modeling
+  document-finops-budget-non-negative:
+    description: budget should be a non-negative number.
+    message: budget should be a non-negative number.
+    given: $.budget
+    severity: info
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type:
+            - number
+            - integer
+          minimum: 0
+    tags:
+      - format:finops
+      - spec:document
+      - experience:data-modeling
+  document-finops-currency-iso4217:
+    description: currency should be a 3-letter ISO 4217 code (e.g. USD).
+    message: currency should be an ISO 4217 code.
+    given: $.currency
+    severity: info
+    then:
+      function: pattern
+      functionOptions:
+        match: ^[A-Z]{3}$
+    tags:
+      - format:finops
+      - spec:document
+      - experience:consistency
+      - experience:data-modeling
+  document-finops-require-budget:
+    description: The `budget` property should be present.
+    message: budget should be present
+    severity: info
+    given: $
+    then:
+      field: budget
+      function: truthy
+    tags:
+      - format:finops
+      - spec:document
+      - experience:governance
+      - experience:data-modeling
+  document-finops-require-cost:
+    description: The `costs` property should be present.
+    message: costs should be present
+    severity: info
+    given: $
+    then:
+      field: costs
+      function: truthy
+    tags:
+      - format:finops
+      - spec:document
+      - experience:governance
+      - experience:data-modeling
+  document-finops-require-currency:
+    description: The `currency` property should be present.
+    message: currency should be present
+    severity: info
+    given: $
+    then:
+      field: currency
+      function: truthy
+    tags:
+      - format:finops
+      - spec:document
+      - experience:governance
+      - experience:data-modeling
+  document-finops-require-description:
+    description: The `description` property should be present.
+    message: description should be present
+    severity: info
+    given: $
+    then:
+      field: description
+      function: truthy
+    tags:
+      - format:finops
+      - spec:document
+      - experience:documentation
+      - experience:governance
+  document-finops-require-name:
+    description: The `name` property should be present.
+    message: name should be present
+    severity: info
+    given: $
+    then:
+      field: name
+      function: truthy
+    tags:
+      - format:finops
+      - spec:document
+      - experience:data-modeling
+      - experience:governance
+  document-finops-require-period:
+    description: A FinOps artifact should declare a period (e.g. monthly, annual)
+      for the budget and costs.
+    message: FinOps should declare a period.
+    given: $
+    severity: info
+    then:
+      field: period
+      function: truthy
+    tags:
+      - format:finops
+      - spec:document
+      - experience:consistency
+      - experience:governance

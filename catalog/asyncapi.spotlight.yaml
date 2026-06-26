@@ -1,0 +1,272 @@
+extends: spotlight:asyncapi
+documentationUrl: https://spotlight-rules.com/spec/
+rules:
+  channel-asyncapi-require-description:
+    description: Channels should have a description of the messages they carry.
+    message: Channel should have a description.
+    given: $.channels[*]
+    severity: info
+    then:
+      field: description
+      function: truthy
+    tags:
+      - format:asyncapi
+      - spec:channels
+      - experience:documentation
+  component-asyncapi-message-require-contenttype:
+    description: Messages should declare a contentType (e.g. application/json).
+    message: Message should declare a contentType.
+    given: $.components.messages[*]
+    severity: info
+    then:
+      field: contentType
+      function: truthy
+    tags:
+      - format:asyncapi
+      - spec:components
+      - experience:consistency
+      - experience:data-modeling
+  component-asyncapi-message-require-correlation-id:
+    description: Messages should define a correlationId so events can be traced
+      across services.
+    message: Message should define a correlationId.
+    given: $.components.messages[*]
+    severity: info
+    then:
+      field: correlationId
+      function: truthy
+    tags:
+      - format:asyncapi
+      - spec:components
+      - topic:tracing
+      - experience:reliability
+      - experience:observability
+  component-asyncapi-message-require-name:
+    description: Messages should declare a name.
+    message: Message should declare a name.
+    given: $.components.messages[*]
+    severity: info
+    then:
+      field: name
+      function: truthy
+    tags:
+      - format:asyncapi
+      - spec:components
+      - experience:documentation
+      - experience:consistency
+  component-asyncapi-message-require-payload:
+    description: Messages should define a payload schema.
+    message: Message should define a payload.
+    given: $.components.messages[*]
+    severity: info
+    then:
+      field: payload
+      function: truthy
+    tags:
+      - format:asyncapi
+      - spec:components
+      - experience:data-modeling
+  component-asyncapi-message-require-title:
+    description: Messages should declare a human-readable title.
+    message: Message should declare a title.
+    given: $.components.messages[*]
+    severity: info
+    then:
+      field: title
+      function: truthy
+    tags:
+      - format:asyncapi
+      - spec:components
+      - experience:documentation
+  document-require-asyncapi:
+    description: asyncapi document should declare a `asyncapi` property.
+    message: Missing `asyncapi`.
+    given: $
+    severity: info
+    then:
+      field: asyncapi
+      function: truthy
+    tags:
+      - format:asyncapi
+      - spec:document
+      - experience:governance
+      - experience:discoverability
+  document-require-channel:
+    description: asyncapi document should declare a `channels` property.
+    message: Missing `channels`.
+    given: $
+    severity: info
+    then:
+      field: channels
+      function: truthy
+    tags:
+      - format:asyncapi
+      - spec:document
+      - experience:governance
+      - experience:discoverability
+  document-require-component:
+    description: asyncapi document should declare a `components` property.
+    message: Missing `components`.
+    given: $
+    severity: info
+    then:
+      field: components
+      function: truthy
+    tags:
+      - format:asyncapi
+      - spec:document
+      - experience:governance
+      - experience:discoverability
+  document-require-defaultcontenttype:
+    description: asyncapi document should declare a `defaultContentType` property.
+    message: Missing `defaultContentType`.
+    given: $
+    severity: info
+    then:
+      field: defaultContentType
+      function: truthy
+    tags:
+      - format:asyncapi
+      - spec:document
+      - experience:governance
+      - experience:discoverability
+  document-require-id:
+    description: asyncapi document should declare a `id` property.
+    message: Missing `id`.
+    given: $
+    severity: info
+    then:
+      field: id
+      function: truthy
+    tags:
+      - format:asyncapi
+      - spec:document
+      - experience:governance
+      - experience:discoverability
+  document-require-info:
+    description: asyncapi document should declare a `info` property.
+    message: Missing `info`.
+    given: $
+    severity: info
+    then:
+      field: info
+      function: truthy
+    tags:
+      - format:asyncapi
+      - spec:document
+      - experience:governance
+      - experience:discoverability
+  document-require-operation:
+    description: asyncapi document should declare a `operations` property.
+    message: Missing `operations`.
+    given: $
+    severity: info
+    then:
+      field: operations
+      function: truthy
+    tags:
+      - format:asyncapi
+      - spec:document
+      - experience:governance
+      - experience:discoverability
+  document-require-server:
+    description: asyncapi document should declare a `servers` property.
+    message: Missing `servers`.
+    given: $
+    severity: info
+    then:
+      field: servers
+      function: truthy
+    tags:
+      - format:asyncapi
+      - spec:document
+      - experience:governance
+      - experience:discoverability
+  info-asyncapi-require-title:
+    description: The API should declare an info.title.
+    message: AsyncAPI info should have a title.
+    given: $.info
+    severity: info
+    then:
+      field: title
+      function: truthy
+    tags:
+      - format:asyncapi
+      - spec:info
+      - experience:documentation
+  info-asyncapi-version-semver:
+    description: info.version should be semantic (e.g. 1.0.0).
+    message: AsyncAPI version should be semantic.
+    given: $.info.version
+    severity: info
+    then:
+      function: pattern
+      functionOptions:
+        match: ^\d+\.\d+\.\d+
+    tags:
+      - format:asyncapi
+      - spec:info
+      - experience:versioning
+  operation-asyncapi-require-summary:
+    description: Operations should have a short summary.
+    message: Operation should have a summary.
+    given: $.operations[*]
+    severity: info
+    then:
+      field: summary
+      function: truthy
+    tags:
+      - format:asyncapi
+      - spec:operations
+      - experience:documentation
+  operation-asyncapi-require-tag:
+    description: Operations should declare tags for grouping.
+    message: Operation should declare tags.
+    given: $.operations[*]
+    severity: info
+    then:
+      field: tags
+      function: truthy
+    tags:
+      - format:asyncapi
+      - spec:operations
+      - experience:documentation
+      - experience:discoverability
+  schema-asyncapi-property-camel-case:
+    description: Schema property names should be camelCase.
+    message: Schema property is not camelCase.
+    given: $.components.schemas[*].properties[*]~
+    severity: info
+    then:
+      function: pattern
+      functionOptions:
+        match: ^[a-z][a-zA-Z0-9]*$
+    tags:
+      - format:asyncapi
+      - spec:components
+      - experience:naming
+      - experience:consistency
+  schema-asyncapi-property-require-description:
+    description: Schema properties should be documented with a description.
+    message: Schema property should have a description.
+    given: $.components.schemas[*].properties[*]
+    severity: info
+    then:
+      field: description
+      function: truthy
+    tags:
+      - format:asyncapi
+      - spec:components
+      - experience:documentation
+  server-asyncapi-require-description:
+    description: Servers should have a description identifying the environment/broker.
+    message: Server should have a description.
+    given: $.servers[*]
+    severity: info
+    then:
+      field: description
+      function: truthy
+    tags:
+      - format:asyncapi
+      - spec:servers
+      - experience:documentation

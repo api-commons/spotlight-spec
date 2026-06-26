@@ -1,0 +1,89 @@
+documentationUrl: https://spotlight-rules.com/spec/
+rules:
+  document-json-ld-id-iri:
+    description: "@id should be an IRI (https://, urn:, did:) or a blank-node identifier."
+    message: "@id should be an IRI."
+    given: $['@id']
+    severity: info
+    then:
+      function: pattern
+      functionOptions:
+        match: "^https?://|^urn:|^did:|^_:"
+    tags:
+      - format:json-ld
+      - spec:document
+      - experience:consistency
+      - experience:discoverability
+  document-require-context:
+    description: The `@context` property should be present.
+    message: "@context should be present"
+    severity: info
+    given: $
+    then:
+      field: "@context"
+      function: truthy
+    tags:
+      - format:json-ld
+      - spec:document
+      - experience:data-modeling
+      - experience:discoverability
+  document-require-id:
+    description: The `@id` property should be present.
+    message: "@id should be present"
+    severity: info
+    given: $
+    then:
+      field: "@id"
+      function: truthy
+    tags:
+      - format:json-ld
+      - spec:document
+      - experience:data-modeling
+      - experience:discoverability
+  document-require-type:
+    description: The `@type` property should be present.
+    message: "@type should be present"
+    severity: info
+    given: $
+    then:
+      field: "@type"
+      function: truthy
+    tags:
+      - format:json-ld
+      - spec:document
+      - experience:data-modeling
+      - experience:discoverability
+  schema-json-ld-context-uri-or-object:
+    description: "@context should be a URI string, an inline object, or an array of those."
+    message: "@context should be a URI, object, or array."
+    given: $['@context']
+    severity: info
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type:
+            - string
+            - object
+            - array
+    tags:
+      - format:json-ld
+      - spec:document
+      - experience:data-modeling
+      - experience:consistency
+  schema-json-ld-type-string-or-array:
+    description: "@type should be a string or an array of type strings."
+    message: "@type should be a string or array."
+    given: $['@type']
+    severity: info
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type:
+            - string
+            - array
+    tags:
+      - format:json-ld
+      - spec:document
+      - experience:data-modeling

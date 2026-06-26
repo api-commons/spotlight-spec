@@ -1,0 +1,119 @@
+documentationUrl: https://spotlight-rules.com/spec/
+rules:
+  document-require-description:
+    description: The `description` property should be present.
+    message: description should be present
+    severity: info
+    given: $
+    then:
+      field: description
+      function: truthy
+    tags:
+      - format:jsonschema
+      - spec:schemas
+      - experience:documentation
+      - experience:data-modeling
+  document-require-id:
+    description: The `$id` property should be present.
+    message: $id should be present
+    severity: info
+    given: $
+    then:
+      field: $id
+      function: truthy
+    tags:
+      - format:jsonschema
+      - spec:schemas
+      - experience:data-modeling
+      - experience:consistency
+  document-require-property:
+    description: The `properties` property should be present.
+    message: properties should be present
+    severity: info
+    given: $
+    then:
+      field: properties
+      function: truthy
+    tags:
+      - format:jsonschema
+      - spec:schemas
+      - experience:data-modeling
+      - experience:consistency
+  document-require-required-list:
+    description: The `required` property should be present.
+    message: required should be present
+    severity: info
+    given: $
+    then:
+      field: required
+      function: truthy
+    tags:
+      - format:jsonschema
+      - spec:schemas
+      - experience:data-modeling
+      - experience:consistency
+  document-require-title:
+    description: The `title` property should be present.
+    message: title should be present
+    severity: info
+    given: $
+    then:
+      field: title
+      function: truthy
+    tags:
+      - format:jsonschema
+      - spec:schemas
+      - experience:documentation
+      - experience:data-modeling
+  document-require-type:
+    description: The `type` property should be present.
+    message: type should be present
+    severity: info
+    given: $
+    then:
+      field: type
+      function: truthy
+    tags:
+      - format:jsonschema
+      - spec:schemas
+      - experience:data-modeling
+      - experience:consistency
+  schema-property-require-description:
+    description: The `description` property of each property should be present.
+    message: description should be present
+    severity: info
+    given: $.properties[*]
+    then:
+      field: description
+      function: truthy
+    tags:
+      - format:jsonschema
+      - spec:properties
+      - experience:documentation
+      - experience:data-modeling
+  schema-property-require-type:
+    description: The `type` property of each property should be present.
+    message: type should be present
+    severity: info
+    given: $.properties[*]
+    then:
+      field: type
+      function: truthy
+    tags:
+      - format:jsonschema
+      - spec:properties
+      - experience:data-modeling
+      - experience:consistency
+  schema-require:
+    description: The `$schema` property should be present.
+    message: $schema should be present
+    severity: info
+    given: $
+    then:
+      field: $schema
+      function: truthy
+    tags:
+      - format:jsonschema
+      - spec:schemas
+      - experience:data-modeling
+      - experience:consistency

@@ -1,0 +1,1873 @@
+documentationUrl: https://spotlight-rules.com/spec/
+rules:
+  api-baseurl-https:
+    description: Each API baseURL should be an https URL.
+    message: API baseURL should use https.
+    given: $.apis[*].baseURL
+    severity: info
+    then:
+      function: pattern
+      functionOptions:
+        match: ^https://
+    tags:
+      - format:apis-json
+      - spec:apis
+      - experience:security
+  api-contact-include-email:
+    description: The contact object in an APIs.json file allows for referencing the
+      email address of a person or group. This property provides a convenient
+      way for users to seek support for an API, using email as the default
+      method to reach the team managing the API in production.
+    message: API contact COULD have email.
+    severity: info
+    given: $.apis.*.contact.*
+    then:
+      field: email
+      function: truthy
+    tags:
+      - format:apis-json
+      - spec:apis
+      - experience:documentation
+      - experience:discoverability
+  api-contact-include-full-name:
+    description: The contact object in an APIs.json file includes a full name (FN)
+      property, which specifies the formatted text corresponding to the contact
+      name in the vCard for an API. This provides a quick and clear way to
+      assign a person, group, or other point of contact to an API for addressing
+      questions and providing support.
+    message: Contact Could Have FN
+    severity: info
+    given: $.apis.*.contact.*
+    then:
+      field: FN
+      function: truthy
+    tags:
+      - format:apis-json
+      - spec:apis
+      - experience:documentation
+      - experience:discoverability
+  api-entry-require-tag:
+    description: Each API defined in an APIs.json artifact includes a property for
+      adding one or more tags. These tags provide additional context about the
+      resources or capabilities offered by the API, highlighting its business
+      value and the domain in which it is applied.
+    message: API MUST Have a Tags Object
+    severity: info
+    given: $.apis.*
+    then:
+      field: tags
+      function: truthy
+    tags:
+      - format:apis-json
+      - spec:apis
+      - experience:discoverability
+      - experience:data-modeling
+  api-include-about-page:
+    description: This property ensures provides a reference to an about page, either
+      for the company, organization, or government agency behind an API, or
+      specifically about the domain, team, and the APIs they produce.
+    message: Has About
+    severity: info
+    given:
+      - $.apis.*.properties.*
+      - $.common.*
+    then:
+      - field: type
+        function: pattern
+        functionOptions:
+          notMatch: \b(about|About)\b
+    tags:
+      - format:apis-json
+      - spec:apis
+      - spec:properties
+      - experience:documentation
+      - experience:discoverability
+  api-include-contact:
+    description: The contact object in an APIs.json file allows for associating a
+      vCard that represents an individual or organizational entity. It includes
+      common contact information such as a name, email, or other references,
+      offering a standardized method for providing support for an API.
+    message: API COULD have a contact.
+    severity: info
+    given: $.apis.*
+    then:
+      field: contact
+      function: truthy
+    tags:
+      - format:apis-json
+      - spec:apis
+      - experience:discoverability
+      - experience:documentation
+  api-property-require-go-sdk:
+    description: This property ensures that there is a Go SDK available for an API,
+      making it easier for Go developers to integrate an API into their
+      applications.
+    message: Has Go SDK
+    severity: info
+    given:
+      - $.apis.*.properties.*
+      - $.common.*
+    then:
+      - field: type
+        function: pattern
+        functionOptions:
+          notMatch: \b(api-sdk-go)\b
+    tags:
+      - format:apis-json
+      - spec:apis
+      - spec:properties
+      - experience:usability
+      - experience:discoverability
+  api-property-require-java-sdk:
+    description: This property ensures that there is a Java SDK available for an
+      API, making it easier for Java developers to integrate an API into their
+      applications.
+    message: Has Java SDK
+    severity: info
+    given:
+      - $.apis.*.properties.*
+      - $.common.*
+    then:
+      - field: type
+        function: pattern
+        functionOptions:
+          notMatch: \b(api-sdk-java)\b
+    tags:
+      - format:apis-json
+      - spec:apis
+      - spec:properties
+      - experience:usability
+      - experience:discoverability
+  api-property-require-linting-rules:
+    description: This property ensures that an API has governance rules applied,
+      usually as part of a central set of governance rules, defined by policy,
+      or stages of the API lifecycle.
+    message: Has Linting Rules
+    severity: info
+    given:
+      - $.apis.*.properties.*
+      - $.common.*
+    then:
+      - field: type
+        function: pattern
+        functionOptions:
+          notMatch: \b(api-rules|OpenApiRules)\b
+    tags:
+      - format:apis-json
+      - spec:apis
+      - spec:properties
+      - experience:governance
+      - experience:consistency
+  api-property-require-node-sdk:
+    description: This property ensures that there is a Node SDK available for an
+      API, making it easier for Node developers to integrate an API into their
+      applications.
+    message: Has Node SDK
+    severity: info
+    given:
+      - $.apis.*.properties.*
+      - $.common.*
+    then:
+      - field: type
+        function: pattern
+        functionOptions:
+          notMatch: \b(api-sdk-node)\b
+    tags:
+      - format:apis-json
+      - spec:apis
+      - spec:properties
+      - experience:usability
+      - experience:discoverability
+  api-property-require-python-sdk:
+    description: This property ensures that there is a Python SDK available for an
+      API, making it easier for Python developers to integrate an API into their
+      applications.
+    message: Has Python SDK
+    severity: info
+    given:
+      - $.apis.*.properties.*
+      - $.common.*
+    then:
+      - field: type
+        function: pattern
+        functionOptions:
+          notMatch: \b(api-sdk-python)\b
+    tags:
+      - format:apis-json
+      - spec:apis
+      - spec:properties
+      - experience:usability
+      - experience:discoverability
+  api-property-require-road-map:
+    description: This property ensures there is a reference to the road map for an
+      API or for the entire API operations within domain, line of business, or
+      teams.
+    message: Has a Road Map
+    severity: info
+    given:
+      - $.apis.*.properties.*
+      - $.common.*
+    then:
+      - field: type
+        function: pattern
+        functionOptions:
+          notMatch: \b(api-road-map|road-map|Roadmap|Road Map|RoadMap)\b
+    tags:
+      - format:apis-json
+      - spec:apis
+      - spec:properties
+      - experience:discoverability
+      - experience:documentation
+      - experience:governance
+  api-property-require-sandbox:
+    description: This property ensures that an API has a reference to a sandbox for
+      individual APIs or as part of common properties, providing sandbox,
+      synthetic data, and mock servers for use in making test requests.
+    message: Has a Blog
+    severity: info
+    given:
+      - $.apis.*.properties.*
+      - $.common.*
+    then:
+      - field: type
+        function: pattern
+        functionOptions:
+          notMatch: \b(sandbox|Sandbox)\b
+    tags:
+      - format:apis-json
+      - spec:apis
+      - spec:properties
+      - experience:usability
+      - experience:documentation
+  api-property-require-sdk:
+    description: This property ensures that there is an SDK available for an API,
+      making it easier for developers to integrate an API into their
+      applications.
+    message: Has SDK
+    severity: info
+    given:
+      - $.apis.*.properties.*
+      - $.common.*
+    then:
+      - field: type
+        function: pattern
+        functionOptions:
+          notMatch: \b(sdk|sdks|SDKs)\b
+    tags:
+      - format:apis-json
+      - spec:apis
+      - spec:properties
+      - experience:usability
+      - experience:discoverability
+  api-property-require-security-page:
+    description: This property ensures there is a URL to the security page,
+      providing details about how security is handled for an API.
+    message: Has Security Path
+    severity: info
+    given:
+      - $.apis.*.properties.*
+      - $.common.*
+    then:
+      - field: type
+        function: pattern
+        functionOptions:
+          notMatch: \b(Security|SecurityTesting)\b
+    tags:
+      - format:apis-json
+      - spec:apis
+      - spec:properties
+      - experience:security
+      - experience:documentation
+  api-property-require-signup:
+    description: This property ensures there is a link to where you sign up for an
+      API, making sure API consumers can access in a single click.
+    message: Has a Sign Up
+    severity: info
+    given:
+      - $.apis.*.properties.*
+      - $.common.*
+    then:
+      - field: type
+        function: pattern
+        functionOptions:
+          notMatch: \b(X-signup|signup|Sign Up|SignUp)\b
+    tags:
+      - format:apis-json
+      - spec:apis
+      - spec:properties
+      - experience:usability
+      - experience:discoverability
+  api-property-require-status-page:
+    description: This property ensures that there is a status page available for
+      each API, providing the uptime status for any given moment, as well as
+      historical data.
+    message: Has a Status Page
+    severity: info
+    given:
+      - $.apis.*.properties.*
+      - $.common.*
+    then:
+      - field: type
+        function: pattern
+        functionOptions:
+          notMatch: \b(x-status|status|Status|StatusPage)\b
+    tags:
+      - format:apis-json
+      - spec:apis
+      - spec:properties
+      - experience:reliability
+      - experience:discoverability
+  api-property-require-support-email:
+    description: This property ensures that an API has email support, providing a
+      valid email address that can be used to get API support.
+    message: Has Support Email
+    severity: info
+    given:
+      - $.apis.*.properties.*
+      - $.common.*
+    then:
+      - field: type
+        function: pattern
+        functionOptions:
+          notMatch: \b(support-email|SupportEmail)\b
+    tags:
+      - format:apis-json
+      - spec:apis
+      - spec:properties
+      - experience:usability
+      - experience:documentation
+  api-property-require-support-issues-url:
+    description: This property ensures that there are Git issues available to
+      support an API, using the issues capability of GitHub, GitLab, or
+      Bitbucket to support API consumers.
+    message: Has Support Issues URL
+    severity: info
+    given:
+      - $.apis.*.properties.*
+      - $.common.*
+    then:
+      - field: type
+        function: pattern
+        functionOptions:
+          notMatch: \b(SupportIssues|SupportGitHubIssues)\b
+    tags:
+      - format:apis-json
+      - spec:apis
+      - spec:properties
+      - experience:usability
+      - experience:documentation
+  api-property-require-support-page:
+    description: This property ensures that there is a support page available for an
+      API, providing direct and in-direct support opportunities for each API or
+      for entire API platform.
+    message: Has Support Page
+    severity: info
+    given:
+      - $.apis.*.properties.*
+      - $.common.*
+    then:
+      - field: type
+        function: pattern
+        functionOptions:
+          notMatch: \b(support|Support)\b
+    tags:
+      - format:apis-json
+      - spec:apis
+      - spec:properties
+      - experience:usability
+      - experience:documentation
+  api-property-require-team:
+    description: This property ensures that there is a reference to the team behind
+      an API, providing a reference to business and engineering stakeholders.
+    message: Has a Team Defined
+    severity: info
+    given:
+      - $.apis.*.properties.*
+      - $.common.*
+    then:
+      - field: type
+        function: pattern
+        functionOptions:
+          notMatch: \b(team|teams|Team|Teams)\b
+    tags:
+      - format:apis-json
+      - spec:apis
+      - spec:properties
+      - experience:governance
+      - experience:documentation
+  api-property-require-terms-of-service:
+    description: This property ensures that an API has a reference to a terms of
+      service, covering the legal side of using an API.
+    message: Has an API Terms of Service
+    severity: info
+    given:
+      - $.apis.*.properties.*
+      - $.common.*
+    then:
+      - field: type
+        function: pattern
+        functionOptions:
+          notMatch: \b(api-terms-of-service|terms-of-service|Terms of
+            Service|TOS|TermsOfService)\b
+    tags:
+      - format:apis-json
+      - spec:apis
+      - spec:properties
+      - experience:governance
+      - experience:documentation
+  api-property-require-use-cases:
+    description: This property ensures there is a reference to the use cases for an
+      API, helping align an API with the who, what, how, and why of putting an
+      API to work.
+    message: Has Use Cases
+    severity: info
+    given:
+      - $.apis.*.properties.*
+      - $.common.*
+    then:
+      - field: type
+        function: pattern
+        functionOptions:
+          notMatch: \b(UseCases)\b
+    tags:
+      - format:apis-json
+      - spec:apis
+      - spec:properties
+      - experience:documentation
+      - experience:discoverability
+  api-property-require-valid-url:
+    description: This property ensures that properties of an API or API contract all
+      have valid URLs, checking if any of the URLs are not properly formed, or
+      could be other formats.
+    message: Property URLs Are Valid
+    severity: info
+    given:
+      - $.apis.*.properties.*
+      - $.common.*
+    then:
+      - field: url
+        function: pattern
+        functionOptions:
+          notMatch: ^((http|https)://)[-a-zA-Z0-9@:%._\+~#?&//=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%._\+~#?&//=]*)$
+    tags:
+      - format:apis-json
+      - spec:apis
+      - spec:properties
+      - experience:consistency
+      - experience:discoverability
+  api-property-skill-require-versioning:
+    description: This property ensures there is a reference to how APIs are
+      versioned, providing a single place where teams can learn about how change
+      is communicated.
+    message: Has Versioning for API
+    severity: info
+    given:
+      - $.apis.*.properties.*
+      - $.common.*
+    then:
+      - field: type
+        function: pattern
+        functionOptions:
+          notMatch: \b(versions|Versions|Versioning|versioning)\b
+    tags:
+      - format:apis-json
+      - spec:apis
+      - spec:properties
+      - experience:versioning
+      - experience:documentation
+  api-property-require-video:
+    description: This property ensures there is a reference to a video page or
+      channel for an API.
+    message: Has Videos for API
+    severity: info
+    given:
+      - $.apis.*.properties.*
+      - $.common.*
+    then:
+      - field: type
+        function: pattern
+        functionOptions:
+          notMatch: \b(videos|Videos)\b
+    tags:
+      - format:apis-json
+      - spec:apis
+      - spec:properties
+      - experience:documentation
+      - experience:discoverability
+  api-property-require-vocabulary:
+    description: This property ensures that there is a centralized vocabulary in use
+      for guiding the creation and usage of tags, path segments, and other
+      metadata associated with an APIs.
+    message: Has Vocabulary
+    severity: info
+    given:
+      - $.apis.*.properties.*
+      - $.common.*
+    then:
+      - field: type
+        function: pattern
+        functionOptions:
+          notMatch: \b(vocabulary|vocabularies|Vocabulary|Vocabularies)\b
+    tags:
+      - format:apis-json
+      - spec:apis
+      - spec:properties
+      - experience:consistency
+      - experience:naming
+      - experience:governance
+  api-property-url-https:
+    description: API property URLs (documentation, OpenAPI, etc.) should be https.
+    message: API property url should use https.
+    given: $.apis[*].properties[*].url
+    severity: info
+    then:
+      function: pattern
+      functionOptions:
+        match: ^https://
+    tags:
+      - format:apis-json
+      - spec:schemas
+      - experience:security
+  api-require-aid:
+    description: Every API should have a unique identifier, known as an AID (API
+      Identifier). The APIs.json file, contract, or collection contains its own
+      AID, which the API uses as part of its reference. Additionally, the API
+      applies a slugified version of its name, resulting in a unique,
+      human-readable identifier for the API.
+    message: APIs MUST have an aid property.
+    severity: info
+    given: $.apis.*
+    then:
+      field: aid
+      function: truthy
+    tags:
+      - format:apis-json
+      - spec:apis
+      - experience:discoverability
+      - experience:governance
+  api-require-base-url:
+    description: Each API defined within an APIs.json artifact can specify the base
+      URL for the API. This URL serves as a reference point for developers
+      during onboarding and when making API calls. Additionally, it helps
+      identify the API and validate the domain it is associated with.
+    message: APIs MUST Have a Base URL
+    severity: info
+    given: $.apis.*
+    then:
+      field: baseURL
+      function: truthy
+    tags:
+      - format:apis-json
+      - spec:apis
+      - experience:usability
+      - experience:discoverability
+  api-tag-require-upper-case:
+    description: Maintaining consistent casing for tags applied to individual APIs
+      ensures a uniform appearance and enhances search and discovery. Each word
+      in a tag should be capitalized, with the first letter of every word in a
+      phrase treated the same way.
+    message: API Tags MUST Be Upper Case
+    severity: info
+    given: $.apis.*.tags.*
+    then:
+      function: pattern
+      functionOptions:
+        match: "[A-Z]\\w*"
+    tags:
+      - format:apis-json
+      - spec:apis
+      - spec:tags
+      - experience:naming
+      - experience:consistency
+      - experience:discoverability
+  document-apis-json-url-https:
+    description: The APIs.json url should be an https URL.
+    message: APIs.json url should use https.
+    given: $.url
+    severity: info
+    then:
+      function: pattern
+      functionOptions:
+        match: ^https://
+    tags:
+      - format:apis-json
+      - spec:document
+      - experience:security
+      - experience:discoverability
+  document-include-business-impact-canvas:
+    description: This ensures that an API has had the APIOps Business Impact Canvas
+      applied to the API, requiring that the canvas is present in the repository
+      and registered in the APIs.json index for the API, helping with discovery
+      and governance.
+    message: Has APIOps Cycles Business Impact Canvas
+    severity: info
+    given:
+      - $.common.*
+    then:
+      - field: type
+        function: pattern
+        functionOptions:
+          notMatch: \b(APIOpsBusinessImpactCanvas)\b
+    tags:
+      - format:apis-json
+      - spec:collection
+      - experience:governance
+      - experience:documentation
+  document-include-business-model-canvas:
+    description: This ensures that an API has had the APIOps Business Model Canvas
+      applied to the API, requiring that the canvas is present in the repository
+      and registered in the APIs.json index for the API, helping with discovery
+      and governance.
+    message: Has APIOps Cycles Business Model Canvas
+    severity: info
+    given:
+      - $.common.*
+    then:
+      - field: type
+        function: pattern
+        functionOptions:
+          notMatch: \b(APIOpsBusinessModelCanvas)\b
+    tags:
+      - format:apis-json
+      - spec:collection
+      - experience:governance
+      - experience:documentation
+  document-include-capacity-canvas:
+    description: This ensures that an API has had the APIOps Capacity Canvas applied
+      to the API, requiring that the canvas is present in the repository and
+      registered in the APIs.json index for the API, helping with discovery and
+      governance.
+    message: Has APIOps Cycles Capacity Canvas
+    severity: info
+    given:
+      - $.common.*
+    then:
+      - field: type
+        function: pattern
+        functionOptions:
+          notMatch: \b(APIOpsCapacityCanvas)\b
+    tags:
+      - format:apis-json
+      - spec:collection
+      - experience:governance
+      - experience:documentation
+  document-include-customer-journey-canvas:
+    description: This ensures that an API has had the APIOps Customer Journey Canvas
+      applied to the API, requiring that the canvas is present in the repository
+      and registered in the APIs.json index for the API, helping with discovery
+      and governance.
+    message: Has APIOps Cycles Customer Journey Canvas
+    severity: info
+    given:
+      - $.common.*
+    then:
+      - field: type
+        function: pattern
+        functionOptions:
+          notMatch: \b(APIOpsCustomerJourneyCanvas)\b
+    tags:
+      - format:apis-json
+      - spec:collection
+      - experience:governance
+      - experience:documentation
+  document-include-domain-canvas:
+    description: This ensures that an API has had the APIOps Domain Canvas applied
+      to the API, requiring that the canvas is present in the repository and
+      registered in the APIs.json index for the API, helping with discovery and
+      governance.
+    message: Has APIOps Cycles Domain Canvas
+    severity: info
+    given:
+      - $.common.*
+    then:
+      - field: type
+        function: pattern
+        functionOptions:
+          notMatch: \b(APIOpsDomainCanvas)\b
+    tags:
+      - format:apis-json
+      - spec:collection
+      - experience:governance
+      - experience:documentation
+  document-include-event-canvas:
+    description: This ensures that an API has had the APIOps Event Canvas applied to
+      the API, requiring that the canvas is present in the repository and
+      registered in the APIs.json index for the API, helping with discovery and
+      governance.
+    message: Has APIOps Cycles Event Canvas
+    severity: info
+    given:
+      - $.common.*
+    then:
+      - field: type
+        function: pattern
+        functionOptions:
+          notMatch: \b(APIOpsEventCanvas)\b
+    tags:
+      - format:apis-json
+      - spec:collection
+      - experience:governance
+      - experience:documentation
+  document-include-locations-canvas:
+    description: This ensures that an API has had the APIOps Locations Canvas
+      applied to the API, requiring that the canvas is present in the repository
+      and registered in the APIs.json index for the API, helping with discovery
+      and governance.
+    message: Has APIOps Cycles Locations Canvas
+    severity: info
+    given:
+      - $.common.*
+    then:
+      - field: type
+        function: pattern
+        functionOptions:
+          notMatch: \b(APIOpsLocationsCanvas)\b
+    tags:
+      - format:apis-json
+      - spec:collection
+      - experience:governance
+      - experience:documentation
+  document-include-rest-canvas:
+    description: This ensures that an API has had the APIOps Locations Canvas
+      applied to the API, requiring that the canvas is present in the repository
+      and registered in the APIs.json index for the API, helping with discovery
+      and governance.
+    message: Has APIOps Cycles Locations Canvas
+    severity: info
+    given:
+      - $.common.*
+    then:
+      - field: type
+        function: pattern
+        functionOptions:
+          notMatch: \b(APIOpsRestCanvas)\b
+    tags:
+      - format:apis-json
+      - spec:collection
+      - experience:governance
+      - experience:documentation
+  document-include-value-proposition-canvas:
+    description: This ensures that an API has had the APIOps Value Proposition
+      Canvas applied to the API, requiring that the canvas is present in the
+      repository and registered in the APIs.json index for the API, helping with
+      discovery and governance.
+    message: Has APIOps Cycles Value Proposition Canvas
+    severity: info
+    given:
+      - $.common.*
+    then:
+      - field: type
+        function: pattern
+        functionOptions:
+          notMatch: \b(APIOpsValuePropositionCanvas)\b
+    tags:
+      - format:apis-json
+      - spec:collection
+      - experience:governance
+      - experience:documentation
+  document-require-access:
+    description: apis-json document should declare a `access` property.
+    message: Missing `access`.
+    given: $
+    severity: info
+    then:
+      field: access
+      function: truthy
+    tags:
+      - format:apis-json
+      - spec:document
+      - experience:governance
+      - experience:discoverability
+  document-require-aid:
+    description: apis-json document should declare a `aid` property.
+    message: Missing `aid`.
+    given: $
+    severity: info
+    then:
+      field: aid
+      function: truthy
+    tags:
+      - format:apis-json
+      - spec:document
+      - experience:governance
+      - experience:discoverability
+  document-require-apis:
+    description: apis-json document should declare a `apis` property.
+    message: Missing `apis`.
+    given: $
+    severity: info
+    then:
+      field: apis
+      function: truthy
+    tags:
+      - format:apis-json
+      - spec:document
+      - experience:governance
+      - experience:discoverability
+  document-require-common:
+    description: apis-json document should declare a `common` property.
+    message: Missing `common`.
+    given: $
+    severity: info
+    then:
+      field: common
+      function: truthy
+    tags:
+      - format:apis-json
+      - spec:document
+      - experience:governance
+      - experience:discoverability
+  document-require-created:
+    description: apis-json document should declare a `created` property.
+    message: Missing `created`.
+    given: $
+    severity: info
+    then:
+      field: created
+      function: truthy
+    tags:
+      - format:apis-json
+      - spec:document
+      - experience:governance
+      - experience:discoverability
+  document-require-description:
+    description: apis-json document should declare a `description` property.
+    message: Missing `description`.
+    given: $
+    severity: info
+    then:
+      field: description
+      function: truthy
+    tags:
+      - format:apis-json
+      - spec:document
+      - experience:governance
+      - experience:discoverability
+  document-require-image:
+    description: apis-json document should declare a `image` property.
+    message: Missing `image`.
+    given: $
+    severity: info
+    then:
+      field: image
+      function: truthy
+    tags:
+      - format:apis-json
+      - spec:document
+      - experience:governance
+      - experience:discoverability
+  document-require-include:
+    description: apis-json document should declare a `include` property.
+    message: Missing `include`.
+    given: $
+    severity: info
+    then:
+      field: include
+      function: truthy
+    tags:
+      - format:apis-json
+      - spec:document
+      - experience:governance
+      - experience:discoverability
+  document-require-kind:
+    description: apis-json document should declare a `kind` property.
+    message: Missing `kind`.
+    given: $
+    severity: info
+    then:
+      field: kind
+      function: truthy
+    tags:
+      - format:apis-json
+      - spec:document
+      - experience:governance
+      - experience:discoverability
+  document-require-maintainer:
+    description: apis-json document should declare a `maintainers` property.
+    message: Missing `maintainers`.
+    given: $
+    severity: info
+    then:
+      field: maintainers
+      function: truthy
+    tags:
+      - format:apis-json
+      - spec:document
+      - experience:governance
+      - experience:discoverability
+  document-require-modified:
+    description: apis-json document should declare a `modified` property.
+    message: Missing `modified`.
+    given: $
+    severity: info
+    then:
+      field: modified
+      function: truthy
+    tags:
+      - format:apis-json
+      - spec:document
+      - experience:governance
+      - experience:discoverability
+  document-require-name:
+    description: apis-json document should declare a `name` property.
+    message: Missing `name`.
+    given: $
+    severity: info
+    then:
+      field: name
+      function: truthy
+    tags:
+      - format:apis-json
+      - spec:document
+      - experience:governance
+      - experience:discoverability
+  document-require-network:
+    description: apis-json document should declare a `network` property.
+    message: Missing `network`.
+    given: $
+    severity: info
+    then:
+      field: network
+      function: truthy
+    tags:
+      - format:apis-json
+      - spec:document
+      - experience:governance
+      - experience:discoverability
+  document-require-overlays:
+    description: apis-json document should declare a `overlays` property.
+    message: Missing `overlays`.
+    given: $
+    severity: info
+    then:
+      field: overlays
+      function: truthy
+    tags:
+      - format:apis-json
+      - spec:document
+      - experience:governance
+      - experience:discoverability
+  document-require-position:
+    description: apis-json document should declare a `position` property.
+    message: Missing `position`.
+    given: $
+    severity: info
+    then:
+      field: position
+      function: truthy
+    tags:
+      - format:apis-json
+      - spec:document
+      - experience:governance
+      - experience:discoverability
+  document-require-prompts:
+    description: apis-json document should declare a `prompts` property.
+    message: Missing `prompts`.
+    given: $
+    severity: info
+    then:
+      field: prompts
+      function: truthy
+    tags:
+      - format:apis-json
+      - spec:document
+      - experience:governance
+      - experience:discoverability
+  document-require-rating:
+    description: apis-json document should declare a `rating` property.
+    message: Missing `rating`.
+    given: $
+    severity: info
+    then:
+      field: rating
+      function: truthy
+    tags:
+      - format:apis-json
+      - spec:document
+      - experience:governance
+      - experience:discoverability
+  document-require-rules:
+    description: apis-json document should declare a `rules` property.
+    message: Missing `rules`.
+    given: $
+    severity: info
+    then:
+      field: rules
+      function: truthy
+    tags:
+      - format:apis-json
+      - spec:document
+      - experience:governance
+      - experience:discoverability
+  document-require-specificationversion:
+    description: apis-json document should declare a `specificationVersion` property.
+    message: Missing `specificationVersion`.
+    given: $
+    severity: info
+    then:
+      field: specificationVersion
+      function: truthy
+    tags:
+      - format:apis-json
+      - spec:document
+      - experience:governance
+      - experience:discoverability
+  document-require-tag:
+    description: apis-json document should declare a `tags` property.
+    message: Missing `tags`.
+    given: $
+    severity: info
+    then:
+      field: tags
+      function: truthy
+    tags:
+      - format:apis-json
+      - spec:document
+      - experience:governance
+      - experience:discoverability
+  document-require-type:
+    description: apis-json document should declare a `type` property.
+    message: Missing `type`.
+    given: $
+    severity: info
+    then:
+      field: type
+      function: truthy
+    tags:
+      - format:apis-json
+      - spec:document
+      - experience:governance
+      - experience:discoverability
+  document-require-url:
+    description: apis-json document should declare a `url` property.
+    message: Missing `url`.
+    given: $
+    severity: info
+    then:
+      field: url
+      function: truthy
+    tags:
+      - format:apis-json
+      - spec:document
+      - experience:governance
+      - experience:discoverability
+  document-require-visibility:
+    description: apis-json document should declare a `visibility` property.
+    message: Missing `visibility`.
+    given: $
+    severity: info
+    then:
+      field: visibility
+      function: truthy
+    tags:
+      - format:apis-json
+      - spec:document
+      - experience:governance
+      - experience:discoverability
+  document-require-workflow:
+    description: apis-json document should declare a `workflows` property.
+    message: Missing `workflows`.
+    given: $
+    severity: info
+    then:
+      field: workflows
+      function: truthy
+    tags:
+      - format:apis-json
+      - spec:document
+      - experience:governance
+      - experience:discoverability
+  info-apis-json-specification-version-format:
+    description: specificationVersion should be a major.minor version (e.g. 0.21).
+    message: specificationVersion should be major.minor.
+    given: $.specificationVersion
+    severity: info
+    then:
+      function: pattern
+      functionOptions:
+        match: ^\d+\.\d+$
+    tags:
+      - format:apis-json
+      - spec:document
+      - experience:versioning
+      - experience:consistency
+  maintainer-email-format:
+    description: A maintainer email should be a valid email address.
+    message: Maintainer email should be a valid email.
+    given: $.maintainers[*].email
+    severity: info
+    then:
+      function: pattern
+      functionOptions:
+        match: ^[^@\s]+@[^@\s]+\.[^@\s]+$
+    tags:
+      - format:apis-json
+      - spec:maintainers
+      - experience:consistency
+  schema-include-api-lifecycle:
+    description: This property makes sure there is an API lifecycle schema defining
+      all of the stages of a lifecycle and which policies get applied at each
+      stage of the API lifecycle.
+    message: Has an API Lifecycle
+    severity: info
+    given:
+      - $.apis.*.properties.*
+      - $.common.*
+    then:
+      - field: type
+        function: pattern
+        functionOptions:
+          notMatch: \b(lifecycle|Lifecycle)\b
+    tags:
+      - format:apis-json
+      - spec:apis
+      - spec:properties
+      - experience:governance
+      - experience:versioning
+  schema-include-api-plan:
+    description: This property provides a link to the dedicated plans page that
+      applies to an API, providing information about access tiers, rate limits,
+      and features available for an API as part of a wider API business plan.
+    message: Has API Plans
+    severity: info
+    given:
+      - $.apis.*.properties.*
+      - $.common.*
+    then:
+      - field: type
+        function: pattern
+        functionOptions:
+          notMatch: \b(api-plans|Plans)\b
+    tags:
+      - format:apis-json
+      - spec:apis
+      - spec:properties
+      - experience:usability
+      - experience:documentation
+  schema-include-authentication-page:
+    description: This property ensures that there is a human readable authentication
+      page available that will provide what type of authentication is used and
+      how it can be applied, as well as any services or tooling that API
+      consumers can use to troubleshoot authentication with APIs.
+    message: Has Authentication
+    severity: info
+    given:
+      - $.apis.*.properties.*
+      - $.common.*
+    then:
+      - field: type
+        function: pattern
+        functionOptions:
+          notMatch: \b(Authentication)\b
+    tags:
+      - format:apis-json
+      - spec:apis
+      - spec:properties
+      - experience:security
+      - experience:documentation
+  schema-include-blog:
+    description: This property ensures that an API has a reference to a blog where
+      anyone can find updates and other stories that will help keep API
+      consumers and other stakeholders up to speed on what is happening with an
+      API, and the larger operations.
+    message: Has a Blog
+    severity: info
+    given:
+      - $.apis.*.properties.*
+      - $.common.*
+    then:
+      - field: type
+        function: pattern
+        functionOptions:
+          notMatch: \b(blog|Blogs)\b
+    tags:
+      - format:apis-json
+      - spec:apis
+      - spec:properties
+      - experience:documentation
+      - experience:discoverability
+  schema-include-blog-feed:
+    description: This property ensures that blogs in support of APIs have an Atom or
+      RSS feed of posts, allowing for the syndication of updates and information
+      around individual APIs and the operations around them.
+    message: Has a Blog Feed
+    severity: info
+    given:
+      - $.apis.*.properties.*
+      - $.common.*
+    then:
+      - field: type
+        function: pattern
+        functionOptions:
+          notMatch: \b(blog-feed|BlogFeeds)\b
+    tags:
+      - format:apis-json
+      - spec:apis
+      - spec:properties
+      - experience:documentation
+      - experience:discoverability
+  schema-include-business-validator:
+    description: This property ensures that there is a link to the validator for the APIs.
+    message: Has APIs.json (Business) Validator
+    severity: info
+    given:
+      - $.apis.*.properties.*
+      - $.common.*
+    then:
+      - field: type
+        function: pattern
+        functionOptions:
+          notMatch: \b(OperationalValidation)\b
+    tags:
+      - format:apis-json
+      - spec:apis
+      - spec:properties
+      - experience:governance
+  schema-include-change-log:
+    description: This property ensures that than an individual API or API operations
+      possesses a change log that catalogs all the changes that have occurred in
+      a recent time frame, with historical and version information available if
+      possible.
+    message: Has Change Log
+    severity: info
+    given:
+      - $.apis.*.properties.*
+      - $.common.*
+    then:
+      - field: type
+        function: pattern
+        functionOptions:
+          notMatch: \b(api-change-log|change-log|Change Log|Changelog|ChangeLog)\b
+    tags:
+      - format:apis-json
+      - spec:apis
+      - spec:properties
+      - experience:versioning
+      - experience:documentation
+  schema-include-deprecation-policy:
+    description: This property ensures that an API has a deprecation policy shared
+      as part of the contract, communicating what the lifespan of APIs are, each
+      individual version, as well as communication around the deprecation of
+      APIs.
+    message: Has Deprecation Policy
+    severity: info
+    given:
+      - $.apis.*.properties.*
+      - $.common.*
+    then:
+      - field: type
+        function: pattern
+        functionOptions:
+          notMatch: \b(api-deprecation-policy|deprecation-policy|Deprecation|Deprecation
+            Policy|DeprecationPolicy)\b
+    tags:
+      - format:apis-json
+      - spec:apis
+      - spec:properties
+      - topic:deprecation
+      - experience:versioning
+      - experience:governance
+  schema-include-developer-portal:
+    description: This property ensures there a developer portal associated with an
+      API and that you can find a landing page for the API, documentation, SDKs,
+      and other resources.
+    message: Has Developer Portal
+    severity: info
+    given:
+      - $.apis.*.properties.*
+      - $.common.*
+    then:
+      - field: type
+        function: pattern
+        functionOptions:
+          notMatch: \b(api-developer-portal|developer-portal|portal|Portal|Portals|DeveloperPortal)\b
+    tags:
+      - format:apis-json
+      - spec:apis
+      - spec:properties
+      - experience:discoverability
+      - experience:usability
+  schema-include-discussion-forum:
+    description: This property ensures that there is a link to a discussion forum,
+      providing a way for consumers and producers to engage and support either
+      other throughout the lifecycle.
+    message: Has Discussion Forum
+    severity: info
+    given:
+      - $.apis.*.properties.*
+      - $.common.*
+    then:
+      - field: type
+        function: pattern
+        functionOptions:
+          notMatch: \b(Forums|Forums|Discussions)\b
+    tags:
+      - format:apis-json
+      - spec:apis
+      - spec:properties
+      - experience:usability
+      - experience:discoverability
+  schema-include-documentation:
+    description: This property ensures that there is documentation published for an
+      API, and API consumers will have a set of human-readable instructions for
+      onboarding and integrating with HTTP APIs in their applications.
+    message: Has Documentation
+    severity: info
+    given:
+      - $.apis.*.properties.*
+      - $.common.*
+    then:
+      - field: type
+        function: pattern
+        functionOptions:
+          notMatch: \b(documentation|Documentation)\b
+    tags:
+      - format:apis-json
+      - spec:apis
+      - spec:properties
+      - experience:documentation
+      - experience:usability
+  schema-include-examples:
+    description: This property ensures that an API has a reference to a examples for
+      individual APIs or as part of common properties, providing examples and
+      synthentic data that can be used for APIs.
+    message: Has a Blog
+    severity: info
+    given:
+      - $.apis.*.properties.*
+      - $.common.*
+    then:
+      - field: type
+        function: pattern
+        functionOptions:
+          notMatch: \b(examples|Examples)\b
+    tags:
+      - format:apis-json
+      - spec:apis
+      - spec:properties
+      - experience:documentation
+      - experience:usability
+  schema-include-feedback-email:
+    description: This property ensures that there is an email available for API
+      consumers to provide feedback.
+    message: Has Feedback Email
+    severity: info
+    given:
+      - $.apis.*.properties.*
+      - $.common.*
+    then:
+      - field: type
+        function: pattern
+        functionOptions:
+          notMatch: \b(feedback-email|FeedbackEmail)\b
+    tags:
+      - format:apis-json
+      - spec:apis
+      - spec:properties
+      - experience:usability
+      - experience:documentation
+  schema-include-feedback-issues-url:
+    description: This property ensures there is a URL to Git issues specifically for
+      providing feedback.
+    message: Has Feedback Issues URL
+    severity: info
+    given:
+      - $.apis.*.properties.*
+      - $.common.*
+    then:
+      - field: type
+        function: pattern
+        functionOptions:
+          notMatch: \b(FeedbackIssues|FeedbackGitHubIssues)\b
+    tags:
+      - format:apis-json
+      - spec:apis
+      - spec:properties
+      - experience:usability
+      - experience:documentation
+  schema-include-gateway-reference:
+    description: This property ensures that there is a reference to the gateway for
+      an API, referencing where you can manage the configuration for each API.
+    message: Has Staging Gateway for API
+    severity: info
+    given:
+      - $.apis.*.properties.*
+      - $.common.*
+    then:
+      - field: type
+        function: pattern
+        functionOptions:
+          notMatch: \b(gateway|Gateway)\b
+    tags:
+      - format:apis-json
+      - spec:apis
+      - spec:properties
+      - experience:governance
+      - experience:discoverability
+  schema-include-getting-started:
+    description: This property ensures that there is a getting started link
+      available, providing a reference for API consumers to get started with an
+      API is as few steps as possible.
+    message: Has Getting Started
+    severity: info
+    given:
+      - $.apis.*.properties.*
+      - $.common.*
+    then:
+      - field: type
+        function: pattern
+        functionOptions:
+          notMatch: \b(GettingStarted)\b
+    tags:
+      - format:apis-json
+      - spec:apis
+      - spec:properties
+      - experience:documentation
+      - experience:usability
+  schema-include-github-action:
+    description: This property ensures that a GitHub Actions CI/CD pipeline is
+      available for an API, providing a link to the pipeline YAML artifact,
+      which can be used to automate and govern the API as part of the build
+      process.
+    message: Has a GitHub Action
+    severity: info
+    given:
+      - $.apis.*.properties.*
+      - $.common.*
+    then:
+      - field: type
+        function: pattern
+        functionOptions:
+          notMatch: \b(github-actions|GitHubActions)\b
+    tags:
+      - format:apis-json
+      - spec:apis
+      - spec:properties
+      - experience:governance
+      - experience:reliability
+  schema-include-github-organization:
+    description: This property ensures that an API is associated with GitHub
+      organization, providing the URL to where you can engage with the
+      operations surrounding an API.
+    message: Has a GitHub Organization
+    severity: info
+    given:
+      - $.apis.*.properties.*
+      - $.common.*
+    then:
+      - field: type
+        function: pattern
+        functionOptions:
+          notMatch: \b(github-organization|GitHubOrganization)\b
+    tags:
+      - format:apis-json
+      - spec:apis
+      - spec:properties
+      - experience:discoverability
+      - experience:documentation
+  schema-include-github-repository:
+    description: This property ensures that an API possess a reference to a
+      dedicated GitHub repository that is used to manage the Open, but also
+      possible server and client code.
+    message: Has a GitHub Repository
+    severity: info
+    given:
+      - $.apis.*.properties.*
+      - $.common.*
+    then:
+      - field: type
+        function: pattern
+        functionOptions:
+          notMatch: \b(github-repository|GitHubRepository)\b
+    tags:
+      - format:apis-json
+      - spec:apis
+      - spec:properties
+      - experience:discoverability
+      - experience:documentation
+  schema-include-governance-policies:
+    description: This property ensures there is a governance policies reference as
+      part of an API contract, usually a common property pointing to a
+      centralized set of policies that get applied.
+    message: Has API Governance Policies
+    severity: info
+    given:
+      - $.apis.*.properties.*
+      - $.common.*
+    then:
+      - field: type
+        function: pattern
+        functionOptions:
+          notMatch: \b(api-policies|Policies)\b
+    tags:
+      - format:apis-json
+      - spec:apis
+      - spec:properties
+      - experience:governance
+  schema-include-insomnia-collection:
+    description: This property defines an Insomnia collection available for each
+      API, providing executable artifacts that can be used in the Insomnia
+      client for making calls, and executing automation workflows.
+    message: Has Insomnia Collection
+    severity: info
+    given:
+      - $.apis.*.properties.*
+      - $.common.*
+    then:
+      - field: type
+        function: pattern
+        functionOptions:
+          notMatch: \b(RunInInsomnia)\b
+    tags:
+      - format:apis-json
+      - spec:apis
+      - spec:properties
+      - experience:usability
+      - experience:documentation
+  schema-include-interface-license:
+    description: This property ensures that an API Commons interface license exists
+      for an API, providing a machine-readable reference for an API, as well as
+      data, backend, and front-end code.
+    message: Has Interface License
+    severity: info
+    given:
+      - $.apis.*.properties.*
+      - $.common.*
+    then:
+      - field: type
+        function: pattern
+        functionOptions:
+          notMatch: \b(api-license|License|license|InterfaceLicense)\b
+    tags:
+      - format:apis-json
+      - spec:apis
+      - spec:properties
+      - experience:governance
+      - experience:documentation
+  schema-include-mock-server:
+    description: This property ensures that an API has a reference to a mock servers
+      for individual APIs or as part of common properties, providing mocked
+      deployments of an API that can be used for making test API calls.
+    message: Has a Mock Server
+    severity: info
+    given:
+      - $.apis.*.properties.*
+      - $.common.*
+    then:
+      - field: type
+        function: pattern
+        functionOptions:
+          notMatch: \b(mocks|Mocks|MockServers)\b
+    tags:
+      - format:apis-json
+      - spec:apis
+      - spec:properties
+      - experience:usability
+      - experience:documentation
+  schema-include-openapi-definition:
+    description: This property ensures that there is an OpenAPI present for an API,
+      providing the technical contract that describes the surface area of an
+      API.
+    message: Has An OpenAPI
+    severity: info
+    given:
+      - $.apis.*.properties.*
+      - $.common.*
+    then:
+      - field: type
+        function: pattern
+        functionOptions:
+          notMatch: \b(openapi|OpenAPI)\b
+    tags:
+      - format:apis-json
+      - spec:apis
+      - spec:properties
+      - experience:documentation
+      - experience:discoverability
+  schema-include-openapi-governance-rules:
+    description: This property ensures that an OpenAPI has support governance rules,
+      that can be applied during design time via editors, development time via
+      IDE, and run-time via CI/CD pipelines.
+    message: Has API Rules
+    severity: info
+    given:
+      - $.apis.*.properties.*
+      - $.common.*
+    then:
+      - field: type
+        function: pattern
+        functionOptions:
+          notMatch: \b(api-rules|ApiRules)\b
+    tags:
+      - format:apis-json
+      - spec:apis
+      - spec:properties
+      - experience:governance
+  schema-include-openapi-validator:
+    description: This property ensures that there is a link to the validator for the
+      OpenAPI technical contract, allowing anyone to see the details of
+      governance being applied.
+    message: Has OpenAPI (Technical) Validator
+    severity: info
+    given:
+      - $.apis.*.properties.*
+      - $.common.*
+    then:
+      - field: type
+        function: pattern
+        functionOptions:
+          notMatch: \b(APIValidation)\b
+    tags:
+      - format:apis-json
+      - spec:apis
+      - spec:properties
+      - experience:governance
+  schema-include-operational-rules:
+    description: This property ensures that an API has operational level rules for APIs.
+    message: Has Operational Rules
+    severity: info
+    given:
+      - $.apis.*.properties.*
+      - $.common.*
+    then:
+      - field: type
+        function: pattern
+        functionOptions:
+          notMatch: \b(operational-rules|OperationalRules)\b
+    tags:
+      - format:apis-json
+      - spec:apis
+      - spec:properties
+      - experience:governance
+  schema-include-performance-testing:
+    description: This property ensures that an API has performance testing in place,
+      providing a URL to the performance testing, dashboard, or other resource.
+    message: Has API Performance
+    severity: info
+    given:
+      - $.apis.*.properties.*
+      - $.common.*
+    then:
+      - field: type
+        function: pattern
+        functionOptions:
+          notMatch: \b(Performance|PerformanceTesting)\b
+    tags:
+      - format:apis-json
+      - spec:apis
+      - spec:properties
+      - experience:reliability
+      - experience:documentation
+  schema-include-postman-collection:
+    description: This property ensures that an API has at least one Postman
+      Collection associated with it, providing automation, tests, and other
+      executable derivatives of an APIs OpenAPI.
+    message: Has a Postman Collection
+    severity: info
+    given:
+      - $.apis.*.properties.*
+      - $.common.*
+    then:
+      - field: type
+        function: pattern
+        functionOptions:
+          notMatch: \b(PostmanCollection)\b
+    tags:
+      - format:apis-json
+      - spec:apis
+      - spec:properties
+      - experience:usability
+      - experience:documentation
+  schema-include-postman-public-workspace:
+    description: This property ensures that an API is associated with a Postman
+      Workspace, providing a single location that API producers and/or API
+      consumers can engage around an API.
+    message: Has Public Postman Workspace
+    severity: info
+    given:
+      - $.apis.*.properties.*
+      - $.common.*
+    then:
+      - field: type
+        function: pattern
+        functionOptions:
+          notMatch: \b(postman-public-workspace|PostmanPublicWorkspace|PostmanWorkspace)\b
+    tags:
+      - format:apis-json
+      - spec:apis
+      - spec:properties
+      - experience:usability
+      - experience:discoverability
+  schema-include-pricing:
+    description: This property provides a link to a pricing page that applies to an
+      API, providing a breakdown of the costs associated with using an API.
+    message: Has Pricing
+    severity: info
+    given:
+      - $.apis.*.properties.*
+      - $.common.*
+    then:
+      - field: type
+        function: pattern
+        functionOptions:
+          notMatch: \b(Pricing)\b
+    tags:
+      - format:apis-json
+      - spec:apis
+      - spec:properties
+      - experience:usability
+      - experience:documentation
+  schema-include-privacy-policy:
+    description: This property provides a link to the privacy policy for an API,
+      providing the legal details of how privacy is approached for each API.
+    message: Has an API Privacy Policy
+    severity: info
+    given:
+      - $.apis.*.properties.*
+      - $.common.*
+    then:
+      - field: type
+        function: pattern
+        functionOptions:
+          notMatch: \b(api-privacy-policy|privacy-policy|Privacy|Privacy
+            Policy|PrivacyPolicy)\b
+    tags:
+      - format:apis-json
+      - spec:apis
+      - spec:properties
+      - experience:governance
+      - experience:documentation
+  schema-include-production-environment:
+    description: This property ensures that there is a production environment
+      available for an API, providing base URL, tokens, keys, and other key /
+      value pairs that are needed to integrate with an API.
+    message: Has a Production Environment
+    severity: info
+    given:
+      - $.apis.*.properties.*
+      - $.common.*
+    then:
+      - field: type
+        function: pattern
+        functionOptions:
+          notMatch: \b(ProductionEnvironment)\b
+    tags:
+      - format:apis-json
+      - spec:apis
+      - spec:properties
+      - experience:usability
+      - experience:reliability
+  schema-include-questions-issues-url:
+    description: This property ensures that an API has a dedicated link to Git
+      issues for asking questions.
+    message: Has Questions Issues URL
+    severity: info
+    given:
+      - $.apis.*.properties.*
+      - $.common.*
+    then:
+      - field: type
+        function: pattern
+        functionOptions:
+          notMatch: \b(QuestionsIssues|QuestionsGitHubIssues)\b
+    tags:
+      - format:apis-json
+      - spec:apis
+      - spec:properties
+      - experience:usability
+      - experience:documentation
+  schema-include-rate-limit-reference:
+    description: This property ensures there is an API rate limits reference
+      associated with API, ensuring the rate limits applied to an API are
+      clearly communicated.
+    message: Has an API Terms of Services
+    severity: info
+    given:
+      - $.apis.*.properties.*
+      - $.common.*
+    then:
+      - field: type
+        function: pattern
+        functionOptions:
+          notMatch: \b(rate-limits|RateLimits|Rate Limits)\b
+    tags:
+      - format:apis-json
+      - spec:apis
+      - spec:properties
+      - topic:rate-limiting
+      - experience:reliability
+      - experience:documentation
+      - experience:performance
+  schema-include-staging-environment:
+    description: This property ensures that there is a staging environment available
+      for an API, providing base URL, tokens, keys, and other key / value pairs
+      that are needed to integrate with an API.
+    message: Has a Stage Environment
+    severity: info
+    given:
+      - $.apis.*.properties.*
+      - $.common.*
+    then:
+      - field: type
+        function: pattern
+        functionOptions:
+          notMatch: \b(StagingEnvironment)\b
+    tags:
+      - format:apis-json
+      - spec:apis
+      - spec:properties
+      - experience:usability
+      - experience:reliability
+  schema-include-version-comparison:
+    description: This property ensures that an API has the ability to compare two
+      different versions of an API and see what the difference are between them.
+    message: Has an API Comparison
+    severity: info
+    given:
+      - $.apis.*.properties.*
+      - $.common.*
+    then:
+      - field: type
+        function: pattern
+        functionOptions:
+          notMatch: \b(compare|Compare)\b
+    tags:
+      - format:apis-json
+      - spec:apis
+      - spec:properties
+      - experience:versioning
+      - experience:documentation
+  tag-apis-json-not-empty:
+    description: If tags are declared they should not be empty — tags drive
+      discovery in the catalog.
+    message: tags should not be empty.
+    given: $.tags
+    severity: info
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: array
+          minItems: 1
+    tags:
+      - format:apis-json
+      - spec:tags
+      - experience:discoverability
+  tag-require-upper-case:
+    description: Maintaining consistent casing for tags applied to APIs.json
+      contracts ensures a uniform appearance and enhances search and discovery.
+      Each word in a tag should be capitalized, with the first letter of every
+      word in a phrase treated the same way.
+    message: Tags Upper Case
+    severity: info
+    given: $.tags.*
+    then:
+      function: pattern
+      functionOptions:
+        match: "[A-Z]\\w*"
+    tags:
+      - format:apis-json
+      - spec:tags
+      - experience:naming
+      - experience:consistency
+      - experience:discoverability

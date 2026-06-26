@@ -1,0 +1,178 @@
+documentationUrl: https://spotlight-rules.com/spec/
+rules:
+  document-require-currency:
+    description: The `currency` property should be present.
+    message: currency should be present
+    severity: info
+    given: $
+    then:
+      field: currency
+      function: truthy
+    tags:
+      - format:plans
+      - spec:document
+      - experience:governance
+      - experience:usability
+  document-require-description:
+    description: The `description` property should be present.
+    message: description should be present
+    severity: info
+    given: $
+    then:
+      field: description
+      function: truthy
+    tags:
+      - format:plans
+      - spec:document
+      - experience:documentation
+      - experience:governance
+  document-require-name:
+    description: The `name` property should be present.
+    message: name should be present
+    severity: info
+    given: $
+    then:
+      field: name
+      function: truthy
+    tags:
+      - format:plans
+      - spec:document
+      - experience:data-modeling
+      - experience:governance
+  document-require-plan:
+    description: The `plans` property should be present.
+    message: plans should be present
+    severity: info
+    given: $
+    then:
+      field: plans
+      function: truthy
+    tags:
+      - format:plans
+      - spec:document
+      - experience:data-modeling
+      - experience:governance
+  plan-currency-iso4217:
+    description: currency should be a 3-letter ISO 4217 code (e.g. USD).
+    message: currency should be an ISO 4217 code.
+    given: $.currency
+    severity: info
+    then:
+      function: pattern
+      functionOptions:
+        match: ^[A-Z]{3}$
+    tags:
+      - format:plans
+      - spec:document
+      - experience:consistency
+      - experience:data-modeling
+  plan-features-non-empty:
+    description: If a plan lists features, the list should not be empty.
+    message: Plan features should not be empty.
+    given: $.plans[*].features
+    severity: info
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: array
+          minItems: 1
+    tags:
+      - format:plans
+      - spec:plans
+      - experience:documentation
+  plan-price-non-negative:
+    description: A plan price should be a non-negative number.
+    message: Plan price should be a non-negative number.
+    given: $.plans[*].price
+    severity: info
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type:
+            - number
+            - integer
+          minimum: 0
+    tags:
+      - format:plans
+      - spec:plans
+      - experience:data-modeling
+  plan-require-description:
+    description: The `description` property of each plan should be present.
+    message: description should be present
+    severity: info
+    given: $.plans[*]
+    then:
+      field: description
+      function: truthy
+    tags:
+      - format:plans
+      - spec:plans
+      - experience:documentation
+      - experience:usability
+  plan-require-features:
+    description: The `features` property of each plan should be present.
+    message: features should be present
+    severity: info
+    given: $.plans[*]
+    then:
+      field: features
+      function: truthy
+    tags:
+      - format:plans
+      - spec:plans
+      - experience:usability
+      - experience:documentation
+  plan-require-interval:
+    description: Each plan should declare a billing interval (e.g. month, year).
+    message: Plan should declare a billing interval.
+    given: $.plans[*]
+    severity: info
+    then:
+      field: interval
+      function: truthy
+    tags:
+      - format:plans
+      - spec:plans
+      - experience:consistency
+      - experience:usability
+  plan-require-limit:
+    description: The `limits` property of each plan should be present.
+    message: limits should be present
+    severity: info
+    given: $.plans[*]
+    then:
+      field: limits
+      function: truthy
+    tags:
+      - format:plans
+      - spec:plans
+      - experience:governance
+      - experience:reliability
+  plan-require-name:
+    description: The `name` property of each plan should be present.
+    message: name should be present
+    severity: info
+    given: $.plans[*]
+    then:
+      field: name
+      function: truthy
+    tags:
+      - format:plans
+      - spec:plans
+      - experience:data-modeling
+      - experience:governance
+  plan-require-price:
+    description: The `price` property of each plan should be present.
+    message: price should be present
+    severity: info
+    given: $.plans[*]
+    then:
+      field: price
+      function: truthy
+    tags:
+      - format:plans
+      - spec:plans
+      - experience:governance
+      - experience:usability
