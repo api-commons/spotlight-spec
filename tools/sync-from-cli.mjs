@@ -246,7 +246,7 @@ async function build() {
 
   // Build the root from ruleset.schema, swapping its identity + cross-file refs.
   const out = {
-    $schema: "http://json-schema.org/draft-07/schema#",
+    $schema: "https://json-schema.org/draft/2020-12/schema",
     $id: CANONICAL_ID,
     title: "Spotlight Ruleset",
     description:
@@ -266,7 +266,30 @@ async function build() {
   rewriteRefs(out);
   out.$defs = Object.fromEntries(Object.keys(defs).sort().map((k) => [k, defs[k]]));
 
-  const json = JSON.stringify(out, null, 2) + "\n";
+  // Migrate Spectral's draft-07 constructs to JSON Schema 2020-12: a tuple
+  // `items: [...]` becomes `prefixItems`, and `additionalItems` folds into the
+  // 2020-12 `items` (schema for the elements past the tuple).
+  const migrate = (node) => {
+    if (Array.isArray(node)) return node.map(migrate);
+    if (node && typeof node === "object") {
+      const o = {};
+      for (const [k, v] of Object.entries(node)) o[k] = migrate(v);
+      if (Array.isArray(o.items)) {
+        o.prefixItems = o.items;
+        delete o.items;
+        if ("additionalItems" in o) {
+          if (o.additionalItems !== true) o.items = o.additionalItems;
+          delete o.additionalItems;
+        }
+      } else if ("additionalItems" in o) {
+        delete o.additionalItems; // meaningless without a tuple in 2020-12
+      }
+      return o;
+    }
+    return node;
+  };
+
+  const json = JSON.stringify(migrate(out), null, 2) + "\n";
 
   if (checkOnly) {
     const current = existsSync(OUT) ? readFileSync(OUT, "utf8") : "";

@@ -1,5 +1,5 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://api-commons.github.io/spotlight-spec/schema/v1/spotlight-ruleset.schema.json",
   "title": "Spotlight Ruleset",
   "description": "Standalone JSON Schema for the Spotlight (Spectral) ruleset format — the rules and rulesets used to lint JSON/YAML API descriptions such as OpenAPI, AsyncAPI, and Arazzo. Self-contained bundle of Spectral's internal meta-schemas; describes the serializable, implementation-neutral form.",
@@ -263,8 +263,7 @@
               {
                 "type": "array",
                 "minItems": 2,
-                "additionalItems": false,
-                "items": [
+                "prefixItems": [
                   {
                     "type": "string"
                   },
@@ -276,7 +275,8 @@
                     ],
                     "errorMessage": "allowed types are \"off\", \"recommended\" and \"all\""
                   }
-                ]
+                ],
+                "items": false
               }
             ]
           }
