@@ -186,15 +186,57 @@ async function build() {
         "`format:<artifact>` (the artifact type, e.g. `format:openapi`, `format:apis-json`), " +
         "`spec:<location>` (where in the document it applies, e.g. `spec:operations`, " +
         "`spec:responses`, `spec:schemas`), `experience:<dimension>` (the developer-" +
-        "experience / quality dimension it improves — e.g. `experience:documentation`, " +
-        "`experience:security`, `experience:error-handling`, `experience:naming`, " +
-        "`experience:consistency`, `experience:versioning`, `experience:pagination`, " +
-        "`experience:discoverability`, `experience:reliability`, `experience:data-modeling`, " +
-        "`experience:usability`, `experience:governance`), and `source:<provider>` " +
-        "(provenance). A rule may carry multiple tags; tooling groups and filters by them.",
+        "experience / quality dimension it improves — one of `documentation`, `naming`, " +
+        "`consistency`, `security`, `error-handling`, `versioning`, `pagination`, " +
+        "`discoverability`, `reliability`, `data-modeling`, `usability`, `governance`, " +
+        "`performance`, `observability`), `topic:<feature>` (the cross-cutting feature family it " +
+        "belongs to, e.g. `topic:caching`, `topic:rate-limiting`, `topic:tracing`, `topic:cors`, " +
+        "`topic:pagination`, `topic:idempotency`, `topic:deprecation`, `topic:conditional-requests`, " +
+        "`topic:content-negotiation`), and `owasp:<category>` (the OWASP API Security Top 10 " +
+        "category it addresses, e.g. `owasp:api1` … `owasp:api10`). A rule may carry multiple " +
+        "tags; tooling groups and filters by them.",
       items: { type: "string" },
       examples: [
-        ["format:openapi", "spec:operations", "spec:responses", "experience:error-handling", "experience:reliability"],
+        ["format:openapi", "spec:responses", "topic:rate-limiting", "experience:reliability", "experience:performance", "owasp:api4"],
+      ],
+    };
+    // Spotlight extension: `title` — a short Title Case display name (the second Spotlight
+    // addition beyond the Spectral baseline, after `tags`).
+    ruleProps.title = {
+      type: "string",
+      description:
+        "A short Title Case display name for the rule — the second Spotlight extension beyond " +
+        "the Spectral baseline (after `tags`). Conventionally the Title Case form of the rule " +
+        "key (e.g. `response-define-429` -> `Response Define 429`). Tooling uses it as the " +
+        "human-readable label in rule catalogs and lint output.",
+      examples: ["Response Define 429", "Security No HTTP Basic Auth"],
+    };
+    // Spotlight extension: `reference` — a canonical documentation URL for the rule (the third
+    // Spotlight addition beyond the Spectral baseline, after `tags` and `title`).
+    ruleProps.reference = {
+      type: "string",
+      format: "url",
+      description:
+        "A canonical documentation URL for the rule — the third Spotlight extension beyond the " +
+        "Spectral baseline (after `tags` and `title`). Points to the rule's detail page so " +
+        "tooling can deep-link from lint output to an explanation. The Spotlight catalog points " +
+        "every rule at its page on https://spotlight-rules.com/spec/rules/<artifact>/<slug>/; " +
+        "other implementers may point `reference` at their own internal documentation.",
+      examples: ["https://spotlight-rules.com/spec/rules/openapi/response-define-429/"],
+    };
+    // Spotlight extension: `prompt` — an AI fix instruction (the fourth Spotlight addition
+    // beyond the Spectral baseline, after `tags`, `title`, and `reference`).
+    ruleProps.prompt = {
+      type: "string",
+      description:
+        "A natural-language instruction that an AI assistant (Claude, Gemini, ChatGPT, etc.) can " +
+        "apply to FIX a violation of this rule — the fourth Spotlight extension beyond the Spectral " +
+        "baseline (after `tags`, `title`, and `reference`). It states the requirement, the precise " +
+        "corrective action, and the location, and asks the model to return the corrected artifact. " +
+        "Tooling (e.g. the Spotlight validator's Fix action) sends this prompt — together with the " +
+        "artifact and the specific lint findings — to a configured model to auto-remediate the rule.",
+      examples: [
+        "You are editing an OpenAPI document to satisfy the Spotlight rule 'Response Define 429'. Requirement: operations should define a 429 (Too Many Requests) response. To fix: add a `429` response with a description and error schema to each operation that can be rate-limited. Return only the complete corrected document.",
       ],
     };
   }
