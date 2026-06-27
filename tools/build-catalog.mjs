@@ -29,6 +29,10 @@ const flat = (fn) => fn.replace(':', '-');
 const fileFor = (fn) => join(FN_SRC, ...fn.split(':')) + '.js';
 const tagVals = (tags, ns) => (tags || []).filter((t) => t.startsWith(ns + ':')).map((t) => t.slice(ns.length + 1));
 
+if (!existsSync(ALL_RULES)) {
+  console.warn(`catalog source not present (${ALL_RULES}) — spotlight-validator not a sibling checkout; skipping.`);
+  process.exit(0);
+}
 const all = parse(readFileSync(ALL_RULES, 'utf8'));
 
 const usedFns = new Set();
