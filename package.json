@@ -8,7 +8,10 @@
     "validate": "node tools/validate.mjs",
     "sync": "node tools/sync-from-cli.mjs",
     "sync:check": "node tools/sync-from-cli.mjs --check",
-    "test": "node tools/sync-from-cli.mjs --check && node tools/validate.mjs"
+    "test": "node tools/sync-from-cli.mjs --check && node tools/validate.mjs",
+    "build:catalog": "node tools/build-catalog.mjs",
+    "check:catalog": "node tools/build-catalog.mjs --check",
+    "check": "npm run sync:check && npm run validate && npm run check:catalog"
   },
   "files": [
     "schema",
