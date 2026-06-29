@@ -43,6 +43,14 @@ is a single, self-contained bundle of the above, produced by:
 4. **Preserving `errorMessage`.** The ajv-errors `errorMessage` annotations were
    kept verbatim. Standard validators ignore them; ajv-errors uses them for
    friendlier messages. They carry intent and were left in place.
+5. **Documentation enrichment (annotations only).** Upstream's meta-schemas carry
+   almost no `description`s, so a final pass in `sync-from-cli.mjs` attaches
+   `description`/`title`/`examples` to every property and `$def` (and per-function
+   `functionOptions`), plus a couple of worked root-level `examples`. `description`,
+   `title`, and `examples` are non-validating annotation keywords, so this does not
+   change which documents are accepted — it only makes the schema legible in editors
+   and on SchemaStore. The four Spotlight-specific rule fields (`tags`, `title`,
+   `reference`, `prompt`) are likewise documented additions.
 
 No other semantic changes were made. The accepted/rejected set of documents is
 intended to match upstream's data-form rulesets exactly.
