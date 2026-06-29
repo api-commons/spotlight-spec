@@ -14,7 +14,7 @@ Add this object to the `schemas` array in
 ```json
 {
   "name": "Spotlight Ruleset",
-  "description": "Spotlight (Spectral-compatible) ruleset for linting OpenAPI, AsyncAPI, Arazzo, APIs.json and other JSON/YAML API descriptions.",
+  "description": "Spotlight (Spectral-compatible) ruleset for linting OpenAPI, AsyncAPI, Arazzo, APIs.json and other JSON/YAML API descriptions",
   "fileMatch": [
     "*.spotlight.json",
     "*.spotlight.yaml",
@@ -38,6 +38,9 @@ The `fileMatch` globs above are deliberately Spotlight-specific so they do not
 collide with Spectral's own `.spectral.{json,yaml,yml}` listing. If you adopt a
 different convention for distributed rulesets (e.g. `*.ruleset.json`), add it to
 `fileMatch` here and in your tooling at the same time.
+
+> SchemaStore CI rejects `name`/`description` values that end with `,.` a space,
+> a tab, or `-`. Keep the description period-free at the end.
 
 ## Submitting
 
