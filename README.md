@@ -21,14 +21,39 @@ happens to run them.
 - **Specification** — this document.
 - **JSON Schema** — [`schema/v1/spectral-ruleset.schema.json`](schema/v1/spectral-ruleset.schema.json)
   (JSON Schema draft 2020-12).
-- **Reference implementation** — [api-commons/spectral](https://github.com/api-commons/spectral),
-  an API Commons fork of [stoplightio/spectral](https://github.com/stoplightio/spectral).
+- **Reference implementation** — [api-commons/spectral-cli](https://github.com/api-commons/spectral-cli),
+  the API Commons build of [stoplightio/spectral](https://github.com/stoplightio/spectral).
 
 > **Status: draft, and deliberately unnamed.**
 > The format described here is the Spectral ruleset format as implemented today, documented
 > faithfully and without extension. The name of the specification is not yet settled. This
-> repository and the reference implementation fork move together and will be rebranded
-> together; until then both keep the upstream name so the lineage stays obvious.
+> repository and the reference implementation move together and will be rebranded together;
+> until then both keep the upstream name so the lineage stays obvious.
+
+### Why this is separate from the linter
+
+The rules and the tool that runs them have always shipped as one thing, and that coupling is
+the failure this repository is meant to fix. When the linter stops moving, the format stops
+moving with it — and an organization's governance rules are usually the most durable thing an
+API program produces. They outlast the CLI, the vendor, and often the API itself.
+
+So: **the rules stand on their own.** Specified, independently versioned, portable, and
+implementable by anyone. The reference implementation stays aligned with this document rather
+than the other way around — and other engines are welcome to implement it. That includes
+[vacuum](https://github.com/daveshanley/vacuum), which is a supported and valued
+implementation; a written specification with a public conformance suite is precisely what
+lets several engines coexist honestly instead of drifting apart on undocumented behavior.
+
+### Where things go
+
+| What | Where |
+|---|---|
+| **Problems with the format, the schema, or this spec** | [spectral-rules/issues](https://github.com/api-commons/spectral-rules/issues) |
+| **Problems with the CLI or engine** | [spectral-cli/issues](https://github.com/api-commons/spectral-cli/issues) |
+| **Direction, governance, naming, where this should live** | [the discussion thread](https://github.com/orgs/api-commons/discussions/28) |
+
+If you depend on the Spectral ruleset format, **say so in the discussion.** Knowing who relies
+on it is what makes the case for a real, permanent home.
 
 ---
 
