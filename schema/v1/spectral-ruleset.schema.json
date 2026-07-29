@@ -1,0 +1,458 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-commons/spectral-rules/main/schema/v1/spectral-ruleset.schema.json",
+  "title": "Spectral Ruleset",
+  "description": "A Spectral ruleset: a portable, machine-readable set of API governance rules applied to JSON or YAML documents. This schema describes the serialized (JSON/YAML) form of the format. See https://github.com/api-commons/spectral-rules for the specification.",
+  "type": "object",
+
+  "properties": {
+    "description": {
+      "type": "string",
+      "description": "Human-readable description of what this ruleset governs."
+    },
+    "documentationUrl": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL to documentation for this ruleset. Used as the fallback documentation link for any rule that does not declare its own."
+    },
+    "formats": {
+      "$ref": "#/$defs/formats",
+      "description": "Document formats this ruleset applies to. Acts as the default for every rule that does not declare its own formats. When omitted, rules apply to every document."
+    },
+    "extends": {
+      "$ref": "#/$defs/extends",
+      "description": "Other rulesets this ruleset inherits from."
+    },
+    "rules": {
+      "type": "object",
+      "description": "Map of rule name to rule definition. A rule name is the stable identifier reported in results and used to override the rule downstream.",
+      "propertyNames": {
+        "minLength": 1
+      },
+      "additionalProperties": {
+        "$ref": "#/$defs/rule"
+      }
+    },
+    "aliases": {
+      "$ref": "#/$defs/aliases",
+      "description": "Named, reusable path expressions that rules may reference from `given` with a leading `#`."
+    },
+    "overrides": {
+      "$ref": "#/$defs/overrides",
+      "description": "Per-file and per-location adjustments applied on top of the ruleset."
+    },
+    "parserOptions": {
+      "$ref": "#/$defs/parserOptions",
+      "description": "Severities for problems detected while parsing the document itself, before any rule runs."
+    },
+    "functions": {
+      "type": "array",
+      "description": "Names of custom functions to load from `functionsDir`. Serialized rulesets only; JavaScript rulesets import functions directly instead.",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "functionsDir": {
+      "type": "string",
+      "description": "Directory, relative to the ruleset file, that custom functions named in `functions` are loaded from. Defaults to `functions`.",
+      "minLength": 1
+    }
+  },
+
+  "patternProperties": {
+    "^x-": true
+  },
+  "additionalProperties": false,
+
+  "anyOf": [
+    { "required": ["extends"] },
+    { "required": ["rules"] },
+    { "required": ["overrides"] }
+  ],
+
+  "$defs": {
+    "numericSeverity": {
+      "title": "Numeric severity",
+      "description": "0 = error, 1 = warn, 2 = info, 3 = hint, -1 = off.",
+      "enum": [-1, 0, 1, 2, 3]
+    },
+
+    "humanReadableSeverity": {
+      "title": "Human-readable severity",
+      "enum": ["error", "warn", "info", "hint", "off"]
+    },
+
+    "severity": {
+      "title": "Severity",
+      "description": "How a rule's results are reported. `off` (-1) disables the rule. Defaults to `warn` when unset.",
+      "oneOf": [
+        { "$ref": "#/$defs/numericSeverity" },
+        { "$ref": "#/$defs/humanReadableSeverity" }
+      ]
+    },
+
+    "format": {
+      "title": "Format",
+      "description": "Identifier of a document format. A format is a predicate that decides whether a given document is of that kind, so a rule scoped to a format only runs against matching documents. The listed values are those registered by the reference implementation; any string is permitted so that new and custom formats remain valid.",
+      "type": "string",
+      "minLength": 1,
+      "anyOf": [
+        {
+          "enum": [
+            "oas2",
+            "oas3",
+            "oas3_0",
+            "oas3_1",
+            "asyncapi2",
+            "aas2",
+            "aas2_0",
+            "aas2_1",
+            "aas2_2",
+            "aas2_3",
+            "aas2_4",
+            "aas2_5",
+            "aas2_6",
+            "aas3",
+            "aas3_0",
+            "arazzo1_0",
+            "jsonSchema",
+            "jsonSchemaLoose",
+            "jsonSchemaDraft4",
+            "jsonSchemaDraft6",
+            "jsonSchemaDraft7",
+            "jsonSchemaDraft2019_09",
+            "jsonSchemaDraft2020_12"
+          ]
+        },
+        { "type": "string" }
+      ]
+    },
+
+    "formats": {
+      "title": "Formats",
+      "type": "array",
+      "items": { "$ref": "#/$defs/format" }
+    },
+
+    "pathExpression": {
+      "title": "Path expression",
+      "description": "Either a JSONPath expression beginning with `$`, or an alias reference beginning with `#` optionally followed by a JSONPath subset (for example `#Info.description`).",
+      "type": "string",
+      "minLength": 1,
+      "anyOf": [
+        {
+          "pattern": "^\\$",
+          "title": "JSONPath expression"
+        },
+        {
+          "pattern": "^#",
+          "title": "Alias reference"
+        }
+      ]
+    },
+
+    "arrayGiven": {
+      "title": "Path expression list",
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/pathExpression" }
+    },
+
+    "given": {
+      "title": "Given",
+      "description": "The part or parts of the document a rule is applied to. A single path expression, or an array of them.",
+      "oneOf": [
+        { "$ref": "#/$defs/pathExpression" },
+        { "$ref": "#/$defs/arrayGiven" }
+      ]
+    },
+
+    "functionInvocation": {
+      "title": "Function invocation",
+      "description": "The assertion half of a rule: the function to run against each node matched by `given`, and the options it takes.",
+      "type": "object",
+      "properties": {
+        "field": {
+          "type": "string",
+          "description": "Narrow the assertion to a single property of the matched node, rather than the node itself. `@key` targets the node's own key."
+        },
+        "function": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Name of a core function (`alphabetical`, `casing`, `defined`, `enumeration`, `falsy`, `length`, `pattern`, `schema`, `truthy`, `undefined`, `unreferencedReusableObject`, `xor`, `or`) or of a custom function declared in `functions`."
+        },
+        "functionOptions": {
+          "type": "object",
+          "description": "Options passed to the function. The accepted shape is defined by the function itself."
+        }
+      },
+      "required": ["function"]
+    },
+
+    "then": {
+      "title": "Then",
+      "description": "One assertion, or an array of assertions all applied to the nodes matched by `given`.",
+      "oneOf": [
+        { "$ref": "#/$defs/functionInvocation" },
+        {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/functionInvocation" }
+        }
+      ]
+    },
+
+    "ruleDefinition": {
+      "title": "Rule definition",
+      "description": "A complete rule: where to look (`given`) and what must hold there (`then`).",
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string",
+          "description": "Human-readable statement of what the rule requires."
+        },
+        "documentationUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL explaining the rule and how to satisfy it. Reported alongside results."
+        },
+        "message": {
+          "type": "string",
+          "description": "Template for the reported message. Supports the placeholders `{{error}}`, `{{description}}`, `{{path}}`, `{{property}}`, and `{{value}}`."
+        },
+        "severity": {
+          "$ref": "#/$defs/severity",
+          "description": "Severity of this rule's results. Defaults to `warn`."
+        },
+        "formats": {
+          "$ref": "#/$defs/formats",
+          "description": "Document formats this rule applies to. Overrides the ruleset-level `formats`."
+        },
+        "given": {
+          "$ref": "#/$defs/given"
+        },
+        "then": {
+          "$ref": "#/$defs/then"
+        },
+        "recommended": {
+          "type": "boolean",
+          "description": "Whether the rule is enabled when a consumer extends this ruleset in `recommended` mode. Defaults to true."
+        },
+        "resolved": {
+          "type": "boolean",
+          "description": "Whether the rule runs against the document with `$ref`s resolved (true, the default) or against the raw authored document (false). Set to false for rules about references themselves."
+        },
+        "tags": {
+          "type": "array",
+          "description": "Free-form labels for grouping and filtering rules.",
+          "items": { "type": "string" }
+        },
+        "type": {
+          "description": "Coarse classification of the rule. `validation` rules assert correctness; `style` rules assert convention.",
+          "enum": ["style", "validation"]
+        },
+        "extensions": {
+          "type": "object",
+          "description": "Arbitrary consumer-defined metadata carried with the rule and ignored by the engine."
+        }
+      },
+      "required": ["given", "then"],
+      "patternProperties": {
+        "^x-": true
+      },
+      "additionalProperties": false
+    },
+
+    "rule": {
+      "title": "Rule",
+      "description": "A full rule definition, or — when adjusting a rule inherited via `extends` — a severity string, or a boolean where false disables the rule and true restores its declared severity.",
+      "oneOf": [
+        { "$ref": "#/$defs/ruleDefinition" },
+        { "$ref": "#/$defs/humanReadableSeverity" },
+        { "type": "boolean" }
+      ]
+    },
+
+    "extendsEntry": {
+      "title": "Extends entry",
+      "description": "A reference to another ruleset: a built-in (`spectral:oas`, `spectral:asyncapi`, `spectral:arazzo`), a file path, an npm module, or a URL.",
+      "type": "string",
+      "minLength": 1
+    },
+
+    "extendsTuple": {
+      "title": "Scoped extends entry",
+      "description": "A ruleset reference paired with the set of its rules to enable: `recommended` (the default), `all`, or `off`.",
+      "type": "array",
+      "prefixItems": [
+        { "$ref": "#/$defs/extendsEntry" },
+        { "enum": ["all", "recommended", "off"] }
+      ],
+      "minItems": 2,
+      "items": false
+    },
+
+    "extends": {
+      "title": "Extends",
+      "oneOf": [
+        { "$ref": "#/$defs/extendsEntry" },
+        {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              { "$ref": "#/$defs/extendsEntry" },
+              { "$ref": "#/$defs/extendsTuple" }
+            ]
+          }
+        }
+      ]
+    },
+
+    "aliasTarget": {
+      "title": "Alias target",
+      "description": "The path expressions an alias resolves to for one set of formats.",
+      "type": "object",
+      "properties": {
+        "formats": { "$ref": "#/$defs/formats" },
+        "given": { "$ref": "#/$defs/arrayGiven" }
+      },
+      "required": ["formats", "given"]
+    },
+
+    "scopedAlias": {
+      "title": "Scoped alias",
+      "description": "An alias that resolves to different path expressions depending on the format of the document being linted.",
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string",
+          "description": "Human-readable purpose of the alias."
+        },
+        "targets": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/aliasTarget" }
+        }
+      },
+      "required": ["targets"]
+    },
+
+    "alias": {
+      "title": "Alias",
+      "description": "Either a list of path expressions, or a scoped alias that varies by format.",
+      "if": { "type": "object" },
+      "then": { "$ref": "#/$defs/scopedAlias" },
+      "else": { "$ref": "#/$defs/arrayGiven" }
+    },
+
+    "aliases": {
+      "title": "Aliases",
+      "type": "object",
+      "propertyNames": {
+        "pattern": "^[A-Za-z][A-Za-z0-9_-]*$"
+      },
+      "additionalProperties": { "$ref": "#/$defs/alias" }
+    },
+
+    "parserOptions": {
+      "title": "Parser options",
+      "type": "object",
+      "properties": {
+        "duplicateKeys": {
+          "$ref": "#/$defs/severity",
+          "description": "Severity for duplicate keys found in the document. Defaults to `error`."
+        },
+        "incompatibleValues": {
+          "$ref": "#/$defs/severity",
+          "description": "Severity for YAML values that cannot be represented in JSON. Defaults to `error`."
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "overrides": {
+      "title": "Overrides",
+      "description": "Ordered list of adjustments. Later matching entries win over earlier ones, and every override wins over the base ruleset.",
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/override" }
+    },
+
+    "override": {
+      "title": "Override",
+      "description": "An adjustment scoped by `files`. When every glob in `files` carries a JSON Pointer fragment (`path/to/file.yaml#/paths/~1users`), the override may only change rule severities. Otherwise it may change anything a ruleset can declare.",
+      "type": "object",
+      "required": ["files"],
+
+      "if": {
+        "type": "object",
+        "required": ["files"],
+        "properties": {
+          "files": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "^[^#]+#"
+            }
+          }
+        }
+      },
+
+      "then": {
+        "title": "Pointer-scoped override",
+        "type": "object",
+        "properties": {
+          "files": true,
+          "rules": {
+            "type": "object",
+            "additionalProperties": { "$ref": "#/$defs/severity" }
+          }
+        },
+        "required": ["rules"],
+        "additionalProperties": false
+      },
+
+      "else": {
+        "title": "File-scoped override",
+        "allOf": [
+          {
+            "type": "object",
+            "required": ["files"],
+            "properties": {
+              "files": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "string",
+                  "minLength": 1,
+                  "pattern": "[^#]"
+                }
+              }
+            }
+          },
+          {
+            "type": "object",
+            "properties": {
+              "files": true,
+              "formats": { "$ref": "#/$defs/formats" },
+              "extends": { "$ref": "#/$defs/extends" },
+              "rules": {
+                "type": "object",
+                "additionalProperties": { "$ref": "#/$defs/rule" }
+              },
+              "parserOptions": { "$ref": "#/$defs/parserOptions" },
+              "aliases": { "$ref": "#/$defs/aliases" }
+            },
+            "anyOf": [
+              { "required": ["extends"] },
+              { "required": ["rules"] }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}
