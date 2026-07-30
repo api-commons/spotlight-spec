@@ -91,6 +91,19 @@ point of the exercise.
 
 None of it requires permission. All of it benefits from people who have done it before.
 
+---
+
+## The fifth thing, which is not a document
+
+All four workstreams above assume somebody is here to do them, and right now that is one person.
+**A specification with one maintainer is not a specification, it is a file somebody happens to be
+editing.** Fixing that is not downstream of the drafting work — it is the precondition for any of it
+mattering in five years.
+
+[Governance](/governance/) reads how OpenAPI, AsyncAPI and JSON Schema handle this and proposes
+something deliberately small, designed to grow in stages triggered by facts rather than dates.
+Co-maintainers are welcome and actively wanted.
+
 <p class="mt-4">
   <a class="btn btn-primary" href="/contribute/">How to help →</a>
   <a class="btn btn-outline-primary ms-2" href="{{ site.issues }}">Open issues</a>
