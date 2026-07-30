@@ -98,7 +98,7 @@ on it is what makes the case for a real, permanent home.
 The schema validates a ruleset expressed as JSON or YAML. Its canonical `$id` is:
 
 ```
-https://raw.githubusercontent.com/api-commons/spotlight-spec/main/schema/v1/spectral-ruleset.schema.json
+https://spec.spotlight-rules.com/schema/v1/spectral-ruleset.schema.json
 ```
 
 **In an editor.** VS Code and other JSON Schema-aware editors give you completion and inline
@@ -108,7 +108,7 @@ the schema from outside the document rather than inside it.
 For YAML rulesets, a modeline comment:
 
 ```yaml
-# yaml-language-server: $schema=https://raw.githubusercontent.com/api-commons/spotlight-spec/main/schema/v1/spectral-ruleset.schema.json
+# yaml-language-server: $schema=https://spec.spotlight-rules.com/schema/v1/spectral-ruleset.schema.json
 extends: spectral:oas
 ```
 
@@ -119,7 +119,7 @@ For JSON rulesets, map it by filename in `.vscode/settings.json`:
   "json.schemas": [
     {
       "fileMatch": [".spectral.json", "*.ruleset.json"],
-      "url": "https://raw.githubusercontent.com/api-commons/spotlight-spec/main/schema/v1/spectral-ruleset.schema.json"
+      "url": "https://spec.spotlight-rules.com/schema/v1/spectral-ruleset.schema.json"
     }
   ]
 }

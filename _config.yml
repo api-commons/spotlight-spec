@@ -32,7 +32,7 @@ email: info@apievangelist.com
 # the specification document + schema
 spec_doc: https://github.com/api-commons/spotlight-spec/blob/main/README.md
 schema_path: /schema/v1/spectral-ruleset.schema.json
-schema_raw: https://raw.githubusercontent.com/api-commons/spotlight-spec/main/schema/v1/spectral-ruleset.schema.json
+schema_raw: https://spec.spotlight-rules.com/schema/v1/spectral-ruleset.schema.json
 
 # upstream + neighbours
 up_repo: https://github.com/stoplightio/spectral

@@ -34,14 +34,17 @@ The schema is served from this site, alongside the specification that describes 
 https://spec.spotlight-rules.com/schema/v1/spectral-ruleset.schema.json
 ```
 
-**One caveat, stated plainly rather than buried.** The schema's own declared `$id` currently still
-points at a `raw.githubusercontent.com` URL on a branch. That is wrong for a specification — it is
-mutable by definition, on a hostname this project does not control, and it is not something anyone
-should be citing in a national standard.
+That URI is also what the schema declares as its own `$id`, so a document and its identity agree.
 
-Changing an `$id` is breaking for every downstream `$ref`, so it happens deliberately and once,
-early, rather than quietly. **Until that switch lands, both URLs serve identical bytes.** If you are
-starting fresh, use the canonical URI above.
+It did not start that way. The `$id` originally pointed at a `raw.githubusercontent.com` URL on a
+branch — mutable by definition, on a hostname this project does not control, and not something
+anyone should cite in a national standard. That was a real defect, it was
+[recorded as one]({{ site.issues }}/1), and it was fixed **before anything depended on it**, which
+is the only cheap moment to fix it. Changing an `$id` breaks every downstream `$ref`; doing it on
+day three costs nothing, and doing it after adoption costs everyone.
+
+The old GitHub URL still serves the same bytes, so nothing that already referenced it is broken.
+It is simply no longer the identity. Use the canonical URI.
 
 ---
 
