@@ -18,9 +18,13 @@ independently versioned specification with a portable JSON Schema, so rules can 
 validated, published, exchanged, and consumed by any tool, not just by the linter that
 happens to run them.
 
+- **Website** — **[spec.spotlight-rules.com](https://spec.spotlight-rules.com)** — this document
+  in context, plus the roadmap to a formal specification, the versioning proposal, and the
+  conformance plan.
 - **Specification** — this document.
 - **JSON Schema** — [`schema/v1/spectral-ruleset.schema.json`](schema/v1/spectral-ruleset.schema.json)
-  (JSON Schema draft 2020-12).
+  (JSON Schema draft 2020-12), also served at
+  [`spec.spotlight-rules.com/schema/v1/spectral-ruleset.schema.json`](https://spec.spotlight-rules.com/schema/v1/spectral-ruleset.schema.json).
 - **Reference implementation** — [api-commons/spotlight-tools](https://github.com/api-commons/spotlight-tools),
   the API Commons build of [stoplightio/spectral](https://github.com/stoplightio/spectral).
 

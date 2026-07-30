@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YJEJYCXZH3"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-YJEJYCXZH3');
+    </script>
+
+    <title>{% if page.title %}{{ page.title }} | {{ site.name }}{% else %}{{ site.name }} — {{ site.description }}{% endif %}</title>
+    <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
+    <meta name="keywords" content="{{ site.keywords | join: ', ' }}">
+    <link rel="canonical" href="{{ page.url | absolute_url }}">
+    <link rel="icon" type="image/png" href="/assets/spotlight-rules-logo.png">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="{% if page.title %}{{ page.title }} | {{ site.name }}{% else %}{{ site.name }}{% endif %}">
+    <meta property="og:description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
+    <meta property="og:url" content="{{ page.url | absolute_url }}">
+    <meta property="og:site_name" content="{{ site.name }}">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary">
+
+    <link href="/assets/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/sticky-footer.css" rel="stylesheet">
+    <script src="/assets/bootstrap.bundle.min.js" defer></script>
+
+    <style>
+      body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; color: #333; }
+      .navbar { padding: 0.75rem 0; }
+      .navbar-brand { font-weight: 700; font-size: 1.4rem; letter-spacing: -0.5px; }
+      .nav-link { font-size: 0.95rem; padding: 0.5rem 1rem !important; }
+      main.container { max-width: 960px; }
+      .hero { padding: 0 0 1rem; }
+      .hero h1 { font-weight: 700; letter-spacing: -1px; }
+      .card { transition: box-shadow .15s ease, transform .15s ease; height: 100%; }
+      .card:hover { box-shadow: 0 .5rem 1.25rem rgba(0,0,0,.12); transform: translateY(-2px); }
+      .card .badge { font-weight: 500; }
+      .footer { background-color: #f8f9fa; border-top: 1px solid #e9ecef; }
+      .footer a { color: #555; text-decoration: none; font-size: 0.9rem; }
+      .footer a:hover { color: #000; text-decoration: underline; }
+      a { color: #0d6efd; }
+      a:hover { color: #0a58ca; }
+      .content h2 { margin-top: 2rem; font-weight: 700; }
+      .content h3 { margin-top: 1.5rem; font-weight: 600; font-size: 1.2rem; }
+      .content table { width: 100%; margin: 1rem 0; }
+      .content table th, .content table td { padding: .5rem .75rem; border-bottom: 1px solid #e9ecef; vertical-align: top; }
+      .content table { display: block; overflow-x: auto; white-space: normal; }
+      .content ul, .content ol { line-height: 1.7; }
+      .content p { line-height: 1.7; }
+      blockquote { border-left: 3px solid #dee2e6; padding-left: 1rem; color: #555; margin: 1.25rem 0; }
+      .lede { font-size: 1.15rem; color: #444; }
+      .stat { font-variant-numeric: tabular-nums; font-weight: 700; }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="/"><img src="/assets/spotlight-rules-logo.png" alt="" width="54" height="54" class="me-2">Spotlight Spec</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav" aria-controls="nav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="nav">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item"><a class="nav-link{% if page.nav == 'home' %} active{% endif %}" href="/">Home</a></li>
+            <li class="nav-item"><a class="nav-link{% if page.nav == 'spec' %} active{% endif %}" href="/spec/">The Spec</a></li>
+            <li class="nav-item"><a class="nav-link{% if page.nav == 'schema' %} active{% endif %}" href="/schema/">Schema</a></li>
+            <li class="nav-item"><a class="nav-link{% if page.nav == 'versioning' %} active{% endif %}" href="/versioning/">Versioning</a></li>
+            <li class="nav-item"><a class="nav-link{% if page.nav == 'conformance' %} active{% endif %}" href="/conformance/">Conformance</a></li>
+            <li class="nav-item"><a class="nav-link{% if page.nav == 'roadmap' %} active{% endif %}" href="/roadmap/">Roadmap</a></li>
+            <li class="nav-item"><a class="nav-link{% if page.nav == 'contribute' %} active{% endif %}" href="/contribute/">Contribute</a></li>
+          </ul>
+          <a class="btn btn-sm btn-outline-light" href="{{ site.repo }}" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
+    </nav>
+
+    <main class="container mt-1 mb-5" role="main">
+      <div class="content">
+      {{ content }}
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="d-flex justify-content-center flex-wrap gap-4 align-items-center pt-3">
+          <a href="{{ site.site_main }}">Spotlight</a>
+          <a href="{{ site.repo }}">spotlight-spec</a>
+          <a href="{{ site.repo_tools }}">spotlight-tools</a>
+          <a href="{{ site.issues }}">Issues</a>
+          <a href="{{ site.discussion }}">Discussion</a>
+          <a href="https://apicommons.org/">API Commons</a>
+        </div>
+        <div class="text-center py-3">
+          <a href="https://apievangelist.com" target="_blank" rel="noopener" class="d-inline-flex align-items-center text-decoration-none">
+            <img src="/assets/api-evangelist-butterfly.png" alt="API Evangelist" width="189" height="44">
+          </a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

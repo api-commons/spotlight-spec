@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Spotlight Rules">
+  <rect width="32" height="32" rx="6" fill="#212529"/>
+  <!-- spotlight beam -->
+  <path d="M16 7 L27 27 L5 27 Z" fill="#ffc107" opacity="0.92"/>
+  <path d="M16 7 L21.5 27 L10.5 27 Z" fill="#ffe08a" opacity="0.9"/>
+  <!-- light source -->
+  <circle cx="16" cy="7.5" r="3.4" fill="#ffffff"/>
+  <circle cx="16" cy="7.5" r="3.4" fill="none" stroke="#ffc107" stroke-width="0.8"/>
+</svg>

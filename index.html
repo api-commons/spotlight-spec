@@ -1,0 +1,145 @@
+---
+layout: default
+nav: home
+description: >-
+  The Spectral ruleset format as a standalone specification — normative, independently
+  versioned, and implementable by anyone, apart from any one tool.
+---
+
+<div class="hero text-center">
+  <h1 class="fw-bold mb-2">Spotlight Spec</h1>
+  <p class="fs-5 text-muted mb-3">The Spectral ruleset format, specified.</p>
+  <p class="lead text-muted col-lg-10 mx-auto">
+    Spectral rulesets are how a great many organizations express machine-readable API governance
+    — including national governments, whose mandatory design rules are written as rulesets. The
+    format has never had a specification. It exists as configuration for one linter. This is the
+    work of turning it into something an independent implementation can point at.
+  </p>
+  <p class="mt-4">
+    <a class="btn btn-primary" href="/spec/">Read the draft</a>
+    <a class="btn btn-outline-secondary ms-2" href="/roadmap/">What is missing</a>
+    <a class="btn btn-outline-secondary ms-2" href="{{ site.repo }}">GitHub</a>
+  </p>
+</div>
+
+<hr class="my-5">
+
+<div class="card bg-light border-0 mb-5">
+  <div class="card-body py-4">
+    <h2 class="h5 mt-0">Status: draft, and honest about it</h2>
+    <p class="mb-2">
+      What exists today is a <strong>good description</strong>: a written document covering the
+      whole format, and a single self-contained JSON Schema (draft 2020-12) that validates a
+      ruleset. Both were derived from the reference implementation's own internal meta-schemas and
+      verified against real-world published rulesets.
+    </p>
+    <p class="mb-0">
+      What does not exist yet is a <strong>formal specification</strong> — normative wording,
+      a conformance section, and a versioning policy with references that keep working. Those are
+      different things, and the gap between them is the difference between documentation and a
+      standard. <a href="/roadmap/">That gap is the roadmap</a>, and it is open work.
+    </p>
+  </div>
+</div>
+
+<div class="row g-4">
+  <div class="col-md-6">
+    <div class="card shadow-sm">
+      <div class="card-body d-flex flex-column">
+        <h5 class="card-title">The specification</h5>
+        <p class="text-muted small mb-2"><span class="badge bg-secondary">Draft</span></p>
+        <p class="card-text flex-grow-1">
+          The ruleset format as implemented today, documented faithfully and without extension:
+          the ruleset object, rules, <code>given</code> path expressions, functions, severity,
+          formats, aliases, overrides, and extension properties.
+        </p>
+        <div class="d-flex gap-3">
+          <a href="/spec/" class="fw-semibold">Read it →</a>
+          <a href="{{ site.spec_doc }}">On GitHub</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <div class="card shadow-sm">
+      <div class="card-body d-flex flex-column">
+        <h5 class="card-title">The JSON Schema</h5>
+        <p class="text-muted small mb-2"><span class="badge bg-success">Usable now</span></p>
+        <p class="card-text flex-grow-1">
+          One self-contained JSON Schema draft 2020-12 document, replacing the five internal
+          draft-07 meta-schemas that described the format only as a linter's runtime config.
+          Validates in any conforming validator, with no bespoke tooling.
+        </p>
+        <div class="d-flex gap-3">
+          <a href="/schema/" class="fw-semibold">Use it →</a>
+          <a href="{{ site.schema_path }}">Raw JSON</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <div class="card shadow-sm">
+      <div class="card-body d-flex flex-column">
+        <h5 class="card-title">Versioning</h5>
+        <p class="text-muted small mb-2"><span class="badge bg-warning text-dark">Proposed</span></p>
+        <p class="card-text flex-grow-1">
+          Numbered versions, a clear line between what is stable and what can still move, and
+          references that keep working — so a document that cites this format in five years still
+          resolves to what it cited.
+        </p>
+        <a href="/versioning/" class="fw-semibold">The proposal →</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <div class="card shadow-sm">
+      <div class="card-body d-flex flex-column">
+        <h5 class="card-title">Conformance</h5>
+        <p class="text-muted small mb-2"><span class="badge bg-warning text-dark">Not written yet</span></p>
+        <p class="card-text flex-grow-1">
+          No compatibility claim between any two engines can be adjudicated today, because there
+          is nothing to adjudicate against. A conformance section and a public test suite are how
+          that stops being true.
+        </p>
+        <a href="/conformance/" class="fw-semibold">The plan →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h2>Why this is separate from the linter</h2>
+
+<p>
+  The rules and the tool that runs them have always shipped as one thing, and that coupling is the
+  failure this repository exists to fix. When the linter stops moving, the format stops moving with
+  it — and an organization's governance rules are usually the most durable thing an API program
+  produces. They outlast the CLI, they outlast the vendor, and they often outlast the APIs they
+  govern.
+</p>
+
+<p>
+  So the rules stand on their own: specified, independently versioned, portable, and implementable
+  by anyone. The reference implementation — <a href="{{ site.repo_tools }}">Spotlight</a>, a fork
+  of <a href="{{ site.up_repo }}">Spectral</a> — stays aligned with this document rather than the
+  other way around. Other engines are welcome and actively wanted, including
+  <a href="{{ site.vacuum }}">vacuum</a>, whose author deliberately refused to fork the format when
+  he rewrote the engine in Go. He was right to. A written specification with a public conformance
+  suite is precisely what lets several engines coexist honestly instead of drifting apart on
+  undocumented behavior.
+</p>
+
+<div class="card bg-light border-0 mt-5">
+  <div class="card-body text-center py-4">
+    <h3 class="h5">This needs standards people</h3>
+    <p class="text-muted mb-3 col-lg-9 mx-auto">
+      Writing a good description is not the same skill as drafting a specification. If you do
+      normative wording, conformance clauses, or versioning policy for a living — or you depend on
+      this format and want it to be citable — there is real work here.
+    </p>
+    <a class="btn btn-primary" href="/contribute/">How to help →</a>
+    <a class="btn btn-outline-secondary ms-2" href="{{ site.issues }}">Open issues</a>
+  </div>
+</div>

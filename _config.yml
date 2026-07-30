@@ -1,0 +1,49 @@
+title: Spotlight Spec
+name: Spotlight Spec
+description: >-
+  The Spectral ruleset format as a standalone specification — normative, independently
+  versioned, and implementable by anyone, apart from any one tool.
+url: https://spec.spotlight-rules.com
+keywords:
+  - Spectral
+  - ruleset
+  - specification
+  - API governance
+  - JSON Schema
+  - conformance
+
+author:
+  name: API Commons
+  email: apicommons@gmail.com
+
+markdown: kramdown
+highlighter: rouge
+
+github_org: api-commons
+
+# this repo
+repo: https://github.com/api-commons/spotlight-spec
+repo_tools: https://github.com/api-commons/spotlight-tools
+issues: https://github.com/api-commons/spotlight-spec/issues
+discussion: https://github.com/orgs/api-commons/discussions/28
+site_main: https://spotlight-rules.com
+email: info@apievangelist.com
+
+# the specification document + schema
+spec_doc: https://github.com/api-commons/spotlight-spec/blob/main/README.md
+schema_path: /schema/v1/spectral-ruleset.schema.json
+schema_raw: https://raw.githubusercontent.com/api-commons/spotlight-spec/main/schema/v1/spectral-ruleset.schema.json
+
+# upstream + neighbours
+up_repo: https://github.com/stoplightio/spectral
+vacuum: https://github.com/daveshanley/vacuum
+nl_adr: https://gitdocumentatie.logius.nl/publicatie/api/adr/2.2.1/
+geonovum: https://www.geonovum.nl/
+openapi: https://spec.openapis.org/
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+
+permalink: pretty
