@@ -1,8 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://raw.githubusercontent.com/api-commons/spectral-rules/main/schema/v1/spectral-ruleset.schema.json",
+  "$id": "https://raw.githubusercontent.com/api-commons/spotlight-spec/main/schema/v1/spectral-ruleset.schema.json",
   "title": "Spectral Ruleset",
-  "description": "A Spectral ruleset: a portable, machine-readable set of API governance rules applied to JSON or YAML documents. This schema describes the serialized (JSON/YAML) form of the format. See https://github.com/api-commons/spectral-rules for the specification.",
+  "description": "A Spectral ruleset: a portable, machine-readable set of API governance rules applied to JSON or YAML documents. This schema describes the serialized (JSON/YAML) form of the format. See https://github.com/api-commons/spotlight-spec for the specification.",
   "type": "object",
 
   "properties": {

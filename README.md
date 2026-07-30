@@ -1,4 +1,4 @@
-# Spectral Rules
+# Spotlight Spec
 
 **A standalone specification and JSON Schema for the Spectral ruleset format.**
 
@@ -21,14 +21,22 @@ happens to run them.
 - **Specification** — this document.
 - **JSON Schema** — [`schema/v1/spectral-ruleset.schema.json`](schema/v1/spectral-ruleset.schema.json)
   (JSON Schema draft 2020-12).
-- **Reference implementation** — [api-commons/spectral-cli](https://github.com/api-commons/spectral-cli),
+- **Reference implementation** — [api-commons/spotlight-tools](https://github.com/api-commons/spotlight-tools),
   the API Commons build of [stoplightio/spectral](https://github.com/stoplightio/spectral).
 
-> **Status: draft, and deliberately unnamed.**
+> **Status: draft. The name is Spotlight.**
 > The format described here is the Spectral ruleset format as implemented today, documented
-> faithfully and without extension. The name of the specification is not yet settled. This
-> repository and the reference implementation move together and will be rebranded together;
-> until then both keep the upstream name so the lineage stays obvious.
+> faithfully and without extension — the *format* keeps its lineage and its name in prose,
+> because that is what your rulesets are and pretending otherwise would help nobody. What is
+> named Spotlight is this specification effort and its two repositories:
+> [spotlight-spec](https://github.com/api-commons/spotlight-spec) and
+> [spotlight-tools](https://github.com/api-commons/spotlight-tools). That was settled immediately
+> rather than left open, because asking people to adopt a new scope, a new issue tracker, and a
+> new schema identity under somebody else's name builds a mess into the foundation — and a rename
+> after adoption is far more expensive than one before it.
+>
+> The document itself is still a draft. The `v1` schema identity is not: see
+> [Versioning](#versioning).
 
 ### Why this is separate from the linter
 
@@ -48,8 +56,8 @@ lets several engines coexist honestly instead of drifting apart on undocumented 
 
 | What | Where |
 |---|---|
-| **Problems with the format, the schema, or this spec** | [spectral-rules/issues](https://github.com/api-commons/spectral-rules/issues) |
-| **Problems with the CLI or engine** | [spectral-cli/issues](https://github.com/api-commons/spectral-cli/issues) |
+| **Problems with the format, the schema, or this spec** | [spotlight-spec/issues](https://github.com/api-commons/spotlight-spec/issues) |
+| **Problems with the CLI or engine** | [spotlight-tools/issues](https://github.com/api-commons/spotlight-tools/issues) |
 | **Direction, governance, naming, where this should live** | [the discussion thread](https://github.com/orgs/api-commons/discussions/28) |
 
 If you depend on the Spectral ruleset format, **say so in the discussion.** Knowing who relies
@@ -86,7 +94,7 @@ on it is what makes the case for a real, permanent home.
 The schema validates a ruleset expressed as JSON or YAML. Its canonical `$id` is:
 
 ```
-https://raw.githubusercontent.com/api-commons/spectral-rules/main/schema/v1/spectral-ruleset.schema.json
+https://raw.githubusercontent.com/api-commons/spotlight-spec/main/schema/v1/spectral-ruleset.schema.json
 ```
 
 **In an editor.** VS Code and other JSON Schema-aware editors give you completion and inline
@@ -96,7 +104,7 @@ the schema from outside the document rather than inside it.
 For YAML rulesets, a modeline comment:
 
 ```yaml
-# yaml-language-server: $schema=https://raw.githubusercontent.com/api-commons/spectral-rules/main/schema/v1/spectral-ruleset.schema.json
+# yaml-language-server: $schema=https://raw.githubusercontent.com/api-commons/spotlight-spec/main/schema/v1/spectral-ruleset.schema.json
 extends: spectral:oas
 ```
 
@@ -107,7 +115,7 @@ For JSON rulesets, map it by filename in `.vscode/settings.json`:
   "json.schemas": [
     {
       "fileMatch": [".spectral.json", "*.ruleset.json"],
-      "url": "https://raw.githubusercontent.com/api-commons/spectral-rules/main/schema/v1/spectral-ruleset.schema.json"
+      "url": "https://raw.githubusercontent.com/api-commons/spotlight-spec/main/schema/v1/spectral-ruleset.schema.json"
     }
   ]
 }
