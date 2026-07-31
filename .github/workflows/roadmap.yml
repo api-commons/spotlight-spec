@@ -1,0 +1,48 @@
+name: Roadmap
+
+# The roadmap page is generated from issues labeled `roadmap` on this repository.
+# Nothing is hand-maintained: label an issue, and it appears here.
+
+on:
+  schedule:
+    - cron: '17 */6 * * *'
+  workflow_dispatch:
+  repository_dispatch:
+    types: [roadmap-refresh]
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: roadmap
+  cancel-in-progress: true
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch roadmap issues
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 scripts/fetch_roadmap.py api-commons/spotlight-spec
+
+      - name: Commit if changed
+        run: |
+          if git diff --quiet -- _data/roadmap.json; then
+            echo "No roadmap changes."
+            exit 0
+          fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add _data/roadmap.json
+          git commit -m "Refresh the roadmap from labeled issues"
+          git push
+
+      - name: Ask Pages to rebuild (publishes future-dated posts on their day)
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        continue-on-error: true
+        run: gh api --method POST repos/${{ github.repository }}/pages/builds

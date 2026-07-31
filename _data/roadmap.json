@@ -1,0 +1,276 @@
+{
+  "generated": "2026-07-31T17:34:42Z",
+  "repos": [
+    "api-commons/spotlight-spec"
+  ],
+  "counts": {
+    "total": 12,
+    "open": 12,
+    "approved": 0,
+    "deferred": 0,
+    "with_prs": 0,
+    "raised": 0,
+    "discussing": 8,
+    "consensus": 3,
+    "ready": 1
+  },
+  "items": [
+    {
+      "repo": "spotlight-spec",
+      "repo_slug": "api-commons/spotlight-spec",
+      "number": 12,
+      "title": "Arazzo: 1.1 support, and teaching the format about document-level `extends`",
+      "url": "https://github.com/api-commons/spotlight-spec/issues/12",
+      "state": "open",
+      "approved": false,
+      "deferred": false,
+      "maturity": "ready",
+      "maturity_rank": 3,
+      "labels": [
+        "maturity:ready",
+        "roadmap",
+        "task"
+      ],
+      "comments": 0,
+      "created_at": "2026-07-31T17:32:55Z",
+      "updated_at": "2026-07-31T17:32:55Z",
+      "closed_at": null,
+      "prs": []
+    },
+    {
+      "repo": "spotlight-spec",
+      "repo_slug": "api-commons/spotlight-spec",
+      "number": 2,
+      "title": "Take the format to a formal specification \u2014 normative wording, conformance, versioning",
+      "url": "https://github.com/api-commons/spotlight-spec/issues/2",
+      "state": "open",
+      "approved": false,
+      "deferred": false,
+      "maturity": "consensus",
+      "maturity_rank": 2,
+      "labels": [
+        "maturity:consensus",
+        "roadmap"
+      ],
+      "comments": 1,
+      "created_at": "2026-07-30T20:02:31Z",
+      "updated_at": "2026-07-31T17:33:31Z",
+      "closed_at": null,
+      "prs": []
+    },
+    {
+      "repo": "spotlight-spec",
+      "repo_slug": "api-commons/spotlight-spec",
+      "number": 9,
+      "title": "Build the conformance suite \u2014 and no blessed implementation",
+      "url": "https://github.com/api-commons/spotlight-spec/issues/9",
+      "state": "open",
+      "approved": false,
+      "deferred": false,
+      "maturity": "consensus",
+      "maturity_rank": 2,
+      "labels": [
+        "maturity:consensus",
+        "roadmap",
+        "task"
+      ],
+      "comments": 0,
+      "created_at": "2026-07-31T17:32:52Z",
+      "updated_at": "2026-07-31T17:32:52Z",
+      "closed_at": null,
+      "prs": []
+    },
+    {
+      "repo": "spotlight-spec",
+      "repo_slug": "api-commons/spotlight-spec",
+      "number": 11,
+      "title": "Runtime portability is a normative requirement, not a preference",
+      "url": "https://github.com/api-commons/spotlight-spec/issues/11",
+      "state": "open",
+      "approved": false,
+      "deferred": false,
+      "maturity": "consensus",
+      "maturity_rank": 2,
+      "labels": [
+        "maturity:consensus",
+        "roadmap",
+        "task"
+      ],
+      "comments": 0,
+      "created_at": "2026-07-31T17:32:54Z",
+      "updated_at": "2026-07-31T17:32:54Z",
+      "closed_at": null,
+      "prs": []
+    },
+    {
+      "repo": "spotlight-spec",
+      "repo_slug": "api-commons/spotlight-spec",
+      "number": 1,
+      "title": "Development strategy: schema identity, spec versioning, conformance suite, and communication",
+      "url": "https://github.com/api-commons/spotlight-spec/issues/1",
+      "state": "open",
+      "approved": false,
+      "deferred": false,
+      "maturity": "discussing",
+      "maturity_rank": 1,
+      "labels": [
+        "maturity:discussing",
+        "roadmap"
+      ],
+      "comments": 2,
+      "created_at": "2026-07-30T10:41:50Z",
+      "updated_at": "2026-07-31T17:33:29Z",
+      "closed_at": null,
+      "prs": []
+    },
+    {
+      "repo": "spotlight-spec",
+      "repo_slug": "api-commons/spotlight-spec",
+      "number": 3,
+      "title": "Governance: a shape to shoot at, and co-maintainers",
+      "url": "https://github.com/api-commons/spotlight-spec/issues/3",
+      "state": "open",
+      "approved": false,
+      "deferred": false,
+      "maturity": "discussing",
+      "maturity_rank": 1,
+      "labels": [
+        "maturity:discussing",
+        "roadmap"
+      ],
+      "comments": 1,
+      "created_at": "2026-07-30T20:31:14Z",
+      "updated_at": "2026-07-31T17:33:33Z",
+      "closed_at": null,
+      "prs": []
+    },
+    {
+      "repo": "spotlight-spec",
+      "repo_slug": "api-commons/spotlight-spec",
+      "number": 7,
+      "title": "The name: \"Spotlight\" is a working name, not a decision",
+      "url": "https://github.com/api-commons/spotlight-spec/issues/7",
+      "state": "open",
+      "approved": false,
+      "deferred": false,
+      "maturity": "discussing",
+      "maturity_rank": 1,
+      "labels": [
+        "maturity:discussing",
+        "question",
+        "roadmap"
+      ],
+      "comments": 0,
+      "created_at": "2026-07-31T17:32:49Z",
+      "updated_at": "2026-07-31T17:33:26Z",
+      "closed_at": null,
+      "prs": []
+    },
+    {
+      "repo": "spotlight-spec",
+      "repo_slug": "api-commons/spotlight-spec",
+      "number": 8,
+      "title": "Where does the specification live permanently?",
+      "url": "https://github.com/api-commons/spotlight-spec/issues/8",
+      "state": "open",
+      "approved": false,
+      "deferred": false,
+      "maturity": "discussing",
+      "maturity_rank": 1,
+      "labels": [
+        "maturity:discussing",
+        "question",
+        "roadmap"
+      ],
+      "comments": 0,
+      "created_at": "2026-07-31T17:32:51Z",
+      "updated_at": "2026-07-31T17:32:51Z",
+      "closed_at": null,
+      "prs": []
+    },
+    {
+      "repo": "spotlight-spec",
+      "repo_slug": "api-commons/spotlight-spec",
+      "number": 10,
+      "title": "A conformance badge, issued by whoever governs the specification",
+      "url": "https://github.com/api-commons/spotlight-spec/issues/10",
+      "state": "open",
+      "approved": false,
+      "deferred": false,
+      "maturity": "discussing",
+      "maturity_rank": 1,
+      "labels": [
+        "maturity:discussing",
+        "roadmap"
+      ],
+      "comments": 0,
+      "created_at": "2026-07-31T17:32:53Z",
+      "updated_at": "2026-07-31T17:33:28Z",
+      "closed_at": null,
+      "prs": []
+    },
+    {
+      "repo": "spotlight-spec",
+      "repo_slug": "api-commons/spotlight-spec",
+      "number": 13,
+      "title": "Rule portability across policy engines (OPA/Rego) without a second rule language",
+      "url": "https://github.com/api-commons/spotlight-spec/issues/13",
+      "state": "open",
+      "approved": false,
+      "deferred": false,
+      "maturity": "discussing",
+      "maturity_rank": 1,
+      "labels": [
+        "maturity:discussing",
+        "roadmap"
+      ],
+      "comments": 0,
+      "created_at": "2026-07-31T17:32:56Z",
+      "updated_at": "2026-07-31T17:32:56Z",
+      "closed_at": null,
+      "prs": []
+    },
+    {
+      "repo": "spotlight-spec",
+      "repo_slug": "api-commons/spotlight-spec",
+      "number": 14,
+      "title": "First-class consumption modes: the CI/CD gate and the agent signal",
+      "url": "https://github.com/api-commons/spotlight-spec/issues/14",
+      "state": "open",
+      "approved": false,
+      "deferred": false,
+      "maturity": "discussing",
+      "maturity_rank": 1,
+      "labels": [
+        "maturity:discussing",
+        "roadmap"
+      ],
+      "comments": 0,
+      "created_at": "2026-07-31T17:32:58Z",
+      "updated_at": "2026-07-31T17:32:58Z",
+      "closed_at": null,
+      "prs": []
+    },
+    {
+      "repo": "spotlight-spec",
+      "repo_slug": "api-commons/spotlight-spec",
+      "number": 15,
+      "title": "Knowing who depends on this, without building surveillance into the tooling",
+      "url": "https://github.com/api-commons/spotlight-spec/issues/15",
+      "state": "open",
+      "approved": false,
+      "deferred": false,
+      "maturity": "discussing",
+      "maturity_rank": 1,
+      "labels": [
+        "maturity:discussing",
+        "roadmap"
+      ],
+      "comments": 0,
+      "created_at": "2026-07-31T17:32:59Z",
+      "updated_at": "2026-07-31T17:32:59Z",
+      "closed_at": null,
+      "prs": []
+    }
+  ]
+}

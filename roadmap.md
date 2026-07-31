@@ -104,6 +104,123 @@ mattering in five years.
 something deliberately small, designed to grow in stages triggered by facts rather than dates.
 Co-maintainers are welcome and actively wanted.
 
+---
+
+# The tracked work
+
+Everything above is the shape. **Everything below is generated from issues labeled `roadmap` on
+[this repository]({{ site.repo }})**, refreshed automatically — no hand-maintained list, because a
+hand-maintained roadmap is a claim and a generated one is an artifact.
+
+This page covers the **specification only**. The [main site]({{ site.site_main }}/roadmap/) shows
+the same view across both the specification and the reference implementation.
+
+Two rules keep it honest:
+
+1. **An item earns its place by being an issue first**, so the reasoning is public and the
+   objections are recorded before anything gets built.
+2. **One issue, one pull request.** When an item moves into development, the pull request that
+   implements it references that issue and only that issue — so the homework behind every roadmap
+   item has provenance you can follow, from the argument through the decision to the diff.
+
+<div class="row g-3 my-4">
+  <div class="col-6 col-lg-3">
+    <div class="card h-100"><div class="card-body py-3">
+      <div class="stat fs-3">{{ site.data.roadmap.counts.open }}</div>
+      <div class="small text-muted">open items</div>
+    </div></div>
+  </div>
+  <div class="col-6 col-lg-3">
+    <div class="card h-100"><div class="card-body py-3">
+      <div class="stat fs-3">{{ site.data.roadmap.counts.ready }}</div>
+      <div class="small text-muted">ready to implement</div>
+    </div></div>
+  </div>
+  <div class="col-6 col-lg-3">
+    <div class="card h-100"><div class="card-body py-3">
+      <div class="stat fs-3">{{ site.data.roadmap.counts.discussing }}</div>
+      <div class="small text-muted">still being argued</div>
+    </div></div>
+  </div>
+  <div class="col-6 col-lg-3">
+    <div class="card h-100"><div class="card-body py-3">
+      <div class="stat fs-3">{{ site.data.roadmap.counts.with_prs }}</div>
+      <div class="small text-muted">with a pull request</div>
+    </div></div>
+  </div>
+</div>
+
+| Label | What it means |
+|---|---|
+| `roadmap` | Proposed for the roadmap. Everything below carries it. |
+| `roadmap:approved` | Approved for inclusion — it is going to happen, whatever the sequencing. |
+| `roadmap:deferred` | Considered and parked. Still listed, because a decision not to do something is also a decision. |
+| `maturity:raised` | Raised. Little or no discussion yet — the cheapest moment to redirect it. |
+| `maturity:discussing` | Active discussion, no rough consensus. |
+| `maturity:consensus` | Rough consensus on what to do, not yet specified enough to build. |
+| `maturity:ready` | Ready to implement. One issue, one pull request. |
+
+**Maturity describes the conversation, not the code.** Nothing gets promoted by age.
+
+{% assign live = site.data.roadmap.items | where_exp: "i", "i.deferred == false and i.state == 'open'" %}
+{% assign done = site.data.roadmap.items | where_exp: "i", "i.state == 'closed'" %}
+{% assign parked = site.data.roadmap.items | where_exp: "i", "i.deferred and i.state == 'open'" %}
+{% assign groups = "ready,consensus,discussing,raised" | split: "," %}
+{% for g in groups %}
+{% assign bucket = live | where: "maturity", g %}
+{% if bucket.size > 0 %}
+## {% case g %}{% when 'ready' %}Ready to implement{% when 'consensus' %}Rough consensus{% when 'discussing' %}Under discussion{% when 'raised' %}Raised{% endcase %}
+
+<p class="text-muted small">{% case g %}{% when 'ready' %}Specified enough that the next step is a pull request.{% when 'consensus' %}Agreement on what to do. Still needs pinning down before anyone builds it.{% when 'discussing' %}Genuinely open. This is where arguing is worth the most.{% when 'raised' %}Newly raised, barely discussed. Easiest to redirect.{% endcase %}</p>
+
+<div class="list-group mb-4">
+{% for item in bucket %}
+  <div class="list-group-item">
+    <div class="d-flex justify-content-between align-items-start gap-3 flex-wrap">
+      <div>
+        <a class="fw-semibold" href="{{ item.url }}">{{ item.title }}</a>
+        <div class="small text-muted mt-1">
+          <a href="{{ item.url }}">#{{ item.number }}</a>
+          &middot; {{ item.comments }} comment{% unless item.comments == 1 %}s{% endunless %}
+          {% if item.approved %}&middot; <span class="badge bg-dark">approved</span>{% endif %}
+        </div>
+      </div>
+      <div class="text-end small">
+        {% if item.prs.size > 0 %}
+          {% for pr in item.prs %}<div><a href="{{ pr.url }}">PR #{{ pr.number }}</a>{% if pr.merged %} <span class="badge bg-success">merged</span>{% else %} <span class="badge bg-secondary">{{ pr.state }}</span>{% endif %}</div>{% endfor %}
+        {% else %}
+          <span class="text-muted">no PR yet</span>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+{% endfor %}
+</div>
+{% endif %}
+{% endfor %}
+
+{% if parked.size > 0 %}
+## Parked
+
+<ul>
+{% for item in parked %}
+  <li><a href="{{ item.url }}">{{ item.title }}</a> <span class="text-muted small">— #{{ item.number }}</span></li>
+{% endfor %}
+</ul>
+{% endif %}
+
+{% if done.size > 0 %}
+## Done
+
+<ul>
+{% for item in done %}
+  <li><a href="{{ item.url }}">{{ item.title }}</a> <span class="text-muted small">— #{{ item.number }}{% for pr in item.prs %}, <a href="{{ pr.url }}">PR #{{ pr.number }}</a>{% endfor %}</span></li>
+{% endfor %}
+</ul>
+{% endif %}
+
+<p class="text-muted small">Generated {{ site.data.roadmap.generated }} from {{ site.data.roadmap.repos | join: ", " }}.</p>
+
 <p class="mt-4">
   <a class="btn btn-primary" href="/contribute/">How to help →</a>
   <a class="btn btn-outline-primary ms-2" href="{{ site.issues }}">Open issues</a>

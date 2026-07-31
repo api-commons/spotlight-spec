@@ -61,6 +61,60 @@ lives inside an engine, it measures that engine instead of defining the format.
 
 ---
 
+## No blessed implementation
+
+Worth stating plainly, because it shapes how the suite gets written: this exists so that **no single
+implementation is the definition of correct.**
+
+The reference implementation is one conforming engine among several. It is expected to fail cases
+too, and those failures are bugs in it — not amendments to the suite.
+
+That has a hard consequence for method. **Cases must be derived from the specification text, not
+captured from any engine's output.** Capturing output from an implementation and calling it a
+conformance suite just re-encodes that implementation's bugs as the standard, which is precisely the
+situation this format is in today. Where the specification is currently too vague to write a case
+from, that is a defect to raise against the specification — not a licence to go and read the code.
+
+Tracked as [issue #9]({{ site.repo }}/issues/9).
+
+## Every conformance class must be reachable in a browser
+
+Real users run linting **in the browser** — in editors and playgrounds, in web-based governance
+portals, in public-sector tooling that is deliberately client-side so documents never leave the
+user's machine, and in environments where installing a binary is not permitted. At least one
+national government programme is in exactly that position.
+
+So runtime portability is not a nice-to-have that gets traded against throughput; it is a
+**constraint on the specification itself**. Nothing in the normative text may require a filesystem,
+a native process, or environment access — ruleset resolution, `extends`, and `$ref` all have to be
+expressible over an abstract resolver that a browser implementation can satisfy with fetch or an
+in-memory map. If any part of the format turns out to be genuinely unreachable in a constrained
+runtime, it belongs in an optional, declared feature set rather than in the core.
+
+The test of this is not an assertion in a document. It is that **a browser-only implementation can
+pass a full conformance class**. Tracked as [issue #11]({{ site.repo }}/issues/11).
+
+## A badge, once — and only once — the suite exists
+
+An implementation that passes the suite should be able to display a badge stating which version of
+the specification it conforms to, and at which class, **issued by whoever governs the specification**
+rather than self-declared. That is what turns "compatible with the ruleset format" from a marketing
+claim into a checkable one, and it is how implementers doing quiet parity work finally get credit
+for it.
+
+The design questions are real — what the badge asserts, who runs the suite, how renewal works when
+the specification versions, whether partial conformance can be declared honestly, where the registry
+lives, and who adjudicates a dispute. A badge is also a mark, which means whoever governs the
+specification has to be able to defend it — one more way [where this lives](/where-it-lives/) is not
+an abstract question.
+
+What it is **not**: a certification business, a paid programme, or a gate on anyone's right to
+implement the format. Anyone can implement this without asking, and anyone can ignore the badge.
+
+Tracked as [issue #10]({{ site.repo }}/issues/10).
+
+---
+
 ## This is a gift, not a weapon
 
 [vacuum]({{ site.vacuum }}) is a supported and valued implementation. When its author rewrote the

@@ -135,11 +135,16 @@ theatre. This grows in stages, and each stage is triggered by a fact rather than
 
 ### Stage 2 — a permanent home
 
-Where this eventually lives is [genuinely open]({{ site.site_main }}/research/plan/). What Stage 2
-looks like is mostly determined by that answer, so writing it now would be guessing. What can be
-committed to now is that the choice gets made in public, and that no home is accepted that requires
-splitting the specification from its reference implementation — which is the failure this whole
-effort exists to correct.
+Where this eventually lives is [genuinely open]({{ site.repo }}/issues/8), and the argument for each
+candidate is laid out in [where it lives](/where-it-lives/). What Stage 2 looks like is mostly
+determined by that answer, so writing it now would be guessing.
+
+Three things can be committed to now. The choice gets **made in public**. **No home is accepted that
+requires splitting the specification from its reference implementation** — that is the failure this
+whole effort exists to correct. And the choice is evaluated on **two axes, not one**: the technical
+home and the fiscal arrangement, because whether this specification can ever be sponsored directly —
+rather than folded into somebody's membership story — depends on whether those two are allowed to be
+different. [The funding argument]({{ site.site_main }}/funding/) is the long version.
 
 ---
 

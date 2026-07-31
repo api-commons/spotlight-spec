@@ -42,6 +42,7 @@ geonovum: https://www.geonovum.nl/
 openapi: https://spec.openapis.org/
 
 exclude:
+  - scripts
   - Gemfile
   - Gemfile.lock
   - vendor
