@@ -8,10 +8,20 @@ description: >-
 permalink: /roadmap/
 ---
 
-# From a description to a specification
+# Roadmap
+
+This page is in two halves. **The shape** is the set of artifacts that separate what exists today
+from a formal specification — four workstreams and the governance problem underneath them, written
+as an argument. **The tracked work** below it is the live issue list, generated from the repository,
+where each of those workstreams gets broken into things somebody can actually pick up.
+
+---
+
+## From a description to a specification
 
 The document in this repository describes the Spectral ruleset format well. That is not the same
-thing as a specification, and being clear about the difference is the point of this page.
+thing as a specification, and being clear about the difference is the point of this half of the
+page.
 
 A description tells you how something behaves. A specification tells an independent implementer
 what they **must** do to be correct, gives them a way to prove it, and gives everyone else a
@@ -19,11 +29,11 @@ stable thing to cite. The gap between the two is not more prose — it is a spec
 artifacts that standards organizations produce as a matter of routine and that software projects
 almost never get around to.
 
-This page is the list. All of it is open work.
+This half is the list. All of it is open work.
 
 ---
 
-## 1. Normative wording
+### 1. Normative wording
 
 The draft currently explains the format in the voice of documentation: *this is what happens when
 you write `given` as an array*. A specification says *an implementation **MUST** treat an array
@@ -39,7 +49,7 @@ where the current description hides an assumption rather than states a rule.
 
 ---
 
-## 2. A conformance section
+### 2. A conformance section
 
 Right now there is no definition of what it means to conform. That means **no compatibility claim
 between any two engines can be adjudicated**, because there is nothing to adjudicate against.
@@ -55,7 +65,7 @@ this repository can produce. [More on the plan](/conformance/).
 
 ---
 
-## 3. A versioning strategy
+### 3. A versioning strategy
 
 Numbered versions, a clear line between what is stable and what can still move, and references
 that keep working. The model to follow is the one the API specification world already understands
@@ -68,7 +78,7 @@ document that will outlive everyone's interest in the project. [The proposal](/v
 
 ---
 
-## 4. A stable identity, published on its own site
+### 4. A stable identity, published on its own site
 
 A specification needs a URI that is stable, controlled by the project, and safe to cite. Today the
 schema identifies itself with a source-control URL pointing at a branch — mutable by definition, on
@@ -81,7 +91,7 @@ to happen deliberately and early. [Where that stands](/schema/#the-canonical-uri
 
 ---
 
-## Why the order matters
+### Why the order matters
 
 These are listed roughly in dependency order. Normative wording is what makes a conformance section
 possible, because you cannot test a requirement that was never stated as one. Conformance is what
@@ -93,7 +103,7 @@ None of it requires permission. All of it benefits from people who have done it 
 
 ---
 
-## The fifth thing, which is not a document
+### The fifth thing, which is not a document
 
 All four workstreams above assume somebody is here to do them, and right now that is one person.
 **A specification with one maintainer is not a specification, it is a file somebody happens to be
@@ -106,7 +116,7 @@ Co-maintainers are welcome and actively wanted.
 
 ---
 
-# The tracked work
+## The tracked work
 
 Everything above is the shape. **Everything below is generated from issues labeled `roadmap` on
 [this repository]({{ site.repo }})**, refreshed automatically — no hand-maintained list, because a
@@ -176,7 +186,7 @@ Two rules keep it honest:
 {% for g in groups %}
 {% assign bucket = live | where: "maturity", g %}
 {% if bucket.size > 0 %}
-## {% case g %}{% when 'ready' %}Ready to implement{% when 'consensus' %}Rough consensus{% when 'discussing' %}Under discussion{% when 'raised' %}Raised{% endcase %}
+### {% case g %}{% when 'ready' %}Ready to implement{% when 'consensus' %}Rough consensus{% when 'discussing' %}Under discussion{% when 'raised' %}Raised{% endcase %}
 
 <p class="text-muted small">{% case g %}{% when 'ready' %}Specified enough that the next step is a pull request.{% when 'consensus' %}Agreement on what to do. Still needs pinning down before anyone builds it.{% when 'discussing' %}Genuinely open. This is where arguing is worth the most.{% when 'raised' %}Newly raised, barely discussed. Easiest to redirect.{% endcase %}</p>
 
@@ -207,7 +217,7 @@ Two rules keep it honest:
 {% endfor %}
 
 {% if parked.size > 0 %}
-## Parked
+### Parked
 
 <ul>
 {% for item in parked %}
@@ -217,7 +227,7 @@ Two rules keep it honest:
 {% endif %}
 
 {% if done.size > 0 %}
-## Done
+### Done
 
 <ul>
 {% for item in done %}
