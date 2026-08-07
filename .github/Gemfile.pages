@@ -1,0 +1,14 @@
+# The Gemfile GitHub Pages actually builds with — not the one in the repo root.
+#
+# `pages-build-deployment` ignores our Gemfile and runs the `github-pages` gem
+# (currently 232, which pins Jekyll 3.10). Jekyll 3.10 forgives less Liquid than
+# the Jekyll 4 we develop against: `where_exp` takes exactly one comparison and
+# then demands end-of-string, so `and` / `or` inside the expression — a Jekyll 4
+# feature — parses locally and dies on deploy.
+#
+# CI builds against this file so it predicts the deploy. Do not pin a version
+# here: tracking whatever `github-pages` currently resolves to is the point.
+
+source "https://rubygems.org"
+
+gem "github-pages", group: :jekyll_plugins
