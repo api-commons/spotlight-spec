@@ -162,9 +162,16 @@ Two rules keep it honest:
 
 **Maturity describes the conversation, not the code.** Nothing gets promoted by age.
 
-{% assign live = site.data.roadmap.items | where_exp: "i", "i.deferred == false and i.state == 'open'" %}
+{% comment %}
+  One comparison per `where_exp`, deliberately. GitHub Pages pins Jekyll 3.10, whose `where_exp`
+  parses a single comparison and then demands end-of-string; `and` / `or` inside the expression is
+  a Jekyll 4 feature. A local Jekyll 4 build is therefore not evidence the Pages build passes —
+  the multi-clause version of these lines failed with "Expected end_of_string but found id".
+{% endcomment %}
+{% assign open_items = site.data.roadmap.items | where_exp: "i", "i.state == 'open'" %}
+{% assign live = open_items | where_exp: "i", "i.deferred == false" %}
+{% assign parked = open_items | where_exp: "i", "i.deferred" %}
 {% assign done = site.data.roadmap.items | where_exp: "i", "i.state == 'closed'" %}
-{% assign parked = site.data.roadmap.items | where_exp: "i", "i.deferred and i.state == 'open'" %}
 {% assign groups = "ready,consensus,discussing,raised" | split: "," %}
 {% for g in groups %}
 {% assign bucket = live | where: "maturity", g %}
