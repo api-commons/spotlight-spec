@@ -1,11 +1,11 @@
 {
-  "generated": "2026-08-17T13:04:05Z",
+  "generated": "2026-08-17T18:55:32Z",
   "repos": [
     "api-commons/spotlight-spec"
   ],
   "counts": {
-    "total": 12,
-    "open": 12,
+    "total": 13,
+    "open": 13,
     "approved": 0,
     "deferred": 0,
     "with_prs": 0,
@@ -269,6 +269,27 @@
       "comments": 0,
       "created_at": "2026-07-31T17:32:59Z",
       "updated_at": "2026-07-31T17:32:59Z",
+      "closed_at": null,
+      "prs": []
+    },
+    {
+      "repo": "spotlight-spec",
+      "repo_slug": "api-commons/spotlight-spec",
+      "number": 19,
+      "title": "Office hours notes \u2014 2026-08-14",
+      "url": "https://github.com/api-commons/spotlight-spec/issues/19",
+      "state": "open",
+      "approved": false,
+      "deferred": false,
+      "maturity": null,
+      "maturity_rank": -1,
+      "labels": [
+        "documentation",
+        "roadmap"
+      ],
+      "comments": 0,
+      "created_at": "2026-08-17T18:43:42Z",
+      "updated_at": "2026-08-17T18:48:04Z",
       "closed_at": null,
       "prs": []
     }
