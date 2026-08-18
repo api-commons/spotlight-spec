@@ -590,3 +590,19 @@ This repository is licensed [Apache-2.0](LICENSE).
 
 Maintained by [API Commons](https://apicommons.org) — open, machine-readable API building
 blocks.
+
+## Part of API Commons
+
+A browser-first tool from **[API Commons](https://apicommons.org)** — everything runs locally in your browser, so your tokens and data never leave it. See every tool at **[apicommons.org/tools](https://apicommons.org/tools/)** and the machine-readable building blocks at **[apicommons.org](https://apicommons.org)**.
+
+**Related tools**
+- [API Validator](https://validator.apicommons.org) — governance linting for OpenAPI, AsyncAPI, Arazzo and JSON Schema
+- [Ruleset Commons](https://rulesets.apicommons.org) — a registry of adoptable, provenanced rulesets
+- [Spectral Ruleset Studio](https://studio.apicommons.org) — turn a prose style guide into an owned ruleset
+
+## License
+
+**[Apache-2.0](LICENSE).**
+
+API Commons licenses **code** under Apache-2.0 and **artifacts** — schemas, rulesets,
+examples and API descriptions — under CC BY-NC-SA 4.0.
