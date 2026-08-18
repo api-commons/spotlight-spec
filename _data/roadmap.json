@@ -1,11 +1,11 @@
 {
-  "generated": "2026-08-17T18:55:32Z",
+  "generated": "2026-08-18T01:49:11Z",
   "repos": [
     "api-commons/spotlight-spec"
   ],
   "counts": {
-    "total": 13,
-    "open": 13,
+    "total": 18,
+    "open": 18,
     "approved": 0,
     "deferred": 0,
     "with_prs": 0,
@@ -160,9 +160,9 @@
         "question",
         "roadmap"
       ],
-      "comments": 0,
+      "comments": 1,
       "created_at": "2026-07-31T17:32:49Z",
-      "updated_at": "2026-07-31T17:33:26Z",
+      "updated_at": "2026-08-17T19:10:00Z",
       "closed_at": null,
       "prs": []
     },
@@ -287,9 +287,114 @@
         "documentation",
         "roadmap"
       ],
-      "comments": 0,
+      "comments": 1,
       "created_at": "2026-08-17T18:43:42Z",
-      "updated_at": "2026-08-17T18:48:04Z",
+      "updated_at": "2026-08-17T19:10:18Z",
+      "closed_at": null,
+      "prs": []
+    },
+    {
+      "repo": "spotlight-spec",
+      "repo_slug": "api-commons/spotlight-spec",
+      "number": 20,
+      "title": "Elevate aliases out of the core ruleset into their own namespace, and get rules off JSONPath",
+      "url": "https://github.com/api-commons/spotlight-spec/issues/20",
+      "state": "open",
+      "approved": false,
+      "deferred": false,
+      "maturity": null,
+      "maturity_rank": -1,
+      "labels": [
+        "enhancement",
+        "roadmap"
+      ],
+      "comments": 1,
+      "created_at": "2026-08-17T19:08:32Z",
+      "updated_at": "2026-08-17T19:50:34Z",
+      "closed_at": null,
+      "prs": []
+    },
+    {
+      "repo": "spotlight-spec",
+      "repo_slug": "api-commons/spotlight-spec",
+      "number": 21,
+      "title": "Where do industry rulesets sit in the layer model?",
+      "url": "https://github.com/api-commons/spotlight-spec/issues/21",
+      "state": "open",
+      "approved": false,
+      "deferred": false,
+      "maturity": null,
+      "maturity_rank": -1,
+      "labels": [
+        "question",
+        "roadmap"
+      ],
+      "comments": 4,
+      "created_at": "2026-08-17T19:08:33Z",
+      "updated_at": "2026-08-17T21:32:24Z",
+      "closed_at": null,
+      "prs": []
+    },
+    {
+      "repo": "spotlight-spec",
+      "repo_slug": "api-commons/spotlight-spec",
+      "number": 22,
+      "title": "Summaries and ratings: how well are you doing, not just what you got wrong",
+      "url": "https://github.com/api-commons/spotlight-spec/issues/22",
+      "state": "open",
+      "approved": false,
+      "deferred": false,
+      "maturity": null,
+      "maturity_rank": -1,
+      "labels": [
+        "enhancement",
+        "roadmap"
+      ],
+      "comments": 0,
+      "created_at": "2026-08-17T19:08:34Z",
+      "updated_at": "2026-08-17T19:08:34Z",
+      "closed_at": null,
+      "prs": []
+    },
+    {
+      "repo": "spotlight-spec",
+      "repo_slug": "api-commons/spotlight-spec",
+      "number": 23,
+      "title": "Fixing: custom callback or DSL, and can we align with Speakeasy and Vacuum",
+      "url": "https://github.com/api-commons/spotlight-spec/issues/23",
+      "state": "open",
+      "approved": false,
+      "deferred": false,
+      "maturity": null,
+      "maturity_rank": -1,
+      "labels": [
+        "question",
+        "roadmap"
+      ],
+      "comments": 0,
+      "created_at": "2026-08-17T19:08:35Z",
+      "updated_at": "2026-08-17T19:08:35Z",
+      "closed_at": null,
+      "prs": []
+    },
+    {
+      "repo": "spotlight-spec",
+      "repo_slug": "api-commons/spotlight-spec",
+      "number": 24,
+      "title": "Multi-format is a goal, not an accident \u2014 say so in the specification",
+      "url": "https://github.com/api-commons/spotlight-spec/issues/24",
+      "state": "open",
+      "approved": false,
+      "deferred": false,
+      "maturity": null,
+      "maturity_rank": -1,
+      "labels": [
+        "enhancement",
+        "roadmap"
+      ],
+      "comments": 0,
+      "created_at": "2026-08-17T19:08:37Z",
+      "updated_at": "2026-08-17T19:08:37Z",
       "closed_at": null,
       "prs": []
     }
