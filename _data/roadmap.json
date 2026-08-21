@@ -1,16 +1,16 @@
 {
-  "generated": "2026-08-21T13:09:07Z",
+  "generated": "2026-08-21T18:54:21Z",
   "repos": [
     "api-commons/spotlight-spec"
   ],
   "counts": {
-    "total": 20,
-    "open": 20,
+    "total": 27,
+    "open": 27,
     "approved": 0,
     "deferred": 0,
     "with_prs": 0,
     "raised": 0,
-    "discussing": 9,
+    "discussing": 15,
     "consensus": 3,
     "ready": 1
   },
@@ -74,9 +74,9 @@
         "roadmap",
         "task"
       ],
-      "comments": 0,
+      "comments": 1,
       "created_at": "2026-07-31T17:32:52Z",
-      "updated_at": "2026-07-31T17:32:52Z",
+      "updated_at": "2026-08-21T18:47:51Z",
       "closed_at": null,
       "prs": []
     },
@@ -96,9 +96,9 @@
         "roadmap",
         "task"
       ],
-      "comments": 0,
+      "comments": 1,
       "created_at": "2026-07-31T17:32:54Z",
-      "updated_at": "2026-07-31T17:32:54Z",
+      "updated_at": "2026-08-21T18:47:52Z",
       "closed_at": null,
       "prs": []
     },
@@ -160,9 +160,9 @@
         "question",
         "roadmap"
       ],
-      "comments": 1,
+      "comments": 2,
       "created_at": "2026-07-31T17:32:49Z",
-      "updated_at": "2026-08-17T19:10:00Z",
+      "updated_at": "2026-08-21T18:47:50Z",
       "closed_at": null,
       "prs": []
     },
@@ -182,9 +182,9 @@
         "question",
         "roadmap"
       ],
-      "comments": 1,
+      "comments": 2,
       "created_at": "2026-07-31T17:32:51Z",
-      "updated_at": "2026-08-19T22:24:48Z",
+      "updated_at": "2026-08-21T18:47:50Z",
       "closed_at": null,
       "prs": []
     },
@@ -224,9 +224,9 @@
         "maturity:discussing",
         "roadmap"
       ],
-      "comments": 0,
+      "comments": 1,
       "created_at": "2026-07-31T17:32:56Z",
-      "updated_at": "2026-07-31T17:32:56Z",
+      "updated_at": "2026-08-21T18:47:53Z",
       "closed_at": null,
       "prs": []
     },
@@ -287,9 +287,141 @@
         "maturity:discussing",
         "roadmap"
       ],
-      "comments": 0,
+      "comments": 1,
       "created_at": "2026-08-19T22:24:55Z",
-      "updated_at": "2026-08-19T22:33:22Z",
+      "updated_at": "2026-08-21T18:47:56Z",
+      "closed_at": null,
+      "prs": []
+    },
+    {
+      "repo": "spotlight-spec",
+      "repo_slug": "api-commons/spotlight-spec",
+      "number": 28,
+      "title": "JSON Path: the RFC exists, this format does not follow it \u2014 pick a path and an escape route",
+      "url": "https://github.com/api-commons/spotlight-spec/issues/28",
+      "state": "open",
+      "approved": false,
+      "deferred": false,
+      "maturity": "discussing",
+      "maturity_rank": 1,
+      "labels": [
+        "maturity:discussing",
+        "question",
+        "roadmap"
+      ],
+      "comments": 0,
+      "created_at": "2026-08-21T18:46:47Z",
+      "updated_at": "2026-08-21T18:46:47Z",
+      "closed_at": null,
+      "prs": []
+    },
+    {
+      "repo": "spotlight-spec",
+      "repo_slug": "api-commons/spotlight-spec",
+      "number": 29,
+      "title": "Custom functions in the specification \u2014 the part that is tied to a language",
+      "url": "https://github.com/api-commons/spotlight-spec/issues/29",
+      "state": "open",
+      "approved": false,
+      "deferred": false,
+      "maturity": "discussing",
+      "maturity_rank": 1,
+      "labels": [
+        "maturity:discussing",
+        "question",
+        "roadmap"
+      ],
+      "comments": 0,
+      "created_at": "2026-08-21T18:46:48Z",
+      "updated_at": "2026-08-21T18:46:48Z",
+      "closed_at": null,
+      "prs": []
+    },
+    {
+      "repo": "spotlight-spec",
+      "repo_slug": "api-commons/spotlight-spec",
+      "number": 30,
+      "title": "Ruleset referencing: how default and custom rulesets are named, found and composed",
+      "url": "https://github.com/api-commons/spotlight-spec/issues/30",
+      "state": "open",
+      "approved": false,
+      "deferred": false,
+      "maturity": "discussing",
+      "maturity_rank": 1,
+      "labels": [
+        "enhancement",
+        "maturity:discussing",
+        "roadmap"
+      ],
+      "comments": 0,
+      "created_at": "2026-08-21T18:46:49Z",
+      "updated_at": "2026-08-21T18:46:49Z",
+      "closed_at": null,
+      "prs": []
+    },
+    {
+      "repo": "spotlight-spec",
+      "repo_slug": "api-commons/spotlight-spec",
+      "number": 31,
+      "title": "Testing the rules themselves \u2014 a self-test facility, the way OPA has one",
+      "url": "https://github.com/api-commons/spotlight-spec/issues/31",
+      "state": "open",
+      "approved": false,
+      "deferred": false,
+      "maturity": "discussing",
+      "maturity_rank": 1,
+      "labels": [
+        "enhancement",
+        "maturity:discussing",
+        "roadmap"
+      ],
+      "comments": 0,
+      "created_at": "2026-08-21T18:46:50Z",
+      "updated_at": "2026-08-21T18:46:50Z",
+      "closed_at": null,
+      "prs": []
+    },
+    {
+      "repo": "spotlight-spec",
+      "repo_slug": "api-commons/spotlight-spec",
+      "number": 32,
+      "title": "Markdown as a first-class format \u2014 linting agent skills, and why paths do not fit prose",
+      "url": "https://github.com/api-commons/spotlight-spec/issues/32",
+      "state": "open",
+      "approved": false,
+      "deferred": false,
+      "maturity": "discussing",
+      "maturity_rank": 1,
+      "labels": [
+        "enhancement",
+        "maturity:discussing",
+        "roadmap"
+      ],
+      "comments": 0,
+      "created_at": "2026-08-21T18:46:51Z",
+      "updated_at": "2026-08-21T18:46:51Z",
+      "closed_at": null,
+      "prs": []
+    },
+    {
+      "repo": "spotlight-spec",
+      "repo_slug": "api-commons/spotlight-spec",
+      "number": 33,
+      "title": "Licensing and trademark \u2014 what the specification is licensed under, and the from-scratch option",
+      "url": "https://github.com/api-commons/spotlight-spec/issues/33",
+      "state": "open",
+      "approved": false,
+      "deferred": false,
+      "maturity": "discussing",
+      "maturity_rank": 1,
+      "labels": [
+        "maturity:discussing",
+        "question",
+        "roadmap"
+      ],
+      "comments": 0,
+      "created_at": "2026-08-21T18:46:52Z",
+      "updated_at": "2026-08-21T18:46:52Z",
       "closed_at": null,
       "prs": []
     },
@@ -350,9 +482,9 @@
         "question",
         "roadmap"
       ],
-      "comments": 4,
+      "comments": 5,
       "created_at": "2026-08-17T19:08:33Z",
-      "updated_at": "2026-08-17T21:32:24Z",
+      "updated_at": "2026-08-21T18:47:54Z",
       "closed_at": null,
       "prs": []
     },
@@ -413,9 +545,9 @@
         "enhancement",
         "roadmap"
       ],
-      "comments": 0,
+      "comments": 1,
       "created_at": "2026-08-17T19:08:37Z",
-      "updated_at": "2026-08-17T19:08:37Z",
+      "updated_at": "2026-08-21T18:47:55Z",
       "closed_at": null,
       "prs": []
     },
@@ -434,9 +566,30 @@
         "documentation",
         "roadmap"
       ],
-      "comments": 0,
+      "comments": 1,
       "created_at": "2026-08-19T22:34:22Z",
-      "updated_at": "2026-08-19T22:45:33Z",
+      "updated_at": "2026-08-21T18:48:28Z",
+      "closed_at": null,
+      "prs": []
+    },
+    {
+      "repo": "spotlight-spec",
+      "repo_slug": "api-commons/spotlight-spec",
+      "number": 34,
+      "title": "Office hours notes \u2014 2026-08-21",
+      "url": "https://github.com/api-commons/spotlight-spec/issues/34",
+      "state": "open",
+      "approved": false,
+      "deferred": false,
+      "maturity": null,
+      "maturity_rank": -1,
+      "labels": [
+        "documentation",
+        "roadmap"
+      ],
+      "comments": 0,
+      "created_at": "2026-08-21T18:47:39Z",
+      "updated_at": "2026-08-21T18:47:39Z",
       "closed_at": null,
       "prs": []
     }
