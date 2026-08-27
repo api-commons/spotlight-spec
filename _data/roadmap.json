@@ -1,14 +1,14 @@
 {
-  "generated": "2026-08-27T09:44:03Z",
+  "generated": "2026-08-27T22:14:19Z",
   "repos": [
     "api-commons/spotlight-spec"
   ],
   "counts": {
-    "total": 27,
-    "open": 27,
+    "total": 28,
+    "open": 28,
     "approved": 0,
     "deferred": 0,
-    "with_prs": 0,
+    "with_prs": 8,
     "raised": 0,
     "discussing": 15,
     "consensus": 3,
@@ -31,9 +31,9 @@
         "roadmap",
         "task"
       ],
-      "comments": 0,
+      "comments": 1,
       "created_at": "2026-07-31T17:32:55Z",
-      "updated_at": "2026-07-31T17:32:55Z",
+      "updated_at": "2026-08-27T15:24:22Z",
       "closed_at": null,
       "prs": []
     },
@@ -56,7 +56,15 @@
       "created_at": "2026-07-30T20:02:31Z",
       "updated_at": "2026-07-31T17:33:31Z",
       "closed_at": null,
-      "prs": []
+      "prs": [
+        {
+          "number": 37,
+          "title": "Propose a conformance suite: a case format, a runner contract, and thirteen cases",
+          "url": "https://github.com/api-commons/spotlight-spec/pull/37",
+          "state": "open",
+          "merged": false
+        }
+      ]
     },
     {
       "repo": "spotlight-spec",
@@ -74,11 +82,26 @@
         "roadmap",
         "task"
       ],
-      "comments": 1,
+      "comments": 3,
       "created_at": "2026-07-31T17:32:52Z",
-      "updated_at": "2026-08-21T18:47:51Z",
+      "updated_at": "2026-08-27T16:02:22Z",
       "closed_at": null,
-      "prs": []
+      "prs": [
+        {
+          "number": 36,
+          "title": "docs: add a security policy",
+          "url": "https://github.com/api-commons/spotlight-spec/pull/36",
+          "state": "open",
+          "merged": false
+        },
+        {
+          "number": 37,
+          "title": "Propose a conformance suite: a case format, a runner contract, and thirteen cases",
+          "url": "https://github.com/api-commons/spotlight-spec/pull/37",
+          "state": "open",
+          "merged": false
+        }
+      ]
     },
     {
       "repo": "spotlight-spec",
@@ -160,9 +183,9 @@
         "question",
         "roadmap"
       ],
-      "comments": 2,
+      "comments": 3,
       "created_at": "2026-07-31T17:32:49Z",
-      "updated_at": "2026-08-21T18:47:50Z",
+      "updated_at": "2026-08-27T15:58:16Z",
       "closed_at": null,
       "prs": []
     },
@@ -182,9 +205,9 @@
         "question",
         "roadmap"
       ],
-      "comments": 2,
+      "comments": 3,
       "created_at": "2026-07-31T17:32:51Z",
-      "updated_at": "2026-08-21T18:47:50Z",
+      "updated_at": "2026-08-27T15:12:21Z",
       "closed_at": null,
       "prs": []
     },
@@ -228,7 +251,15 @@
       "created_at": "2026-07-31T17:32:56Z",
       "updated_at": "2026-08-21T18:47:53Z",
       "closed_at": null,
-      "prs": []
+      "prs": [
+        {
+          "number": 38,
+          "title": "Say in the specification that multi-format is a goal",
+          "url": "https://github.com/api-commons/spotlight-spec/pull/38",
+          "state": "open",
+          "merged": false
+        }
+      ]
     },
     {
       "repo": "spotlight-spec",
@@ -313,7 +344,15 @@
       "created_at": "2026-08-21T18:46:47Z",
       "updated_at": "2026-08-21T18:46:47Z",
       "closed_at": null,
-      "prs": []
+      "prs": [
+        {
+          "number": 37,
+          "title": "Propose a conformance suite: a case format, a runner contract, and thirteen cases",
+          "url": "https://github.com/api-commons/spotlight-spec/pull/37",
+          "state": "open",
+          "merged": false
+        }
+      ]
     },
     {
       "repo": "spotlight-spec",
@@ -335,7 +374,15 @@
       "created_at": "2026-08-21T18:46:48Z",
       "updated_at": "2026-08-21T18:46:48Z",
       "closed_at": null,
-      "prs": []
+      "prs": [
+        {
+          "number": 36,
+          "title": "docs: add a security policy",
+          "url": "https://github.com/api-commons/spotlight-spec/pull/36",
+          "state": "open",
+          "merged": false
+        }
+      ]
     },
     {
       "repo": "spotlight-spec",
@@ -401,7 +448,15 @@
       "created_at": "2026-08-21T18:46:51Z",
       "updated_at": "2026-08-21T18:46:51Z",
       "closed_at": null,
-      "prs": []
+      "prs": [
+        {
+          "number": 37,
+          "title": "Propose a conformance suite: a case format, a runner contract, and thirteen cases",
+          "url": "https://github.com/api-commons/spotlight-spec/pull/37",
+          "state": "open",
+          "merged": false
+        }
+      ]
     },
     {
       "repo": "spotlight-spec",
@@ -549,7 +604,15 @@
       "created_at": "2026-08-17T19:08:37Z",
       "updated_at": "2026-08-21T18:47:55Z",
       "closed_at": null,
-      "prs": []
+      "prs": [
+        {
+          "number": 38,
+          "title": "Say in the specification that multi-format is a goal",
+          "url": "https://github.com/api-commons/spotlight-spec/pull/38",
+          "state": "open",
+          "merged": false
+        }
+      ]
     },
     {
       "repo": "spotlight-spec",
@@ -592,6 +655,35 @@
       "updated_at": "2026-08-24T17:00:40Z",
       "closed_at": null,
       "prs": []
+    },
+    {
+      "repo": "spotlight-spec",
+      "repo_slug": "api-commons/spotlight-spec",
+      "number": 35,
+      "title": "Office hours agenda \u2014 2026-08-28",
+      "url": "https://github.com/api-commons/spotlight-spec/issues/35",
+      "state": "open",
+      "approved": false,
+      "deferred": false,
+      "maturity": null,
+      "maturity_rank": -1,
+      "labels": [
+        "documentation",
+        "roadmap"
+      ],
+      "comments": 3,
+      "created_at": "2026-08-27T14:03:23Z",
+      "updated_at": "2026-08-27T15:55:20Z",
+      "closed_at": null,
+      "prs": [
+        {
+          "number": 37,
+          "title": "Propose a conformance suite: a case format, a runner contract, and thirteen cases",
+          "url": "https://github.com/api-commons/spotlight-spec/pull/37",
+          "state": "open",
+          "merged": false
+        }
+      ]
     }
   ]
 }
