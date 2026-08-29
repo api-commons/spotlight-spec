@@ -1,5 +1,5 @@
 {
-  "generated": "2026-08-29T07:01:48Z",
+  "generated": "2026-08-29T16:41:50Z",
   "repos": [
     "api-commons/spotlight-spec"
   ],
@@ -496,9 +496,9 @@
         "question",
         "roadmap"
       ],
-      "comments": 29,
+      "comments": 37,
       "created_at": "2026-08-28T18:10:43Z",
-      "updated_at": "2026-08-28T18:29:18Z",
+      "updated_at": "2026-08-29T12:21:27Z",
       "closed_at": null,
       "prs": []
     },
