@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-01T11:36:25Z",
+  "generated": "2026-09-01T16:37:24Z",
   "repos": [
     "api-commons/spotlight-spec"
   ],
@@ -91,8 +91,8 @@
           "number": 36,
           "title": "docs: add a security policy",
           "url": "https://github.com/api-commons/spotlight-spec/pull/36",
-          "state": "open",
-          "merged": false
+          "state": "merged",
+          "merged": true
         },
         {
           "number": 37,
@@ -256,8 +256,8 @@
           "number": 38,
           "title": "Say in the specification that multi-format is a goal",
           "url": "https://github.com/api-commons/spotlight-spec/pull/38",
-          "state": "open",
-          "merged": false
+          "state": "merged",
+          "merged": true
         }
       ]
     },
@@ -379,8 +379,8 @@
           "number": 36,
           "title": "docs: add a security policy",
           "url": "https://github.com/api-commons/spotlight-spec/pull/36",
-          "state": "open",
-          "merged": false
+          "state": "merged",
+          "merged": true
         }
       ]
     },
@@ -698,8 +698,8 @@
           "number": 38,
           "title": "Say in the specification that multi-format is a goal",
           "url": "https://github.com/api-commons/spotlight-spec/pull/38",
-          "state": "open",
-          "merged": false
+          "state": "merged",
+          "merged": true
         }
       ]
     },
