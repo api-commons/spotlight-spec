@@ -56,6 +56,36 @@ than the other way around — and other engines are welcome to implement it. Tha
 implementation; a written specification with a public conformance suite is precisely what
 lets several engines coexist honestly instead of drifting apart on undocumented behavior.
 
+### What this format is for
+
+**Governing structured documents. Not governing OpenAPI.**
+
+The distinction is easy to miss, because every example in this document is an OpenAPI example
+and the best-known rulesets are OpenAPI rulesets. The underlying model was never
+OpenAPI-specific: a rule selects nodes in a JSON or YAML document with a path expression and
+asserts something about them. Nothing in that sentence is about APIs. In practice the format
+is already pointed at APIs.json, at CI workflow definitions, at Kubernetes manifests, and at
+configuration of every kind, and it works.
+
+**Stating it here is a design constraint rather than marketing.** As long as OpenAPI is the
+assumed subject, OpenAPI-shaped assumptions leak into the format — into what an alias is
+allowed to name, into what format detection is permitted to inspect, into what a "document" is
+assumed to contain. A specification that does not say what it is for will drift toward whatever
+its loudest use case is.
+
+So, normatively: **support for documents that are not API descriptions is a goal of this
+format, and a change that is correct only for API description documents is a defect.**
+
+What that goal does *not* yet come with — deliberately, because these are open questions rather
+than settled ones — is how someone declares a new format without changing an engine, how format
+detection behaves for documents no engine has been taught about, and how aliases attach to a
+format the specification does not ship. Those are tracked in
+[#24](https://github.com/api-commons/spotlight-spec/issues/24) and are not answered here.
+
+One thing this is *not* about: it concerns **what gets linted**, never what the rule is written
+in. Expressing rules in another policy language is a separate question with a different answer,
+tracked in [#13](https://github.com/api-commons/spotlight-spec/issues/13).
+
 ### Where things go
 
 | What | Where |
