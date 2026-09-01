@@ -33,3 +33,18 @@ jobs:
           ruby-version: '3.2'
           bundler-cache: true
       - run: bundle exec jekyll build
+
+  # The conformance suite is data, and data rots quietly. This does not run any engine -
+  # it checks that every case is well formed, uniquely identified, and honest about which
+  # conformance class it belongs to. A suite nothing checks is in no better position than
+  # the compatibility claims it exists to adjudicate.
+  conformance-cases:
+    name: Conformance cases are well formed
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install pyyaml
+      - run: python3 suite/validate-cases.py
