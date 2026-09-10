@@ -1,0 +1,24 @@
+id: formats/rule-overrides-ruleset
+tier: MUST
+spec: "#formats"
+title: A rule's `formats` replaces the ruleset's rather than intersecting with it.
+rationale: >-
+  "A rule's `formats` overrides the ruleset's." Override and intersect give the same answer
+  in most rulesets and different answers here, which is why this case exists: the ruleset is
+  scoped to a format the document is not, and the rule is scoped to one it is.
+ruleset:
+  formats: [oas2]
+  rules:
+    scoped-to-json-schema:
+      given: $.a
+      formats: [jsonSchemaLoose]
+      then:
+        function: truthy
+document:
+  $schema: "https://json-schema.org/draft/2020-12/schema"
+  a: false
+expect:
+  diagnostics:
+    - code: scoped-to-json-schema
+      severity: warn
+      path: [a]

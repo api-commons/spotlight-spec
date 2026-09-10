@@ -1,0 +1,22 @@
+id: formats/absent-runs-on-every-document
+tier: MUST
+spec: "#formats"
+title: A rule with no `formats`, in a ruleset with no `formats`, runs against any document.
+rationale: >-
+  "Omitting both means the rule runs against every document." The document below is of no
+  registered format at all, which is the case most likely to diverge: an engine that treats
+  format detection as a precondition for linting will report nothing here.
+ruleset:
+  rules:
+    a-must-be-truthy:
+      given: $.a
+      then:
+        function: truthy
+document:
+  a: false
+  not-an-api: true
+expect:
+  diagnostics:
+    - code: a-must-be-truthy
+      severity: warn
+      path: [a]

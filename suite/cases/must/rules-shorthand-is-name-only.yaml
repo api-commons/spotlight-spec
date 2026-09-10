@@ -1,0 +1,18 @@
+id: rules/shorthand-is-name-only
+tier: MUST
+class: ruleset
+spec: "#conformance-notes"
+title: A numeric severity is valid inside a rule, and invalid in the rule-shorthand position.
+rationale: >-
+  Conformance note 3: "`severity: 1` is valid inside a rule definition, but `my-rule: 1`
+  inside `rules` is not — the shorthand position takes only the severity names and booleans.
+  The asymmetry is inherited, not intended."
+  Documented as an inherited wart. It is still normative for version one, and an engine that
+  helpfully accepts `my-rule: 1` accepts a ruleset that other engines reject — which is the
+  failure mode this suite exists to catch, even when the lenient engine is the nicer one.
+ruleset:
+  extends: [[spectral:oas, "off"]]
+  rules:
+    operation-description: 1
+expect:
+  ruleset: invalid
