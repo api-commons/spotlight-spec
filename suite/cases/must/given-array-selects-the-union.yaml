@@ -1,0 +1,30 @@
+id: given/array-selects-the-union
+tier: MUST
+spec: "#given-and-path-expressions"
+title: An array `given` selects every node matched by any of its expressions.
+rationale: >-
+  "`given` ... is either a single path expression or a non-empty array of them." The two
+  expressions here match disjoint nodes, so the union is unambiguous.
+  NOTE - the OVERLAPPING case is deliberately not asserted here. See GAPS.md, gap 4 - the
+  specification does not say whether a node matched by two expressions is evaluated once or
+  twice, and a case cannot be derived from text that does not exist.
+ruleset:
+  rules:
+    both-branches:
+      given:
+        - $.a
+        - $.b
+      then:
+        function: truthy
+document:
+  a: false
+  b: false
+  c: false
+expect:
+  diagnostics:
+    - code: both-branches
+      severity: warn
+      path: [a]
+    - code: both-branches
+      severity: warn
+      path: [b]
