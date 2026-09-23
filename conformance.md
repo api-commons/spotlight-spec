@@ -40,6 +40,31 @@ predictable consequence of a format whose only definition was a linter's source 
 - **How an implementation declares conformance.** A claim nobody can check is marketing. A claim
   tied to a published suite and a version number is a fact.
 
+### The ruleset class is not hypothetical
+
+The second conformance class has real subjects already. Guideline programmes publish their rules
+*as* rulesets, distributed the way libraries are distributed: the
+[AEP OpenAPI Linter](https://github.com/aep-dev/aep-openapi-linter) — the ruleset for the
+[API Enhancement Proposals](https://aep.dev), the open successor to Google's AIPs — extends
+`spectral:oas`, composes one sub-ruleset per AEP by relative path, declares custom JavaScript
+functions through `functionsDir`, and is consumed either as the npm package
+`@aep_dev/aep-openapi-linter` or by raw URL pinned to a release tag. The Italian government's
+national interoperability rules are maintained the same way, in a repository separate from the
+checker that runs them.
+
+Read that as a requirements list, because it is one. A published ruleset exercises `extends`
+composition, relative and remote resolution, custom function loading, and version pinning — all at
+once, and all against no written definition of what any of them mean. It is also where portability
+stops being theoretical: products that document a restriction to built-in core functions, or that
+forbid remote URLs in `extends`, cannot run a ruleset like this at all, while claiming support for
+the format it is written in. Nobody is at fault there. There is simply nothing that says what
+"supports the format" obliges you to accept.
+
+So a ruleset author needs to know what they may write and still be portable, and a product needs
+to be able to state what it accepts. Both of those are conformance statements, and neither is
+available today. The ruleset class is what makes them available — and the published rulesets in
+the wild are where its cases should come from.
+
 ---
 
 ## The test suite
