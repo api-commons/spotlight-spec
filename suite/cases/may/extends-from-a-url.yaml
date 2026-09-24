@@ -1,0 +1,30 @@
+id: extends/from-a-url
+tier: MAY
+spec: "#extends"
+title: A ruleset may extend another ruleset fetched over HTTP.
+rationale: >-
+  "An entry is a built-in identifier, a file path, an npm module specifier, or a URL."
+  This is in the MAY tier because it requires network access, and an engine embedded in a
+  browser, an air-gapped pipeline, or a sandboxed policy host may legitimately refuse to fetch
+  while conforming in every other respect. What is NOT optional is being explicit: an engine
+  that declines this must decline it loudly rather than resolving to an empty ruleset and
+  reporting nothing, which is silent under-enforcement.
+  The runner supplies the URL and its contents - see the runner contract in README.md.
+requires: [remote-resolution]
+ruleset:
+  extends: ["${REMOTE_RULESET_URL}"]
+document:
+  a: false
+expect:
+  diagnostics:
+    - code: a-must-be-truthy
+      severity: warn
+      path: [a]
+fixtures:
+  remote:
+    "${REMOTE_RULESET_URL}":
+      rules:
+        a-must-be-truthy:
+          given: $.a
+          then:
+            function: truthy

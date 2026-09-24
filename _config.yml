@@ -46,5 +46,9 @@ exclude:
   - Gemfile
   - Gemfile.lock
   - vendor
+  # The conformance suite is repository data, not site content. It is a proposal
+  # (see suite/README.md) and publishing it under a URL would give it a permanence
+  # it has not earned yet. Cases are readable over raw.githubusercontent.com.
+  - suite
 
 permalink: pretty

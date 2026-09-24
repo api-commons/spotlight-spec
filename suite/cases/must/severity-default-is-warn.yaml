@@ -1,0 +1,20 @@
+id: severity/default-is-warn
+tier: MUST
+spec: "#severity"
+title: A rule that omits `severity` reports at `warn`.
+rationale: >-
+  The specification states plainly: "When a rule omits `severity`, it defaults to `warn`."
+  A default that differs between engines changes whether a pipeline gated on errors passes.
+ruleset:
+  rules:
+    a-must-be-truthy:
+      given: $.a
+      then:
+        function: truthy
+document:
+  a: false
+expect:
+  diagnostics:
+    - code: a-must-be-truthy
+      severity: warn
+      path: [a]
