@@ -1,0 +1,20 @@
+id: formats/unknown-identifier-never-matches
+tier: MUST
+spec: "#conformance-notes"
+title: A rule scoped to an unregistered format identifier never fires, and is not an error.
+rationale: >-
+  Conformance note 2: "a typo like `oas31` validates and simply matches no document — meaning
+  the rule never fires. Rules that never fire look identical to rules that always pass."
+  An engine that rejects the unknown identifier, or that ignores `formats` it cannot resolve
+  and runs the rule anyway, both diverge here — in opposite directions.
+ruleset:
+  rules:
+    scoped-to-a-typo:
+      given: $.a
+      formats: [oas31]
+      then:
+        function: truthy
+document:
+  a: false
+expect:
+  diagnostics: []

@@ -1,0 +1,38 @@
+id: then/array-applies-every-function
+tier: MUST
+spec: "#then-and-functions"
+title: Every function in a `then` array is applied to every node `given` matched.
+rationale: >-
+  "`then` is one function invocation, or an array of them all applied to every node `given`
+  matched." Two functions over two matched nodes must produce four evaluations, and here
+  all four fail — which distinguishes an engine that applies only the first function, and
+  one that stops at the first failure per node.
+ruleset:
+  rules:
+    both-checks:
+      given: $.items[*]
+      then:
+        - field: name
+          function: truthy
+        - field: description
+          function: truthy
+document:
+  items:
+    - name: ""
+      description: ""
+    - name: ""
+      description: ""
+expect:
+  diagnostics:
+    - code: both-checks
+      severity: warn
+      path: [items, 0, name]
+    - code: both-checks
+      severity: warn
+      path: [items, 0, description]
+    - code: both-checks
+      severity: warn
+      path: [items, 1, name]
+    - code: both-checks
+      severity: warn
+      path: [items, 1, description]
