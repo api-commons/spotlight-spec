@@ -1,0 +1,19 @@
+id: given/bare-property-name-is-invalid
+tier: MUST
+class: ruleset
+spec: "#given-and-path-expressions"
+title: A bare property name is not a path expression, and the ruleset is invalid.
+rationale: >-
+  "A path expression is a string that is one of: a JSONPath expression, beginning with `$`;
+  an alias reference, beginning with `#`. Anything else is invalid. A bare property name such
+  as `paths` is a common authoring mistake and is rejected by the schema."
+  This is a conforming-RULESET case, not a conforming-VALIDATOR one: the assertion is that the
+  document is rejected, not that particular diagnostics are produced.
+ruleset:
+  rules:
+    bare-name:
+      given: paths
+      then:
+        function: truthy
+expect:
+  ruleset: invalid

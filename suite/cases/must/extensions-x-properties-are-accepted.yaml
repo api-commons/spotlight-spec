@@ -1,0 +1,22 @@
+id: extensions/x-properties-are-accepted
+tier: MUST
+spec: "#extension-properties"
+title: An `x-` property at the root is accepted and does not change what the ruleset reports.
+rationale: >-
+  The `x-` escape hatch is the counterpart to root-unknown-property-is-rejected, and the pair
+  is what makes either meaningful. An extension property must be carried without objection and
+  without effect on diagnostics.
+ruleset:
+  x-owner: platform-team
+  rules:
+    a-must-be-truthy:
+      given: $.a
+      then:
+        function: truthy
+document:
+  a: false
+expect:
+  diagnostics:
+    - code: a-must-be-truthy
+      severity: warn
+      path: [a]

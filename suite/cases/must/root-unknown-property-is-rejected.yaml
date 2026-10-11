@@ -1,0 +1,19 @@
+id: root/unknown-property-is-rejected
+tier: MUST
+class: ruleset
+spec: "#the-ruleset-object"
+title: An unrecognized root property that is not `x-`-prefixed makes the ruleset invalid.
+rationale: >-
+  Conformance note 4: "The root permits only the properties above plus `x-*`, so a ruleset
+  cannot point at its own schema with a `$schema` property the way most JSON formats can."
+  `$schema` is the exact key an author will reach for, which makes it the right key to test.
+  Contrast with `x-schema`, which must be accepted - see extensions/x-properties-are-accepted.
+ruleset:
+  $schema: "https://spec.spotlight-rules.com/schema/v1/spectral-ruleset.schema.json"
+  rules:
+    a-must-be-truthy:
+      given: $.a
+      then:
+        function: truthy
+expect:
+  ruleset: invalid

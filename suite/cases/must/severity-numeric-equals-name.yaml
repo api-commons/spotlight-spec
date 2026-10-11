@@ -1,0 +1,29 @@
+id: severity/numeric-equals-name
+tier: MUST
+spec: "#severity"
+title: The numeric and named spellings of a severity are equivalent.
+rationale: >-
+  "Both spellings are accepted wherever a severity is expected." Two rules that differ only
+  in how their severity is written must produce diagnostics that differ only in rule name.
+ruleset:
+  rules:
+    named-error:
+      given: $.a
+      severity: error
+      then:
+        function: truthy
+    numeric-error:
+      given: $.a
+      severity: 0
+      then:
+        function: truthy
+document:
+  a: false
+expect:
+  diagnostics:
+    - code: named-error
+      severity: error
+      path: [a]
+    - code: numeric-error
+      severity: error
+      path: [a]

@@ -1,0 +1,21 @@
+id: then/unknown-property-is-ignored
+tier: MUST
+spec: "#conformance-notes"
+title: An unrecognized key inside `then` is ignored, and the function runs with its defaults.
+rationale: >-
+  Conformance note 1: "A misspelled `functionOption` (singular) is not rejected; it is
+  silently ignored, and the function runs with its defaults." The specification documents
+  this as behavior rather than endorsing it, so it is normative until a version changes it.
+  `length` with no options asserts nothing about bounds, so the rule passes.
+ruleset:
+  rules:
+    misspelled-options:
+      given: $.a
+      then:
+        function: length
+        functionOption:
+          max: 1
+document:
+  a: "far longer than one character"
+expect:
+  diagnostics: []
