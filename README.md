@@ -1,3 +1,6 @@
+> [!IMPORTANT]
+> **Archived.** This specification continues as the [OpenLint Ruleset Specification](https://spec.openlint.org) in [openlint/spec](https://github.com/openlint/spec), part of [OpenLint](https://openlint.org), the community fork of Spectral. The issues here, including the [vote that named OpenLint](https://github.com/api-commons/spotlight-spec/issues/39), stay readable for history; carry any open topic forward in [OpenLint discussions](https://github.com/orgs/openlint/discussions).
+
 # Spotlight Spec
 
 **A standalone specification and JSON Schema for the Spectral ruleset format.**
